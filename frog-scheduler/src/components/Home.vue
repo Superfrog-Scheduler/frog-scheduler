@@ -7,7 +7,6 @@ defineProps({
 </script>
 
 <template>
-  <h1>{{ msg }}</h1>
 
   <p>
     <router-link to="/director">Go to SpiritDirector</router-link>
