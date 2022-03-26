@@ -1,4 +1,5 @@
 <script setup>
+import UserSideBar from "../Sidebars/UserSideBar.vue"
 
 defineProps({
   msg: String
@@ -6,8 +7,7 @@ defineProps({
 </script>
 
 <template>
-  <h1>Customer</h1>
-
+  <UserSideBar />
 
 </template>
 

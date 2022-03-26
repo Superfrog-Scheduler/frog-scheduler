@@ -1,13 +1,12 @@
 <script setup>
-
+import SpiritDirector from "../Sidebars/SpiritDirectorSideBar.vue"
 defineProps({
   msg: String
 })
 </script>
 
 <template>
-  <h1>Spirit Director</h1>
-
+<SpiritDirector />
 
 </template>
 

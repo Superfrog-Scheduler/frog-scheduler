@@ -1,4 +1,5 @@
 <script setup>
+import SuperFrogTeamSideBar from "../Sidebars/SuperFrogTeamSideBar.vue"
 
 defineProps({
   msg: String
@@ -6,7 +7,7 @@ defineProps({
 </script>
 
 <template>
-  <h1>Super Frog Team</h1>
+  <SuperFrogTeamSideBar />
 
 
 </template>
