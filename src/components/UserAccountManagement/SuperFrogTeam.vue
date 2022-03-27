@@ -7,9 +7,11 @@ defineProps({
 </script>
 
 <template>
-  <SuperFrogTeamSideBar />
-
-
+  <div class="container-fluid">
+    <div class="row flex-nowrap">
+      <SuperFrogTeamSideBar />
+    </div>
+  </div>
 </template>
 
 <style scoped>

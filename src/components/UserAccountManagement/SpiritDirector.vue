@@ -6,8 +6,11 @@ defineProps({
 </script>
 
 <template>
-<SpiritDirectorSideBar />
-
+  <div class="container-fluid">
+    <div class="row flex-nowrap">
+      <SpiritDirectorSideBar />
+    </div>
+  </div>
 </template>
 
 <style scoped>
