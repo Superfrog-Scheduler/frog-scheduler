@@ -1,5 +1,6 @@
 <script setup>
 import SpiritDirectorSideBar from "../Sidebars/SpiritDirectorSideBar.vue"
+import SpiritDirector from "../Tables/SpiritDirectorTable.vue"
 defineProps({
   msg: String
 })
@@ -9,6 +10,7 @@ defineProps({
   <div class="container-fluid">
     <div class="row flex-nowrap">
       <SpiritDirectorSideBar />
+      <SpiritDirector />
     </div>
   </div>
 </template>
