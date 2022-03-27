@@ -1,6 +1,6 @@
 <script setup>
-import UserSideBar from "../Sidebars/UserSideBar.vue"
-import UserTable from "../Tables/UserTable.vue"
+import CustomerSideBar from "../Sidebars/CustomerSideBar.vue"
+import CustomerTable from "../Tables/CustomerTable.vue"
 
 defineProps({
   msg: String
@@ -9,8 +9,8 @@ defineProps({
 
 <template>
   <div class="dashboard">
-    <UserSideBar/>
-    <UserTable/>
+    <CustomerSideBar/>
+    <CustomerTable/>
   </div>
 </template>
 
