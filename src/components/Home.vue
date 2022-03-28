@@ -1,19 +1,16 @@
 <script setup>
-
-
 defineProps({
   msg: String,
 });
 </script>
 
 <template>
-
   <p>
-    <router-link to="/director">Go to SpiritDirector</router-link>
+    <router-link to="/director/requests">Go to SpiritDirector</router-link>
     <br/>
-    <router-link to="/team">Go to SuperFrogTeam</router-link>
+    <router-link to="/team/requests">Go to SuperFrogTeam</router-link>
     <br/>
-    <router-link to="/customer">Go to Customer</router-link>
+    <router-link to="/customer/requests">Go to Customer</router-link>
     <br/>
   </p>
 </template>

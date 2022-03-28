@@ -15,8 +15,4 @@ defineProps({
 </template>
 
 <style scoped>
-  .dashboard {
-    display: grid;
-    grid-template-columns: 1fr 5fr;
-  }
 </style>
