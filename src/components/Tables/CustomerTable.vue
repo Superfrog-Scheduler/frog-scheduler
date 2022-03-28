@@ -1,5 +1,46 @@
 <script setup>
-    let requestList = [];
+    let requestList = [
+        {
+          name: 'Grad Party',
+          type: 'Private',
+          date: '03/28/2022',
+          startTime: '10:00 AM',
+          endTime: '11:00 AM',
+          location: '2855 W Bowie St',
+          price: '$100',
+          status: 'Pending',
+        },
+        {
+          name: 'Wedding',
+          type: 'Private',
+          date: '03/29/2022',
+          startTime: '7:00 PM',
+          endTime: '8:00 AM',
+          location: '2808 Stanley Ave',
+          price: '$100',
+          status: 'Approved',
+        },
+        {
+          name: 'Book Reading',
+          type: 'Public School',
+          date: '03/30/2022',
+          startTime: '2:00 PM',
+          endTime: '4:00 PM',
+          location: '4300 Campus Dr',
+          price: '$200',
+          status: 'Confirmed',
+        },
+        {
+          name: 'Bachelor Party',
+          type: 'Private',
+          date: '03/28/2022',
+          startTime: '10:00 PM',
+          endTime: '11:00 PM',
+          location: 'TCU',
+          price: '$100',
+          status: 'Rejected',
+        },
+    ]
 </script>
 
 <template>
@@ -26,13 +67,16 @@
               <tr v-for="request in requestList" :key="request.id">
                 <td>{{request.name}}</td>
                 <td>{{request.type}}</td>
+                <td>{{request.date}}</td>
                 <td>{{request.startTime}}</td>
                 <td>{{request.endTime}}</td>
-                <td>{{request.address}}</td>
+                <td>{{request.location}}</td>
                 <td>{{request.price}}</td>
                 <td>
-                  <span class="badge bg-success" v-if="request.status">Approved</span>
-                  <span class="badge bg-danger" v-else>Pending</span>
+                  <span class="badge bg-secondary" v-if="request.status=='Pending'">{{request.status}}</span>
+                  <span class="badge bg-success" v-if="request.status=='Approved'">{{request.status}}</span>
+                  <span class="badge bg-success" v-if="request.status=='Confirmed'">{{request.status}}</span>
+                  <span class="badge bg-danger" v-if="request.status=='Rejected'">{{request.status}}</span>
                 </td>
               </tr>
             </tbody>
