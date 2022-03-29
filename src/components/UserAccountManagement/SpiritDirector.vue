@@ -1,6 +1,6 @@
 <script setup>
 import SpiritDirectorSideBar from "../Sidebars/SpiritDirectorSideBar.vue"
-import SpiritDirector from "../Tables/SpiritDirectorTable.vue"
+import SpiritDirector from "../Tables/SpiritDirectorRequestsTable.vue"
 defineProps({
   msg: String
 })
