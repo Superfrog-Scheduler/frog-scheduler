@@ -7,8 +7,8 @@
         
             <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
                 <div class=" pb-4">
-                    <img src="https://miro.medium.com/max/720/1*W35QUSvGpcLuxPo3SRTH4w.png" alt="hugenerd" width="155" height="155" class="rounded-circle">
-                    <span class="fs-5 d-none d-sm-inline">John Doe</span>
+                    <img src="https://miro.medium.com/max/720/1*W35QUSvGpcLuxPo3SRTH4w.png" alt="hugenerd" width="155" height="155" class="d-flex rounded-circle">
+                    <span class="d-flex fs-5 d-none d-sm-inline">John Doe</span>
                 </div>
                 <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                     <li class="nav-item">
