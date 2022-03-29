@@ -9,37 +9,7 @@
           location: '2855 W Bowie St',
           price: '$100',
           status: 'Pending',
-        },
-        {
-          name: 'Wedding',
-          type: 'Private',
-          date: '03/29/2022',
-          startTime: '7:00 PM',
-          endTime: '8:00 AM',
-          location: '2808 Stanley Ave',
-          price: '$100',
-          status: 'Approved',
-        },
-        {
-          name: 'Book Reading',
-          type: 'Public School',
-          date: '03/30/2022',
-          startTime: '2:00 PM',
-          endTime: '4:00 PM',
-          location: '4300 Campus Dr',
-          price: '$200',
-          status: 'Confirmed',
-        },
-        {
-          name: 'Bachelor Party',
-          type: 'Private',
-          date: '03/28/2022',
-          startTime: '10:00 PM',
-          endTime: '11:00 PM',
-          location: 'TCU',
-          price: '$100',
-          status: 'Rejected',
-        },
+        }
     ]
 </script>
 
