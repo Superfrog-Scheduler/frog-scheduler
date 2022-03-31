@@ -39,7 +39,7 @@
     <div class="container col py-3" id="app">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Requests</h4>
+                <h4 class="card-title">SuperFrog Team</h4>
             </div>
         </div>
         <table class="table">

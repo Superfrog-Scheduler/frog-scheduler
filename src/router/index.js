@@ -1,30 +1,30 @@
 import { createWebHistory, createRouter } from "vue-router"
 import Home from "../components/Home.vue"
-import SuperFrogTeam from "../components/UserAccountManagement/SuperFrogTeam/SuperFrogTeamRequestsView.vue";
-import Customer from "../components/UserAccountManagement/Customer/CustomerRequestsView.vue";
-import SpiritDirector from "../components/UserAccountManagement/SpiritDirector/SpiritDirectorRequestsView.vue";
+import SuperFrogTeamDashboard from "../components/UserAccountManagement/SuperFrogTeamDashboard.vue";
+import CustomerDashboard from "../components/UserAccountManagement/CustomerDashboard.vue";
+import SpiritDirectorDashboard from "../components/UserAccountManagement/SpiritDirectorDashboard.vue";
 
 const routes = [
   {
     path: "/",
-    name: "Home",
+    name: "home",
     component: Home,
   },
   {
-    path: "/team",
-    name: "SuperFrogTeam",
-    component: SuperFrogTeam,
+    path: "/team/requests",
+    name: "SuperFrogTeamDashboard",
+    component: SuperFrogTeamDashboard,
   },
   {
-    path: "/customer",
-    name: "Customer",
-    component: Customer,
+    path: "/customer/requests",
+    name: "CustomerDashboard",
+    component: CustomerDashboard,
   },
   {
-    path: "/director",
-    name: "SpiritDirector",
-    component: SpiritDirector,
-  },
+    path: "/director/requests",
+    name: "SpiritDirectorDashboard",
+    component: SpiritDirectorDashboard,
+  }
 ]
 
 const router = createRouter({ 

@@ -1,12 +1,9 @@
 <script setup>
-    let requestList = [
+    let customerList = [
         {
           id: 0,
-          name: 'Grad Party',
-          type: 'Private',
-          customer: 'Wingyang Bei',
-          date: '03/28/2022',
-          startTime: '10:00 AM',
+          name: 'Michael Schumer',
+          email: 'm.schume',
           endTime: '11:00 AM',
           location: '2855 W Bowie St',
           price: '$100',
@@ -40,7 +37,7 @@
           id: 3,
           name: 'Bachelor Party',
           type: 'Private',
-          customer: 'Michael Schumer',
+          customer: 'Mickael Schumer',
           date: '03/28/2022',
           startTime: '10:00 PM',
           endTime: '11:00 PM',
@@ -61,8 +58,8 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">Request ID</th>
-                    <th scope="col">Event Name</th>
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
                     <th scope="col">Event Type</th>
                     <th scope="col">Customer</th>
                     <th scope="col">Date</th>
