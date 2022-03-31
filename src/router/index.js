@@ -1,8 +1,8 @@
 import { createWebHistory, createRouter } from "vue-router"
 import Home from "../components/Home.vue"
-import SuperFrogTeamDashboard from "../components/UserAccountManagement/SuperFrogTeamDashboard.vue";
-import CustomerDashboard from "../components/UserAccountManagement/CustomerDashboard.vue";
-import SpiritDirectorDashboard from "../components/UserAccountManagement/SpiritDirectorDashboard.vue";
+import SuperFrogTeamRequestsView from "../components/UserAccountManagement/SuperFrogTeam/SuperFrogTeamRequestsView.vue";
+import CustomerRequestsView from "../components/UserAccountManagement/Customer/CustomerRequestsView.vue";
+import SpiritDirectorRequestsView from "../components/UserAccountManagement/SpiritDirector/SpiritDirectorRequestsView.vue";
 
 const routes = [
   {
@@ -12,18 +12,18 @@ const routes = [
   },
   {
     path: "/team/requests",
-    name: "SuperFrogTeamDashboard",
-    component: SuperFrogTeamDashboard,
+    name: "SuperFrogTeamRequestsView",
+    component: SuperFrogTeamRequestsView,
   },
   {
     path: "/customer/requests",
-    name: "CustomerDashboard",
-    component: CustomerDashboard,
+    name: "CustomerRequestsView",
+    component: CustomerRequestsView,
   },
   {
     path: "/director/requests",
-    name: "SpiritDirectorDashboard",
-    component: SpiritDirectorDashboard,
+    name: "SpiritDirectorRequestsView",
+    component: SpiritDirectorRequestsView,
   }
 ]
 
