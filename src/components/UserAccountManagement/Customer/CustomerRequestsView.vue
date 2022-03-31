@@ -1,6 +1,6 @@
 <script setup>
-import CustomerSideBar from "../Sidebars/CustomerSideBar.vue";
-import CustomerTable from "../Tables/CustomerTable.vue";
+import CustomerSideBar from "../../Sidebars/CustomerSideBar.vue";
+import CustomerTable from "../../Tables/CustomerTable.vue";
 
 defineProps({
   msg: String,
