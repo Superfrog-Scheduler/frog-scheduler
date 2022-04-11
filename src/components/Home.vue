@@ -54,7 +54,7 @@ defineProps({
           <button type="button" class="btn btn-dark btn-lg sign-button"><i class="fab fa-apple"></i> Sign In</button>
           <button type="button" class="btn btn-outline-light btn-lg sign-button"><i class="fab fa-google-play"></i> Sign Up</button>
           <div class="temp">
-              <router-link to="/director/requests">Go to SpiritDirector</router-link>
+              <router-link to="/director">Go to SpiritDirector</router-link>
               <br/>
               <router-link to="/team/requests">Go to SuperFrogTeam</router-link>
               <br/>

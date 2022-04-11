@@ -1,4 +1,4 @@
-<script setup>
+<script >
 
 </script>
 
@@ -12,20 +12,20 @@
                 </div>
                 <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                     <li class="nav-item">
-                        <a href="#" class="nav-link align-middle px-0">
+                        <a href="/director/requests" class="nav-link align-middle px-0">
                             <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Request Management</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="nav-link px-0 align-middle ">
+                        <a href="/director/team" class="nav-link px-0 align-middle ">
                             <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Team Management</span></a>
                     </li>
                     <li>
-                        <a href="#" class="nav-link px-0 align-middle ">
+                        <a href="/director/customers" class="nav-link px-0 align-middle ">
                             <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Customer Management</span></a>
                     </li>
                     <li>
-                        <a href="#" class="nav-link px-0 align-middle">
+                        <a href="/logout" class="nav-link px-0 align-middle">
                             <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Log Out</span></a>
                     </li>
                 </ul>
