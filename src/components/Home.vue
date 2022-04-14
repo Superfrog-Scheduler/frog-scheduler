@@ -1,4 +1,7 @@
 <script setup>
+import SignInModal from './Modals/SignInModal.vue';
+import SignUpModal from './Modals/SignUpModal.vue';
+
 defineProps({
   msg: String,
 });
@@ -49,10 +52,13 @@ defineProps({
 
       <div class="row">
 
+        <SignInModal id="sign-in-modal"/>
+        <SignUpModal id="sign-up-modal"/>
+
         <div class="col-lg-6 row-item">
-          <h1 class="big-heading">Have Super Frog at your event.</h1>
-          <button type="button" class="btn btn-dark btn-lg sign-button"><i class="fab fa-apple"></i> Sign In</button>
-          <button type="button" class="btn btn-outline-light btn-lg sign-button"><i class="fab fa-google-play"></i> Sign Up</button>
+          <h1 class="big-heading" id="header">Have Super Frog at your event.</h1>
+          <button type="button" class="btn btn-dark btn-lg sign-button" data-bs-toggle="modal" data-bs-target="#sign-in-modal"> Sign In</button>
+          <button type="button" class="btn btn-outline-light btn-lg sign-button" data-bs-toggle="modal" data-bs-target="#sign-up-modal"> Sign Up</button>
           <div class="temp">
               <router-link to="/director">Go to SpiritDirector</router-link>
               <br/>
@@ -115,7 +121,6 @@ p {
 
 .colored-section {
   background-color: #ff4c68;
-  color: #fff;
   height: 100vh;
 }
 
@@ -155,12 +160,15 @@ p {
 
 #title {
   background-color: #4d1979;
-  color: #fff;
   text-align: left;
 }
 
 #title .container-fluid {
   padding: 3% 10%;
+}
+
+#header {
+  color: white;
 }
 
 /* Title Image */
