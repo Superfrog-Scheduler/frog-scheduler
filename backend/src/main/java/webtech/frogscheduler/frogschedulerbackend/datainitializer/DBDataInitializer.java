@@ -3,15 +3,19 @@ package webtech.frogscheduler.frogschedulerbackend.datainitializer;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import webtech.frogscheduler.frogschedulerbackend.dao.RequestDao;
+import webtech.frogscheduler.frogschedulerbackend.dao.UserDao;
 import webtech.frogscheduler.frogschedulerbackend.domain.Request;
+import webtech.frogscheduler.frogschedulerbackend.domain.User;
 
 @Component
 public class DBDataInitializer implements CommandLineRunner {
 
     private RequestDao requestDao;
+    private UserDao userDao;
 
-    public DBDataInitializer(RequestDao requestDao) {
+    public DBDataInitializer(RequestDao requestDao, UserDao userDao) {
         this.requestDao = requestDao;
+        this.userDao = userDao;
     }
 
     @Override
@@ -55,8 +59,32 @@ public class DBDataInitializer implements CommandLineRunner {
         r3.setCustomer("Jane Doe");
         r3.setAssignedTo("Student 3");
 
+         User u1 = new User();
+         u1.setId("12345");
+         u1.setEmail("john@gmail.com");
+         u1.setPassword("password");
+         u1.setEnabled(true);
+         u1.setRoles("superfrog");
+
+        User u2 = new User();
+        u2.setId("54321");
+        u2.setEmail("mike@gmail.com");
+        u2.setPassword("password1");
+        u2.setEnabled(true);
+        u2.setRoles("director");
+
+        User u3 = new User();
+        u3.setId("13579");
+        u3.setEmail("maddie@gmail.com");
+        u3.setPassword("password2");
+        u3.setEnabled(true);
+        u3.setRoles("customer");
+
         requestDao.save(r1);
         requestDao.save(r2);
         requestDao.save(r3);
+        userDao.save(u1);
+        userDao.save(u2);
+        userDao.save(u3);
     }
 }
