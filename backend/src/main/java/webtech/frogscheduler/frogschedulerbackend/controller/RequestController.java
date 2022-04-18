@@ -18,7 +18,7 @@ public class RequestController {
         this.requestService = requestService;
     }
 
-    @GetMapping()
+    @GetMapping
     public Result findAll() {
         List<Request> all = requestService.findAll();
         Result result = new Result(true, StatusCode.SUCCESS, "Find all requests success", all);
@@ -30,7 +30,7 @@ public class RequestController {
         return new Result(true, StatusCode.SUCCESS, "Find by id request success", requestService.findById(requestId));
     }
 
-    @PostMapping()
+    @PostMapping
     public Result save(@RequestBody Request newRequest) {
         requestService.save(newRequest);
         return new Result(true, StatusCode.SUCCESS, "Save request success");
