@@ -6,6 +6,10 @@ import SpiritDirectorRequestsTable from "../components/Tables/SpiritDirectorRequ
 import SpiritDirectorTeamTable from "../components/Tables/SpiritDirectorTeamTable.vue";
 import SpiritDirectorCustomerTable from "../components/Tables/SpiritDirectorCustomerTable.vue";
 import SpiritDirectorDashboard from "../components/UserAccountManagement/SpiritDirectorDashboard.vue";
+import SuperFrogTeamProfile from "../components/Tables/SuperFrogTeamProfile.vue"
+import CustomerProfile from "../components/Tables/CustomerProfile.vue"
+import CustomerDashboard from "../components/UserAccountManagement/CustomerDashboard.vue";
+
 
 const routes = [
   {
@@ -19,10 +23,29 @@ const routes = [
     component: SuperFrogTeamRequestsView,
   },
   {
-    path: "/customer/requests",
-    name: "CustomerRequestsView",
-    component: CustomerRequestsView,
+    path: "/team/profile",
+    name: "SuperFrogTeamProfile",
+    component: SuperFrogTeamProfile,
   },
+  {
+    path: "/customer",
+    name: "CustomerDashboard",
+    component: CustomerDashboard,
+    redirect: { name: "CustomerTable" },
+    children: [
+      {
+        path: "requests",
+        name: "CustomerRequestsView",
+        component: CustomerRequestsView,
+      },
+      {
+        path: "profile",
+        name: "CustomerProfile",
+        component: CustomerProfile,
+      }
+    ]
+  },
+  
   {
     path: "/director",
     name: "SpiritDirectorDashboard",
