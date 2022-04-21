@@ -8,6 +8,7 @@ import SpiritDirectorCustomerTable from "../components/Tables/SpiritDirectorCust
 import SpiritDirectorDashboard from "../components/UserAccountManagement/SpiritDirectorDashboard.vue";
 import SuperFrogTeamProfile from "../components/Tables/SuperFrogTeamProfile.vue"
 import CustomerProfile from "../components/Tables/CustomerProfile.vue"
+import CustomerTable from "../components/Tables/CustomerTable.vue"
 import CustomerDashboard from "../components/UserAccountManagement/CustomerDashboard.vue";
 
 
@@ -35,8 +36,8 @@ const routes = [
     children: [
       {
         path: "requests",
-        name: "CustomerRequestsView",
-        component: CustomerRequestsView,
+        name: "CustomerTable",
+        component: CustomerTable,
       },
       {
         path: "profile",

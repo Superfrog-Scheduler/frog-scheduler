@@ -1,4 +1,4 @@
-<script setup>
+<script>
 import CustomerSideBar from "../Sidebars/CustomerSideBar.vue"
 import CustomerTable from "../Tables/CustomerTable.vue"
 import CustomerProfile from "../Tables/CustomerProfile.vue"
@@ -13,6 +13,7 @@ export default {
   },
   computed: {
     currentView() {
+      console.log(this.currentPath.name)
       return this.currentPath.name
     }
   },
@@ -28,7 +29,7 @@ export default {
   <div class="container-fluid">
     <div class = "row flex-nowrap">
       <CustomerSideBar/>
-      <CustomerTable/>
+      <!-- <CustomerTable/> -->
      <component :is="currentView" />
     </div>
   </div>

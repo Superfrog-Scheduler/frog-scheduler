@@ -14,6 +14,7 @@ export default {
   },
   computed: {
    currentView() {
+     console.log(this.currentPath)
       return this.currentPath.name
     }
   },
