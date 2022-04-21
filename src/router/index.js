@@ -1,80 +1,27 @@
 import { createWebHistory, createRouter } from "vue-router"
-import Home from "../components/Home.vue"
-import SuperFrogTeamRequestsView from "../components/UserAccountManagement/SuperFrogTeam/SuperFrogTeamRequestsView.vue";
-import CustomerRequestsView from "../components/UserAccountManagement/Customer/CustomerRequestsView.vue";
-import SpiritDirectorRequestsTable from "../components/Tables/SpiritDirectorRequestsTable.vue";
-import SpiritDirectorTeamTable from "../components/Tables/SpiritDirectorTeamTable.vue";
-import SpiritDirectorCustomerTable from "../components/Tables/SpiritDirectorCustomerTable.vue";
-import SpiritDirectorDashboard from "../components/UserAccountManagement/SpiritDirectorDashboard.vue";
-import SuperFrogTeamProfile from "../components/Tables/SuperFrogTeamProfile.vue"
-import CustomerProfile from "../components/Tables/CustomerProfile.vue"
-import CustomerTable from "../components/Tables/CustomerTable.vue"
-import CustomerDashboard from "../components/UserAccountManagement/CustomerDashboard.vue";
-
-
-const routes = [
-  {
-    path: "/",
-    name: "home",
-    component: Home,
-  },
-  {
-    path: "/team/requests",
-    name: "SuperFrogTeamRequestsView",
-    component: SuperFrogTeamRequestsView,
-  },
-  {
-    path: "/team/profile",
-    name: "SuperFrogTeamProfile",
-    component: SuperFrogTeamProfile,
-  },
-  {
-    path: "/customer",
-    name: "CustomerDashboard",
-    component: CustomerDashboard,
-    redirect: { name: "CustomerTable" },
-    children: [
-      {
-        path: "requests",
-        name: "CustomerTable",
-        component: CustomerTable,
-      },
-      {
-        path: "profile",
-        name: "CustomerProfile",
-        component: CustomerProfile,
-      }
-    ]
-  },
-  
-  {
-    path: "/director",
-    name: "SpiritDirectorDashboard",
-    component: SpiritDirectorDashboard,
-    redirect: { name: "SpiritDirectorRequestsTable" },
-    children: [
-      {
-        path: "requests",
-        name: "SpiritDirectorRequestsTable",
-        component: SpiritDirectorRequestsTable,
-      },
-      {
-        path: "team",
-        name: "SpiritDirectorTeamTable",
-        component: SpiritDirectorTeamTable,
-      },
-      {
-        path: "customers",
-        name: "SpiritDirectorCustomerTable",
-        component: SpiritDirectorCustomerTable,
-      },
-    ],
-  },  
-]
+import basicRoutes from './basicRoutes';
+import setupGuard from './guard';
+import useUserStore from '@/store/userStore';
+// import autoloadDynamicRoutes from './loadDynamicRoutes';
+import utils from '@/utils';
 
 const router = createRouter({ 
   history: createWebHistory(),
-  routes
+  routes: [...basicRoutes]
  })
+
+ export async function setupRouter(app) {
+  if (utils.cacheUtils.get('login_token')?.token) {
+    // get user info and save it to Pinia, then we can have access to user's permission list in different components
+    const userStore = useUserStore();
+    await userStore.getUserInfo();
+
+    const userRole = userStore.userInfo?.role;
+
+    // autoloadDynamicRoutes(router); // add more route records to the router, e.g., /users and /orders
+  }
+  setupGuard(router); // set up router guard
+  app.use(router);
+}
 
 export default router
