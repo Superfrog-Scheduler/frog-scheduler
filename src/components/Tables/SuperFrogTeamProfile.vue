@@ -13,7 +13,7 @@
 <template>
   <div class="container col py-3" id="app">
     <div class="card">
-      <div class="card-body d-flex justify-content-between">
+      <div class="card-body d-flex justify-content-center">
         <div><!-- empty div so content-between looks good --></div>
         <h4 class="card-title">Profile</h4>
       </div>
