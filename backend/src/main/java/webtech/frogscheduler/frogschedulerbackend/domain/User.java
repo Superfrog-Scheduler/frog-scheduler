@@ -2,15 +2,15 @@ package webtech.frogscheduler.frogschedulerbackend.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
 public class User implements Serializable {
     @Id
-    private String id;
-    private String email;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
+    private String username;
     @JsonIgnore
     private String password;
     private boolean enabled;
@@ -19,20 +19,20 @@ public class User implements Serializable {
     public User(){
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public String getEmail() {
-        return email;
+    public String getUsername() {
+        return username;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
