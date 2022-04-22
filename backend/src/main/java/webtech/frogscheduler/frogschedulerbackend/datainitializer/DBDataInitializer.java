@@ -60,23 +60,20 @@ public class DBDataInitializer implements CommandLineRunner {
         r3.setAssignedTo("Student 3");
 
          User u1 = new User();
-         u1.setId("12345");
-         u1.setEmail("john@gmail.com");
-         u1.setPassword("password");
+         u1.setUsername("john@gmail.com");
+         u1.setPassword("$2a$12$zpV0R4lHBRyVSxWVZYjKruYlOzZoa1XoqStE7FZ74E0V5zTpDl4TG"); //plain: password
          u1.setEnabled(true);
          u1.setRoles("superfrog");
 
         User u2 = new User();
-        u2.setId("54321");
-        u2.setEmail("mike@gmail.com");
-        u2.setPassword("password1");
+        u2.setUsername("mike@gmail.com");
+        u2.setPassword("$2a$12$rHPufxMVeUGytekAQqBzVeAj0iOKgmAcZ8z.4NK9O84w0/9gIZ3aC"); //plain: password1
         u2.setEnabled(true);
         u2.setRoles("director");
 
         User u3 = new User();
-        u3.setId("13579");
-        u3.setEmail("maddie@gmail.com");
-        u3.setPassword("password2");
+        u3.setUsername("maddie@gmail.com");
+        u3.setPassword("$2a$12$dqy.5QwIYYHTjSTc8jPsBOsWSKjSQ12QGCdvYZ1vdloQ70ZygEMKy"); //plain: password2
         u3.setEnabled(true);
         u3.setRoles("customer");
 

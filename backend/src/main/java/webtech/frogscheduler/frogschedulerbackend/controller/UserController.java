@@ -26,7 +26,7 @@ public class UserController {
     }
 
     @GetMapping("/{userId}")
-    public Result findById(@PathVariable String userId) {
+    public Result findById(@PathVariable Integer userId) {
         return new Result(true, StatusCode.SUCCESS, "Find by user by id success", userService.findById(userId));
     }
 
@@ -37,7 +37,7 @@ public class UserController {
     }
 
     @PutMapping("/{userId}")
-    public Result update(@PathVariable String userId, @RequestBody User newUser) {
+    public Result update(@PathVariable Integer userId, @RequestBody User newUser) {
         userService.update(userId, newUser);
         return new Result(true, StatusCode.SUCCESS, "Update user success");
     }
