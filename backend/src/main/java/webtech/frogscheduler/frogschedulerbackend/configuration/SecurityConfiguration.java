@@ -39,14 +39,20 @@ public class SecurityConfiguration {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http.cors(Customizer.withDefaults());
         http
                 .authorizeHttpRequests((authorize) -> authorize
 //                                .antMatchers(HttpMethod.DELETE, "/users/**").hasAuthority("ROLE_admin")
 //                        .antMatchers(HttpMethod.DELETE, "/users/**").hasRole("admin")
                                 // Disallow everything else...
-                                .anyRequest().authenticated()
+                                .antMatchers(HttpMethod.POST, "/users").permitAll()
+                                .antMatchers(HttpMethod.GET, "/director/**").authenticated()
+                                .antMatchers(HttpMethod.GET, "/team/**").authenticated()
+                                .antMatchers(HttpMethod.GET, "customer/**").authenticated()
                 )
-                .csrf((csrf) -> csrf.ignoringAntMatchers("/auth/login"))
+
+                .csrf((csrf) -> csrf.ignoringAntMatchers("/auth/login")
+                                    .ignoringAntMatchers("/users"))
                 .httpBasic(Customizer.withDefaults()) // using HTTP Basic Authentication
                 .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt)
                 .sessionManagement((session) -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

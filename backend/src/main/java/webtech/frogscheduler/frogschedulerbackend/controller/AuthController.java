@@ -2,6 +2,7 @@ package webtech.frogscheduler.frogschedulerbackend.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,6 +10,7 @@ import webtech.frogscheduler.frogschedulerbackend.domain.Result;
 import webtech.frogscheduler.frogschedulerbackend.domain.StatusCode;
 import webtech.frogscheduler.frogschedulerbackend.service.AuthService;
 
+@CrossOrigin(origins = "http://localhost:3000/", maxAge = 3600)
 @RestController
 @RequestMapping("/auth")
 public class AuthController {

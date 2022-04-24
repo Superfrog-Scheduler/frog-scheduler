@@ -56,24 +56,33 @@ public class DBDataInitializer implements CommandLineRunner {
         r3.setStatus("Approved");
         r3.setCustomer("Jane Doe");
 
-        User u1 = new User();
-        u1.setUsername("john@gmail.com");
-        u1.setPassword("$2a$12$zpV0R4lHBRyVSxWVZYjKruYlOzZoa1XoqStE7FZ74E0V5zTpDl4TG"); //plain: password
-        u1.setEnabled(true);
-        u1.setRoles("superfrog");
-        u1.addAppearence(r1);
+         User u1 = new User();
+         u1.setUsername("john@gmail.com");
+         u1.setPassword("$2a$12$zpV0R4lHBRyVSxWVZYjKruYlOzZoa1XoqStE7FZ74E0V5zTpDl4TG"); //plain: password
+         u1.setEnabled(true);
+         u1.setRoles("team");
+         u1.setFirstname("John");
+         u1.setLastname("Doe");
+         u1.setPhone("0123456789");
+         u1.addAppearence(r1);
 
         User u2 = new User();
         u2.setUsername("mike@gmail.com");
         u2.setPassword("$2a$12$rHPufxMVeUGytekAQqBzVeAj0iOKgmAcZ8z.4NK9O84w0/9gIZ3aC"); //plain: password1
         u2.setEnabled(true);
         u2.setRoles("director");
+        u2.setFirstname("Mike");
+        u2.setLastname("Brown");
+        u2.setPhone("2223334441");
 
         User u3 = new User();
         u3.setUsername("maddie@gmail.com");
         u3.setPassword("$2a$12$dqy.5QwIYYHTjSTc8jPsBOsWSKjSQ12QGCdvYZ1vdloQ70ZygEMKy"); //plain: password2
         u3.setEnabled(true);
         u3.setRoles("customer");
+        u3.setFirstname("Maddie");
+        u3.setLastname("Wilson");
+        u3.setPhone("9998887776");
 
         User u4 = new User();
         u4.setUsername("bill@gmail.com");

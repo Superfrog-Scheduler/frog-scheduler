@@ -28,7 +28,6 @@ public class AuthService {
         Map<String, Object> loginResultMap = new HashMap<>();
         loginResultMap.put("token", token);
         loginResultMap.put("userInfo", user);
-
         return loginResultMap;
 
     }
