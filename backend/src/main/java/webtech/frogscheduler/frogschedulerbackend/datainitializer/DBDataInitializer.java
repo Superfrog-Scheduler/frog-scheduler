@@ -31,7 +31,6 @@ public class DBDataInitializer implements CommandLineRunner {
         r1.setPrice(4000);
         r1.setStatus("Pending");
         r1.setCustomer("Dr. Wei");
-        r1.setAssignedTo("Student 1");
 
         Request r2 = new Request();
         r2.setId("124");
@@ -42,9 +41,8 @@ public class DBDataInitializer implements CommandLineRunner {
         r2.setEndTime("3:00 PM");
         r2.setLocation("321 berry st.");
         r2.setPrice(5000);
-        r2.setStatus("Pending");
+        r2.setStatus("Approved");
         r2.setCustomer("John Smith");
-        r2.setAssignedTo("Student 2");
 
         Request r3 = new Request();
         r3.setId("125");
@@ -55,9 +53,8 @@ public class DBDataInitializer implements CommandLineRunner {
         r3.setEndTime("5:00 PM");
         r3.setLocation("121 apple st.");
         r3.setPrice(10000000);
-        r3.setStatus("Pending");
+        r3.setStatus("Approved");
         r3.setCustomer("Jane Doe");
-        r3.setAssignedTo("Student 3");
 
          User u1 = new User();
          u1.setUsername("john@gmail.com");
@@ -67,6 +64,7 @@ public class DBDataInitializer implements CommandLineRunner {
          u1.setFirstname("John");
          u1.setLastname("Doe");
          u1.setPhone("0123456789");
+         u1.addAppearence(r1);
 
         User u2 = new User();
         u2.setUsername("mike@gmail.com");
@@ -86,11 +84,24 @@ public class DBDataInitializer implements CommandLineRunner {
         u3.setLastname("Wilson");
         u3.setPhone("9998887776");
 
-        requestDao.save(r1);
-        requestDao.save(r2);
-        requestDao.save(r3);
+        User u4 = new User();
+        u4.setUsername("bill@gmail.com");
+        u4.setPassword("$2a$12$zpV0R4lHBRyVSxWVZYjKruYlOzZoa1XoqStE7FZ74E0V5zTpDl4TG"); //plain: password
+        u4.setEnabled(true);
+        u4.setRoles("superfrog");
+        u4.addAppearence(r2);
+
+        User u5 = new User();
+        u5.setUsername("sarah@gmail.com");
+        u5.setPassword("$2a$12$zpV0R4lHBRyVSxWVZYjKruYlOzZoa1XoqStE7FZ74E0V5zTpDl4TG"); //plain: password
+        u5.setEnabled(true);
+        u5.setRoles("superfrog");
+        u5.addAppearence(r3);
+
         userDao.save(u1);
         userDao.save(u2);
         userDao.save(u3);
+        userDao.save(u4);
+        userDao.save(u5);
     }
 }

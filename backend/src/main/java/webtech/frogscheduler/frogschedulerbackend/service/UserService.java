@@ -6,8 +6,10 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import webtech.frogscheduler.frogschedulerbackend.dao.RequestDao;
 import webtech.frogscheduler.frogschedulerbackend.dao.UserDao;
 import webtech.frogscheduler.frogschedulerbackend.domain.MyUserPrincipal;
+import webtech.frogscheduler.frogschedulerbackend.domain.Request;
 import webtech.frogscheduler.frogschedulerbackend.domain.User;
 import webtech.frogscheduler.frogschedulerbackend.utils.IdWorker;
 
@@ -19,12 +21,14 @@ import java.util.List;
 public class UserService implements UserDetailsService {
 
     private UserDao userDao;
+    private RequestDao requestDao;
     private IdWorker idWorker;
     private PasswordEncoder encoder;
 
-    public UserService(UserDao userDao, IdWorker idWorker) {
+    public UserService(UserDao userDao, IdWorker idWorker, RequestDao requestDao) {
         this.userDao = userDao;
         this.idWorker = idWorker;
+        this.requestDao = requestDao;
     }
 
     @Autowired
@@ -52,6 +56,12 @@ public class UserService implements UserDetailsService {
         userDao.save(updatedUser);
     }
 
+    public void disable(Integer userId) {
+        User user = userDao.findById(userId).get();
+        user.setEnabled(false);
+        userDao.save(user);
+    }
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         // Step 1, we need to find this user from DB
@@ -63,4 +73,16 @@ public class UserService implements UserDetailsService {
         // Otherwise, wrap the returned user instance in a MyUserPrincipal instance
         return new MyUserPrincipal(user); // return the principal-
     }
+
+    public void assignRequest(Integer userId, String requestId) {
+        Request requestToBeAssigned = requestDao.findById(requestId).get();
+        User user = userDao.findById(userId).get();
+
+        if(requestToBeAssigned.getAssignedTo() != null) {
+            requestToBeAssigned.getAssignedTo().removeAppearence(requestToBeAssigned);
+        }
+        user.addAppearence(requestToBeAssigned);
+    }
+
+
 }

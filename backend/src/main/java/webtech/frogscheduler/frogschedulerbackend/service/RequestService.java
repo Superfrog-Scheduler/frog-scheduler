@@ -39,4 +39,8 @@ public class RequestService {
         updatedRequest.setId(requestId);
         requestDao.save(updatedRequest);
     }
+
+    public List<Request> findAllApproved() {
+        return requestDao.findByStatus("Approved");
+    }
 }
