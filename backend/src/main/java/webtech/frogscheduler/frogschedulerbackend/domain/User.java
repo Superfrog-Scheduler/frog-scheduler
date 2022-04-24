@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class User implements Serializable {
@@ -15,8 +17,28 @@ public class User implements Serializable {
     private String password;
     private boolean enabled;
     private String roles;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "assignedTo")
+    private List<Request> appearences = new ArrayList<>();
 
     public User(){
+    }
+
+    public List<Request> getAppearences() {
+        return appearences;
+    }
+
+    public void setAppearences(List<Request> appearences) {
+        this.appearences = appearences;
+    }
+
+    public void addAppearence(Request request) {
+        request.setAssignedTo(this);
+        this.appearences.add(request);
+    }
+
+    public void removeAppearence(Request request) {
+        request.setAssignedTo(null);
+        this.appearences.remove(request);
     }
 
     public Integer getId() {
