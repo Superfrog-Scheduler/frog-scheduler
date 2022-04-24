@@ -41,4 +41,9 @@ public class RequestController {
         requestService.update(requestId, updatedRequest);
         return new Result(true, StatusCode.SUCCESS, "Update request success");
     }
+
+    @GetMapping("/approved")
+    public Result findAllApproved() {
+        return new Result(true, StatusCode.SUCCESS, "Find all approved requests success", requestService.findAllApproved());
+    }
 }
