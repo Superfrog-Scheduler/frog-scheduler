@@ -8,9 +8,10 @@ export default defineStore('user', {
     };
   },
   actions: {
-    async getUserInfo() {
-      const res = await userApi.info();
-      this.userInfo = res.result;
+    async getUserInfo(instance, id) {
+      const res = await userApi.info(instance, id);
+      console.log("res", res)
+      this.userInfo = res.data;
     },
   },
 });

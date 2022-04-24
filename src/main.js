@@ -7,7 +7,6 @@ import "bootstrap";
 import "bootstrap-datepicker";
 
 // createApp(App).use(router).mount("#app");
-
 async function bootstrap() {
     const app = createApp(App);
     setupPlugins(app); // since router will use Pinia, we must set up Pinia first

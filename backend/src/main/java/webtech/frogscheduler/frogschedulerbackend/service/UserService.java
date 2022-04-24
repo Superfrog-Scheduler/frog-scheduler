@@ -42,6 +42,8 @@ public class UserService implements UserDetailsService {
 
     public void save(User newUser) {
         newUser.setPassword(encoder.encode(newUser.getPassword()));
+        newUser.setEnabled(true);
+        if(newUser.getRoles() == null) newUser.setRoles("customer");
         userDao.save(newUser);
     }
 

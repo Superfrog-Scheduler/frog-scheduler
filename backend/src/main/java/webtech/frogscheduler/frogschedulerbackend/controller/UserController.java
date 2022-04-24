@@ -8,6 +8,7 @@ import webtech.frogscheduler.frogschedulerbackend.service.UserService;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:3000/", maxAge = 3600)
 @RestController
 @RequestMapping("/users")
 public class UserController {

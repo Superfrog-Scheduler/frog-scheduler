@@ -4,7 +4,6 @@ import v from "@/plugins/validation";
 import { Form, Field, ErrorMessage } from "vee-validate";
 import { Modal } from "bootstrap";
 import utils from "@/utils";
-import router from "@/router";
 
 export default {
   props: ["show"],
@@ -20,9 +19,6 @@ export default {
   methods: {
     async login(values) {
       utils.userLoginUtils.login(values);
-    },
-    toDashboard: () => {
-      // router.push({ name: 'director' })
     },
     clearInputFields: () => {
       let email = ref("");
@@ -104,7 +100,7 @@ export default {
             >
               Cancel
             </button>
-            <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" @click="toDashboard">Submit</button>
+            <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" >Submit</button>
           </div>
         </div>
       </div>
