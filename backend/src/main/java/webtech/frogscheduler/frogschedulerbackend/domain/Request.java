@@ -1,7 +1,10 @@
 package webtech.frogscheduler.frogschedulerbackend.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import java.io.Serializable;
 
 @Entity
@@ -17,7 +20,9 @@ public class Request implements Serializable {
     private double price;
     private String status;
     private String customer;
-    private String assignedTo;
+    @ManyToOne
+    @JsonIgnore
+    private User assignedTo;
 
     public Request() {
     }
@@ -94,11 +99,11 @@ public class Request implements Serializable {
         this.customer = customer;
     }
 
-    public String getAssignedTo() {
+    public User getAssignedTo() {
         return assignedTo;
     }
 
-    public void setAssignedTo(String assignedTo) {
+    public void setAssignedTo(User assignedTo) {
         this.assignedTo = assignedTo;
     }
 
