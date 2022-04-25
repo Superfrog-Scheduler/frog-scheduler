@@ -2,7 +2,9 @@ package webtech.frogscheduler.frogschedulerbackend.service;
 
 import org.springframework.stereotype.Service;
 import webtech.frogscheduler.frogschedulerbackend.dao.RequestDao;
+import webtech.frogscheduler.frogschedulerbackend.dao.UserDao;
 import webtech.frogscheduler.frogschedulerbackend.domain.Request;
+import webtech.frogscheduler.frogschedulerbackend.domain.User;
 import webtech.frogscheduler.frogschedulerbackend.utils.IdWorker;
 
 import javax.transaction.Transactional;
@@ -14,10 +16,12 @@ public class RequestService {
 
     private RequestDao requestDao;
     private IdWorker idWorker;
+    private UserDao userDao;
 
-    public RequestService(RequestDao requestDao, IdWorker idWorker) {
+    public RequestService(RequestDao requestDao, IdWorker idWorker, UserDao userDao) {
         this.requestDao = requestDao;
         this.idWorker = idWorker;
+        this.userDao = userDao;
     }
 
     public List<Request> findAll() {
@@ -42,5 +46,10 @@ public class RequestService {
 
     public List<Request> findAllApproved() {
         return requestDao.findByStatus("Approved");
+    }
+
+    public List<Request> findAllByUserId(Integer userId) {
+        User user = userDao.findById(userId).get();
+        return requestDao.findByAssignedTo(user);
     }
 }
