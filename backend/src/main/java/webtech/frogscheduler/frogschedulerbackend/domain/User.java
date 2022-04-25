@@ -21,6 +21,7 @@ public class User implements Serializable {
     private String firstname;
     private String lastname;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "assignedTo")
+    @JsonIgnore
     private List<Request> appearences = new ArrayList<>();
 
     public User(){
