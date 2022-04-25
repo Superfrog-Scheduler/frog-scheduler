@@ -70,4 +70,5 @@ public class UserController {
     public Result findAllCustomers() {
         return new Result(true, StatusCode.SUCCESS, "Find all customers success", userService.findAllCustomers());
     }
+
 }

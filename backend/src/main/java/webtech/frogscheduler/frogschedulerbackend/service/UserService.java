@@ -91,4 +91,6 @@ public class UserService implements UserDetailsService {
     public List<User> findAllCustomers() {
         return userDao.findByRoles("customer");
     }
+
+
 }
