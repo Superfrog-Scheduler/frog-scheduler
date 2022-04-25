@@ -52,4 +52,8 @@ public class RequestService {
         User user = userDao.findById(userId).get();
         return requestDao.findByAssignedTo(user);
     }
+
+    public List<Request> findAllPending() {
+        return requestDao.findByStatus("Pending");
+    }
 }
