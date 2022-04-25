@@ -135,11 +135,6 @@ const basicRoutes = [
       },
     ],
   },
-  {
-    path: "/:pathMatch(.*)",
-    name: "pageNotFound",
-    component: () => import("@/views/common/404.vue"),
-  },
 ];
 
 export default basicRoutes;
