@@ -49,6 +49,6 @@ public class RequestController {
 
     @GetMapping("/for/{userId}")
     public Result findAllByUserId(@PathVariable Integer userId) {
-        return new Result(true, StatusCode.SUCCESS, "Find all approved requests success", requestService.findAllByUserId(userId));
+        return new Result(true, StatusCode.SUCCESS, "Find all requests assigned to user success", requestService.findAllByUserId(userId));
     }
 }
