@@ -1,54 +1,54 @@
 <script setup>
-    let requestList = [
-        {
-          id: 0,
-          name: 'Grad Party',
-          type: 'Private',
-          customer: 'Wingyang Bei',
-          date: '03/28/2022',
-          startTime: '10:00 AM',
-          endTime: '11:00 AM',
-          location: '2855 W Bowie St',
-          price: '$100',
-          status: 'Pending',
-        },
-        {
-          id: 1,
-          name: 'Wedding',
-          type: 'Private',
-          customer: 'Tony Sanchez',
-          date: '03/29/2022',
-          startTime: '7:00 PM',
-          endTime: '8:00 AM',
-          location: '2808 Stanley Ave',
-          price: '$100',
-          status: 'Approved',
-        },
-        {
-          id: 2,
-          name: 'Book Reading',
-          type: 'Public School',
-          customer: 'Sherrie Jackson',
-          date: '03/30/2022',
-          startTime: '2:00 PM',
-          endTime: '4:00 PM',
-          location: '4300 Campus Dr',
-          price: '$200',
-          status: 'Confirmed',
-        },
-        {
-          id: 3,
-          name: 'Bachelor Party',
-          type: 'Private',
-          customer: 'Michael Schumer',
-          date: '03/28/2022',
-          startTime: '10:00 PM',
-          endTime: '11:00 PM',
-          location: '2901 Stadium Dr',
-          price: '$100',
-          status: 'Rejected',
-        },
-    ]
+let requestList = [
+    {
+      id: 1,
+      name: 'Grad Party',
+      type: 'Private',
+      customer: 'Wingyang Bei',
+      date: '03/28/2022',
+      startTime: '10:00 AM',
+      endTime: '11:00 AM',
+      location: '2855 W Bowie St',
+      price: '$100',
+      status: 'Pending',
+    },
+    {
+      id: 2,
+      name: 'Wedding',
+      type: 'Private',
+      customer: 'Tony Sanchez',
+      date: '03/29/2022',
+      startTime: '7:00 PM',
+      endTime: '8:00 AM',
+      location: '2808 Stanley Ave',
+      price: '$100',
+      status: 'Approved',
+    },
+    {
+      id: 3,
+      name: 'Book Reading',
+      type: 'Public School',
+      customer: 'Sherrie Jackson',
+      date: '03/30/2022',
+      startTime: '2:00 PM',
+      endTime: '4:00 PM',
+      location: '4300 Campus Dr',
+      price: '$200',
+      status: 'Assigned',
+    },
+    {
+      id: 4,
+      name: 'Bachelor Party',
+      type: 'Private',
+      customer: 'Michael Schumer',
+      date: '03/28/2022',
+      startTime: '10:00 PM',
+      endTime: '11:00 PM',
+      location: '2901 Stadium Dr',
+      price: '$100',
+      status: 'Rejected',
+    },
+  ]
 </script>
 
 <template>
@@ -71,6 +71,7 @@
                     <th scope="col">Location</th>
                     <th scope="col">Price</th>
                     <th scope="col">Status</th> 
+                    <th scope="col">Actions</th> 
                 </tr>
             </thead>
             <tbody>
@@ -87,8 +88,11 @@
                 <td>
                   <span class="badge bg-secondary" v-if="request.status=='Pending'">{{request.status}}</span>
                   <span class="badge bg-success" v-if="request.status=='Approved'">{{request.status}}</span>
-                  <span class="badge bg-success" v-if="request.status=='Confirmed'">{{request.status}}</span>
+                  <span class="badge bg-success" v-if="request.status=='Assigned'">{{request.status}}</span>
                   <span class="badge bg-danger" v-if="request.status=='Rejected'">{{request.status}}</span>
+                </td>
+                <td>
+                  <button v-if="request.status=='Approved'" type="button" class="btn btn-success btn-sm me-2">Sign up</button>
                 </td>
               </tr>
             </tbody>

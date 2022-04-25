@@ -1,50 +1,34 @@
 <script setup>
+import EditCustomerModal from "../Modals/EditCustomerModal.vue";
     let customerList = [
         {
-          id: 0,
-          name: 'Michael Schumer',
-          email: 'm.schume',
-          endTime: '11:00 AM',
-          location: '2855 W Bowie St',
-          price: '$100',
-          status: 'Pending',
-        },
-        {
           id: 1,
-          name: 'Wedding',
-          type: 'Private',
-          customer: 'Tony Sanchez',
-          date: '03/29/2022',
-          startTime: '7:00 PM',
-          endTime: '8:00 AM',
-          location: '2808 Stanley Ave',
-          price: '$100',
-          status: 'Approved',
+          name: 'Michael Schumer',
+          email: 'm.schumer@gmail.com',
+          phone: '817-685-9382',
+          isActive: true
         },
         {
           id: 2,
-          name: 'Book Reading',
-          type: 'Public School',
-          customer: 'Sherrie Jackson',
-          date: '03/30/2022',
-          startTime: '2:00 PM',
-          endTime: '4:00 PM',
-          location: '4300 Campus Dr',
-          price: '$200',
-          status: 'Confirmed',
+          name: 'Wingyang Bei',
+          email: 'w.bei@gmail.com',
+          phone: '817-123-4321',
+          isActive: true
         },
         {
           id: 3,
-          name: 'Bachelor Party',
-          type: 'Private',
-          customer: 'Mickael Schumer',
-          date: '03/28/2022',
-          startTime: '10:00 PM',
-          endTime: '11:00 PM',
-          location: '2901 Stadium Dr',
-          price: '$100',
-          status: 'Rejected',
+          name: 'Tony Sanchez',
+          email: 't.sanchez@gmail.com',
+          phone: '817-126-3463',
+          isActive: false
         },
+        {
+          id: 4,
+          name: 'Sherrie Jackson',
+          email: 's.jackson@gmail.com',
+          phone: '817-647-3574',
+          isActive: true
+        }
     ]
 </script>
 
@@ -52,40 +36,41 @@
     <div class="container col py-3" id="app">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Requests</h4>
+                <h4 class="card-title">Customers</h4>
             </div>
         </div>
+        <EditCustomerModal id="edit-customer-modal" />
         <table class="table">
             <thead>
                 <tr>
                     <th scope="col">ID</th>
                     <th scope="col">Name</th>
-                    <th scope="col">Event Type</th>
-                    <th scope="col">Customer</th>
-                    <th scope="col">Date</th>
-                    <th scope="col">Start Time</th>
-                    <th scope="col">End Time</th>
-                    <th scope="col">Location</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Status</th> 
+                    <th scope="col">Email</th>
+                    <th scope="col">Phone</th>
+                    <th scope="col">Status</th>
+                    <th scope="col" colspan="2">Actions</th> 
                 </tr>
             </thead>
             <tbody>
-              <tr v-for="request in requestList" :key="request.id">
-                <td>{{request.id}}</td>
-                <td>{{request.name}}</td>
-                <td>{{request.type}}</td>
-                <td>{{request.customer}}</td>
-                <td>{{request.date}}</td>
-                <td>{{request.startTime}}</td>
-                <td>{{request.endTime}}</td>
-                <td>{{request.location}}</td>
-                <td>{{request.price}}</td>
+              <tr v-for="customer in customerList" :key="customer.id">
+                <td>{{customer.id}}</td>
+                <td>{{customer.name}}</td>
+                <td>{{customer.email}}</td>
+                <td>{{customer.phone}}</td>
                 <td>
-                  <span class="badge bg-secondary" v-if="request.status=='Pending'">{{request.status}}</span>
-                  <span class="badge bg-success" v-if="request.status=='Approved'">{{request.status}}</span>
-                  <span class="badge bg-success" v-if="request.status=='Confirmed'">{{request.status}}</span>
-                  <span class="badge bg-danger" v-if="request.status=='Rejected'">{{request.status}}</span>
+                  <span class="badge bg-success" v-if="customer.isActive">Active</span>
+                  <span class="badge bg-danger" v-else>Inactive</span>
+                </td>
+                <td>
+                  <button 
+                    type="button" 
+                    class="btn btn-light btn-sm btn-outline-dark" 
+                    data-bs-toggle="modal" 
+                    data-bs-target="#edit-customer-modal">Edit</button>
+                </td>
+                <td>
+                  <button v-if="customer.isActive" type="button" class="btn btn-danger btn-sm me-2">Deactivate</button>
+                  <button v-else type="button" class="btn btn-success btn-sm">Reactivate</button>
                 </td>
               </tr>
             </tbody>

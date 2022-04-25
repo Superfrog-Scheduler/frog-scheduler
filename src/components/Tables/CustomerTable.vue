@@ -1,5 +1,5 @@
 <script setup>
-import UserRequestModal from "../Modals/UserRequestModal.vue";
+import NewRequestModal from "../Modals/NewRequestModal.vue";
 
 let requestList = [
   {
@@ -21,7 +21,7 @@ let requestList = [
       <div class="card-body d-flex justify-content-between">
         <div><!-- empty div so content-between looks good --></div>
         <h4 class="card-title">Requests</h4>
-        <UserRequestModal id="add-request-modal" />
+        <NewRequestModal id="add-request-modal" />
         <button
           type="button"
           class="btn btn-primary mx-4"
