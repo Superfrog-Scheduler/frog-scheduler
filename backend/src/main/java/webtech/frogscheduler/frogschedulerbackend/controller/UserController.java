@@ -65,4 +65,9 @@ public class UserController {
     public Result findAllSuperFrogs() {
         return new Result(true, StatusCode.SUCCESS, "Find all superfrogs success", userService.findAllSuperFrogs());
     }
+
+    @GetMapping("/customers")
+    public Result findAllCustomers() {
+        return new Result(true, StatusCode.SUCCESS, "Find all customers success", userService.findAllCustomers());
+    }
 }
