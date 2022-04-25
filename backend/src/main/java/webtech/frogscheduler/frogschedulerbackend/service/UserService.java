@@ -83,4 +83,8 @@ public class UserService implements UserDetailsService {
         }
         user.addAppearence(requestToBeAssigned);
     }
+
+    public List<User> findAllSuperFrogs() {
+        return userDao.findByRoles("superfrog");
+    }
 }
