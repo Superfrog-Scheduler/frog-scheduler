@@ -54,6 +54,6 @@ public class RequestService {
     }
 
     public List<Request> findAllPending() {
-        return requestDao.findByStatus("pending");
+        return requestDao.findByStatus("Pending");
     }
 }
