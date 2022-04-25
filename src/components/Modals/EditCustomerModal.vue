@@ -8,11 +8,13 @@ defineProps({
 let name = ref("");
 let email = ref("");
 let phone = ref("");
+let dateOfBirth = ref("");
 
 function clearInputFields() {
   name.value = "";
   email.value = "";
   phone.value = "";
+  dateOfBirth.value = "";
 }
 
 </script>
@@ -69,6 +71,28 @@ function clearInputFields() {
                 class="form-control"
                 id="phone-input"
                 v-model="phone"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="customer-type-input" class="form-label"
+                >Date of Birth</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="customer-type-input"
+                v-model="dateOfBirth"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="customer-type-input" class="form-label"
+                >Address</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="customer-type-input"
+                v-model="address"
               />
             </div>
           </form>

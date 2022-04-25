@@ -1,4 +1,6 @@
 <script setup>
+import EditStudentModal from "../Modals/EditStudentModal.vue";
+
     let profileList = [
         {
           name: 'Bob Smith',
@@ -16,6 +18,15 @@
       <div class="card-body d-flex justify-content-center">
         <div><!-- empty div so content-between looks good --></div>
         <h4 class="card-title">Profile</h4>
+        <EditStudentModal id="edit-student-modal" />
+        <button
+          type="button"
+          class="btn btn-primary mx-4"
+          data-bs-toggle="modal"
+          data-bs-target="edit-student-modal"
+        >
+          Edit Student
+        </button>
       </div>
     </div>
     <table class="table">

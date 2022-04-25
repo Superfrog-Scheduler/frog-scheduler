@@ -1,4 +1,6 @@
 <script setup>
+import EditCustomerModalfrom "../Modals/EditCustomerModal.vue";
+
     let profileList = [
         {
           name: 'Bob Smith',
@@ -7,7 +9,7 @@
           phone: '817-528-1249',
           address: '2800 S University Dr',
         },
-    ]
+    ];
 </script>
 
 <template>
@@ -16,6 +18,15 @@
       <div class="card-body d-flex justify-content-center">
         <div><!-- empty div so content-between looks good --></div>
         <h4 class="card-title">Profile</h4>
+        <EditStudentModal id="edit-customer-modal" />
+        <button
+          type="button"
+          class="btn btn-primary mx-4"
+          data-bs-toggle="modal"
+          data-bs-target="#edit-customer-modal"
+        >
+          Edit Customer
+        </button>
       </div>
     </div>
     <table class="table">
