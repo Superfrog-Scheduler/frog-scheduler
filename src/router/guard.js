@@ -28,7 +28,6 @@ function isLoggedIn(route) {
   // if user is not logged in, we need to cache the requested page so that we can redirect to
   // this page after user logs in, this has a better user experience
   if (!status) {
-    console.log(route.name)
     utils.cacheUtils.set('requested_page_prior_login', route.name);
   }
   return status;
@@ -47,8 +46,9 @@ function getToken() {
 
 function getUserInfo() {
   const userStore = useUserStore();
-  if (getToken()) {
-    userStore.getUserInfo();
+  let token = getToken()
+  if (token) {
+    userStore.getUserInfo(token);
   }
 }
 

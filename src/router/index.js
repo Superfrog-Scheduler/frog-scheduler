@@ -11,10 +11,12 @@ const router = createRouter({
  })
 
  export async function setupRouter(app) {
-  if (utils.cacheUtils.get('login_token')?.token) {
+   console.log("index")
+  let token = utils.cacheUtils.get('login_token')?.token
+  if (token) {
     // get user info and save it to Pinia, then we can have access to user's permission list in different components
     const userStore = useUserStore();
-    await userStore.getUserInfo();
+    await userStore.getUserInfo(token);
 
     const userRole = userStore.userInfo?.role;
 

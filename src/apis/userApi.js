@@ -1,9 +1,21 @@
 import axios from "axios";
 
-const info = async (instance, id) => {
-  return await instance.get(`/users/${id}`).then((response) => {
-     return response.data;
+const info = async (token, id) => {
+  console.log("token", token, id);
+  const instance = axios.create({
+    baseURL: "http://localhost:8080",
+    timeout: 1000,
+    headers: { Authorization: "Bearer " + token },
   });
+  return await instance
+    .get(`/users/${id}`)
+    .then((res) => {
+      console.log(res.data);
+      return res.data;
+    })
+    .catch((error) => {
+      console.error(error.response.data);
+    });
 };
 
 const register = async (registerInfo) => {
@@ -19,9 +31,8 @@ const register = async (registerInfo) => {
       password: pass,
       firstname: fname,
       lastname: lname,
-      phone: phone
-    },
-    )
+      phone: phone,
+    })
     .then((r) => {
       console.log(r);
       // return r.data;
@@ -30,7 +41,7 @@ const register = async (registerInfo) => {
     .catch(function (error) {
       console.log(error.response.data);
     });
-}
+};
 
 const login = async (loginInfo) => {
   var session_url = "http://localhost:8080/auth/login";
@@ -62,4 +73,4 @@ const login = async (loginInfo) => {
       console.log("Error on Authentication");
     });
 };
-export default { info, login, register};
+export default { info, login, register };
