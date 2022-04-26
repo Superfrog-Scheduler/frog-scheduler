@@ -5,13 +5,15 @@ export default defineStore('user', {
   state: () => {
     return {
       userInfo: {},
+      id: 0,
     };
   },
   actions: {
-    async getUserInfo(instance, id) {
-      const res = await userApi.info(instance, id);
-      console.log("res", res)
+    async getUserInfo(token) {
+      const res = await userApi.info(token, this.id);
+      
       this.userInfo = res.data;
+      console.log("user", this.userInfo)
     },
   },
 });

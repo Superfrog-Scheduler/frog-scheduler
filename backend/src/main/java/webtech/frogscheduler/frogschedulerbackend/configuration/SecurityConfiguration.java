@@ -51,8 +51,10 @@ public class SecurityConfiguration {
                                 .antMatchers(HttpMethod.GET, "customer/**").authenticated()
                 )
 
-                .csrf((csrf) -> csrf.ignoringAntMatchers("/auth/login")
-                                    .ignoringAntMatchers("/users"))
+                .csrf((csrf) -> csrf.disable()
+//                                csrf.ignoringAntMatchers("/auth/login")
+//                                    .ignoringAntMatchers("/users")
+                )
                 .httpBasic(Customizer.withDefaults()) // using HTTP Basic Authentication
                 .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt)
                 .sessionManagement((session) -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
