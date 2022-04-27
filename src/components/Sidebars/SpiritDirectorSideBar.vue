@@ -45,7 +45,7 @@ export default {
         <li class="nav-item">
           <i class="fs-4 bi-house"></i>
           <span
-            class="ms-1 d-none d-sm-inline text-success"
+            class="ms-1 d-none d-sm-inline text-success link"
             @click="redirect(1)"
             >Request Management
           </span>
@@ -53,7 +53,7 @@ export default {
         <li>
           <i class="fs-4 bi-table"></i>
           <span
-            class="ms-1 d-none d-sm-inline text-success"
+            class="ms-1 d-none d-sm-inline text-success link"
             @click="redirect(2)"
             >Team Management
           </span>
@@ -61,7 +61,7 @@ export default {
         <li>
           <i class="fs-4 bi-table"></i>
           <span
-            class="ms-1 d-none d-sm-inline text-success"
+            class="ms-1 d-none d-sm-inline text-success link"
             @click="redirect(3)"
             >Customer Management
           </span>
@@ -69,7 +69,7 @@ export default {
         <li>
           <i class="fs-4 bi-table"></i>
           <span
-            class="ms-1 d-none d-sm-inline text-success"
+            class="ms-1 d-none d-sm-inline text-success link"
             @click="redirect(4)"
             >Log Out
           </span>
@@ -83,5 +83,9 @@ export default {
 <style scoped>
 a {
   color: #42b983;
+}
+
+.link {
+  cursor: pointer;
 }
 </style>

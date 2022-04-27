@@ -1,7 +1,17 @@
 <script>
 import router from "@/router";
 import utils from "@/utils";
+import useUserStore from "@/store/userStore";
 export default {
+  data() {
+    return {
+      userInfo: {},
+    };
+  },
+  mounted() {
+    const userStore = useUserStore();
+    this.userInfo = userStore.userInfo;
+  },
   methods: {
     redirect: (num) => {
       switch (num) {
@@ -36,7 +46,7 @@ export default {
           height="155"
           class="d-flex rounded-circle"
         />
-        <span class="d-flex fs-5 d-none d-sm-inline">John Doe</span>
+        <span class="d-flex fs-5 d-none d-sm-inline">{{userInfo.firstname}} {{userInfo.lastname}}</span>
       </div>
       <ul
         class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start"
@@ -45,7 +55,7 @@ export default {
         <li class="nav-item">
           <i class="fs-4 bi-house"></i>
           <span
-            class="ms-1 d-none d-sm-inline text-success"
+            class="ms-1 d-none d-sm-inline text-success link"
             @click="redirect(1)"
             >Requests
           </span>
@@ -53,7 +63,7 @@ export default {
         <li>
           <i class="fs-4 bi-table"></i>
           <span
-            class="ms-1 d-none d-sm-inline text-success"
+            class="ms-1 d-none d-sm-inline text-success link"
             @click="redirect(2)"
             >Profile
           </span>
@@ -83,5 +93,9 @@ export default {
 <style scoped>
 a {
   color: #42b983;
+}
+
+.link {
+  cursor: pointer;
 }
 </style>
