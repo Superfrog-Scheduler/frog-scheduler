@@ -1,5 +1,7 @@
 package webtech.frogscheduler.frogschedulerbackend.service;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
 import webtech.frogscheduler.frogschedulerbackend.dao.RequestDao;
 import webtech.frogscheduler.frogschedulerbackend.dao.UserDao;
@@ -8,6 +10,7 @@ import webtech.frogscheduler.frogschedulerbackend.domain.User;
 import webtech.frogscheduler.frogschedulerbackend.utils.IdWorker;
 
 import javax.transaction.Transactional;
+import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -24,36 +27,93 @@ public class RequestService {
         this.userDao = userDao;
     }
 
-    public List<Request> findAll() {
-        return requestDao.findAll();
+    public List<Request> findAll(Authentication authentication) {
+        List authorities = (List) authentication.getAuthorities();
+        String role = authorities.get(0).toString();
+        if(role.equals("team")) {
+            User user = userDao.findByUsername(authentication.getName());
+            return requestDao.findByAssignedTo(user);
+        }
+        else if(role.equals("director")) {
+            return requestDao.findAll();
+        }
+        else {
+            return null;
+        }
     }
 
-    public Request findById(String requestId) {
-        return requestDao.findById(requestId).get();
+    public Request findById(String requestId, Authentication authentication) {
+        List authorities = (List) authentication.getAuthorities();
+        String role = authorities.get(0).toString();
+        User user = userDao.findByUsername(authentication.getName());
+        Request request = requestDao.findById(requestId).get();
+        if(role.equals("director") || request.getAssignedTo().equals(user)) {
+            return requestDao.findById(requestId).get();
+        }
+        else {
+            return null;
+        }
     }
 
     public void save(Request newRequest) {
         newRequest.setId(idWorker.nextId() + "");
         newRequest.setStatus("Pending");
-        //this is where price should be set if we choose to do that
         requestDao.save(newRequest);
     }
 
-    public void update(String requestId, Request updatedRequest) {
-        updatedRequest.setId(requestId);
-        requestDao.save(updatedRequest);
+    public void update(String requestId, Request updatedRequest, Authentication authentication) {
+        List authorities = (List) authentication.getAuthorities();
+        String role = authorities.get(0).toString();
+        if(role.equals("director")) {
+            updatedRequest.setId(requestId);
+            requestDao.save(updatedRequest);
+        }
     }
 
-    public List<Request> findAllApproved() {
-        return requestDao.findByStatus("Approved");
+    public List<Request> findAllApproved(Authentication authentication) {
+        List authorities = (List) authentication.getAuthorities();
+        String role = authorities.get(0).toString();
+        if(role.equals("team") || role.equals("director")) {
+            return requestDao.findByStatus("Approved");
+        }
+        else {
+            return null;
+        }
     }
 
-    public List<Request> findAllByUserId(Integer userId) {
+    public List<Request> findAllByUserId(Integer userId, Authentication authentication) {
+        List authorities = (List) authentication.getAuthorities();
+        String role = authorities.get(0).toString();
         User user = userDao.findById(userId).get();
-        return requestDao.findByAssignedTo(user);
+        User requestingUser = userDao.findByUsername(authentication.getName());
+        if(role.equals("director") || requestingUser.getId() == userId) {
+            return requestDao.findByAssignedTo(user);
+        }
+        else {
+            return null;
+        }
     }
 
-    public List<Request> findAllPending() {
-        return requestDao.findByStatus("Pending");
+    public List<Request> findAllPending(Authentication authentication) {
+        List authorities = (List) authentication.getAuthorities();
+        String role = authorities.get(0).toString();
+        if(role.equals("director")) {
+            return requestDao.findByStatus("Pending");
+        }
+        else {
+            return null;
+        }
+    }
+
+    public List<Request> findCompletedByUserId(Integer userId, Authentication authentication) {
+        List authorities = (List) authentication.getAuthorities();
+        String role = authorities.get(0).toString();
+        User user = userDao.findById(userId).get();
+        if((role.equals("team") && user.getId() == userId) || role.equals("director")) {
+            return requestDao.findByAssignedToAndStatus(user, "Complete");
+        }
+        else {
+            return null;
+        }
     }
 }

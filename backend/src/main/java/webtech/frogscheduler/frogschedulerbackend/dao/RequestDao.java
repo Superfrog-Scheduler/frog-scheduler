@@ -9,4 +9,5 @@ import java.util.List;
 public interface RequestDao extends JpaRepository<Request, String> {
     List<Request> findByStatus(String status);
     List<Request> findByAssignedTo(User user);
+    List<Request> findByAssignedToAndStatus(User user, String status);
 }
