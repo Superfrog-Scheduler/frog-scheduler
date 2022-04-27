@@ -94,24 +94,32 @@ const basicRoutes = [
           role: "team",
         },
         component: () =>
-          import("@/components/UserAccountManagement/SuperFrogTeamDashboard.vue"),
-        redirect: { name: "SuperFrogTeamTable" },
+          import("@/components/UserAccountManagement/SuperFrogDashboard.vue"),
+        redirect: { name: "SuperFrogRequestsTable" },
         children: [
           {
             path: "requests",
-            name: "SuperFrogTeamTable",
+            name: "SuperFrogRequestsTable",
             meta: {
               requiresAuth: true
             },
-            component: () => import("@/components/Tables/SuperFrogTeamTable.vue"),
+            component: () => import("@/components/Tables/SuperFrogRequestsTable.vue"),
+          },
+          {
+            path: "appearances",
+            name: "SuperFrogAppearancesTable",
+            meta: {
+              requiresAuth: true
+            },
+            component: () => import("@/components/Tables/SuperFrogAppearancesTable.vue"),
           },
           {
             path: "profile",
-            name: "SuperFrogTeamProfile",
+            name: "SuperFrogProfile",
             meta: {
               requiresAuth: true
             },
-            component: () => import("@/components/Tables/SuperFrogTeamProfile.vue"),
+            component: () => import("@/components/Tables/SuperFrogProfile.vue"),
           },
         ],
       },
