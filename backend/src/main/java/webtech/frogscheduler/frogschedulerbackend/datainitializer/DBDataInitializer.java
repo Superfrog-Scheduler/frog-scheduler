@@ -56,6 +56,54 @@ public class DBDataInitializer implements CommandLineRunner {
         r3.setStatus("Complete");
         r3.setCustomer("Jane Doe");
 
+        Request r4 = new Request();
+        r4.setId("126");
+        r4.setEventName("event 4");
+        r4.setEventType("alumni party");
+        r4.setDate("5/25/2022");
+        r4.setStartTime("1:00 PM");
+        r4.setEndTime("2:00 PM");
+        r4.setLocation("121 bing st.");
+        r4.setPrice(200);
+        r4.setStatus("Approved");
+        r4.setCustomer("Matt Abc");
+
+        Request r5 = new Request();
+        r5.setId("127");
+        r5.setEventName("event 5");
+        r5.setEventType("Birthday party");
+        r5.setDate("4/20/2022");
+        r5.setStartTime("2:00 PM");
+        r5.setEndTime("5:00 PM");
+        r5.setLocation("121 main st.");
+        r5.setPrice(500);
+        r5.setStatus("Approved");
+        r5.setCustomer("Bob Doe");
+
+        Request r6 = new Request();
+        r6.setId("128");
+        r6.setEventName("event 6");
+        r6.setEventType("Halloween party");
+        r6.setDate("2/9/2023");
+        r6.setStartTime("2:00 PM");
+        r6.setEndTime("5:00 PM");
+        r6.setLocation("123 main st.");
+        r6.setPrice(10);
+        r6.setStatus("Approved");
+        r6.setCustomer("Jim Doe");
+
+        Request r7 = new Request();
+        r7.setId("129");
+        r7.setEventName("event 7");
+        r7.setEventType("Christmas party");
+        r7.setDate("7/8/2023");
+        r7.setStartTime("2:00 PM");
+        r7.setEndTime("9:00 PM");
+        r7.setLocation("12345 main st.");
+        r7.setPrice(1000);
+        r7.setStatus("Accepted");
+        r7.setCustomer("Jim John");
+
          User u1 = new User();
          u1.setUsername("john@gmail.com");
          u1.setPassword("$2a$12$zpV0R4lHBRyVSxWVZYjKruYlOzZoa1XoqStE7FZ74E0V5zTpDl4TG"); //plain: password
@@ -97,12 +145,19 @@ public class DBDataInitializer implements CommandLineRunner {
         u5.setPassword("$2a$12$zpV0R4lHBRyVSxWVZYjKruYlOzZoa1XoqStE7FZ74E0V5zTpDl4TG"); //plain: password
         u5.setEnabled(true);
         u5.setRoles("team");
-        //u5.addAppearence(r3);
+        u5.addAppearence(r7);
+
+        User u6 = new User();
+        u6.setUsername("craig@gmail.com");
+        u6.setPassword("$2a$12$zpV0R4lHBRyVSxWVZYjKruYlOzZoa1XoqStE7FZ74E0V5zTpDl4TG"); //plain: password
+        u6.setEnabled(true);
+        u6.setRoles("customer");
 
         userDao.save(u1);
         userDao.save(u2);
         userDao.save(u3);
         userDao.save(u4);
         userDao.save(u5);
+        userDao.save(u6);
     }
 }
