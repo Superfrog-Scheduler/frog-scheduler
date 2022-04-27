@@ -1,4 +1,5 @@
 import axios from "axios";
+import useUserStore from '@/store/userStore';
 
 const info = async (token, id) => {
   console.log("token", token, id);
@@ -75,4 +76,24 @@ const login = async (loginInfo) => {
       console.log("Error on Authentication");
     });
 };
-export default { info, login, register };
+
+const update = async (updatedInfo) => {
+  const userStore = useUserStore();
+  let id = userStore.id
+  var session_url = `http://localhost:8080/users/${id}`;
+  var uname = updatedInfo.account;
+  var fname = updatedInfo.fname;
+  var lname = updatedInfo.lname;
+  var phone = updatedInfo.tel;
+
+  await axios.put(session_url,
+      {
+        username: uname,
+        password: pass,
+        firstname: fname,
+        lastname: lname,
+        phone: phone
+      },
+    )
+}
+export default { info, login, register, update };
