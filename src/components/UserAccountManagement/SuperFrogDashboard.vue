@@ -1,11 +1,11 @@
 <script setup>
-import SuperFrogTeamSideBar from "../Sidebars/SuperFrogTeamSideBar.vue"
+import SuperFrogSideBar from "../Sidebars/SuperFrogSideBar.vue"
 </script>
 
 <template>
   <div class="container-fluid">
     <div class="row flex-nowrap">
-      <SuperFrogTeamSideBar />
+      <SuperFrogSideBar />
       <router-view></router-view>
     </div>
   </div>

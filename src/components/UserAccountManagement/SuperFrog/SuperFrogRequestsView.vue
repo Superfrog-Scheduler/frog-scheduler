@@ -1,6 +1,6 @@
 <script setup>
-import SuperFrogTeamSideBar from "../../Sidebars/SuperFrogTeamSideBar.vue"
-import SuperFrogTeamTable from "../../Tables/SuperFrogTeamTable.vue"
+import SuperFrogSideBar from "../../Sidebars/SuperFrogSideBar.vue"
+import SuperFrogTable from "../../Tables/SuperFrogTable.vue"
 
 defineProps({
   msg: String
@@ -10,8 +10,8 @@ defineProps({
 <template>
   <div class="container-fluid">
     <div class="row flex-nowrap">
-      <SuperFrogTeamSideBar />
-      <SuperFrogTeamTable />
+      <SuperFrogSideBar />
+      <SuperFrogTable />
     </div>
   </div>
 </template>

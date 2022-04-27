@@ -11,6 +11,9 @@ export default {
         case 2:
           router.push("/team/profile");
           break;
+        case 3:
+          router.push("/team/appearances");
+          break;
         case 4:
           utils.userLoginUtils.logout();
           break;
@@ -44,7 +47,7 @@ export default {
           <span
             class="ms-1 d-none d-sm-inline text-success"
             @click="redirect(1)"
-            >Request
+            >Requests
           </span>
         </li>
         <li>
@@ -53,6 +56,14 @@ export default {
             class="ms-1 d-none d-sm-inline text-success"
             @click="redirect(2)"
             >Profile
+          </span>
+        </li>
+        <li>
+          <i class="fs-4 bi-table"></i>
+          <span
+            class="ms-1 d-none d-sm-inline text-success"
+            @click="redirect(3)"
+            >Appearances
           </span>
         </li>
         <li>

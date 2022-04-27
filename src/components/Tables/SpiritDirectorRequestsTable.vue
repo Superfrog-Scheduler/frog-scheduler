@@ -51,6 +51,18 @@ let requestList = [
       price: '$100',
       status: 'Rejected',
     },
+    {
+      id: 5,
+      name: 'Birthday Party',
+      type: 'Private',
+      customer: 'Joe Biden',
+      date: '02/27/2022',
+      startTime: '3:00 PM',
+      endTime: '4:00 PM',
+      location: '1600 Pennsylvania Ave',
+      price: '$100',
+      status: 'Completed',
+    },
   ]
 </script>
 
@@ -94,9 +106,10 @@ let requestList = [
                   <span class="badge bg-secondary" v-if="request.status=='Pending'">{{request.status}}</span>
                   <span class="badge bg-success" v-if="request.status=='Approved'">{{request.status}}</span>
                   <span class="badge bg-success" v-if="request.status=='Assigned'">{{request.status}}</span>
+                  <span class="badge bg-success" v-if="request.status=='Completed'">{{request.status}}</span>
                   <span class="badge bg-danger" v-if="request.status=='Rejected'">{{request.status}}</span>
                 </td>
-                <td v-if="request.status!='Rejected'">
+                <td v-if="request.status!='Rejected' && request.status!='Completed'">
                   <button 
                     type="button" 
                     class="btn btn-light btn-sm btn-outline-dark" 
