@@ -73,14 +73,6 @@ export default {
           >
             Sign Up
           </button>
-          <div class="temp">
-            <router-link to="/director">Go to SpiritDirector</router-link>
-            <br />
-            <router-link to="/team/requests">Go to SuperFrogTeam</router-link>
-            <br />
-            <router-link to="/customer/requests">Go to Customer</router-link>
-            <br />
-          </div>
         </div>
 
         <div class="col-lg-6 row-item">

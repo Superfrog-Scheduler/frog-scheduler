@@ -1,13 +1,16 @@
-<script setup>
-    let profileList = [
-        {
-          name: 'Bob Smith',
-          email: 'b.smith@tcu.edu',
-          dateOfBirth: '10/23/1987',
-          phone: '817-528-1249',
-          address: '2800 S University Dr',
-        },
-    ]
+<script>
+import useUserStore from '@/store/userStore';
+export default {
+  data() {
+    return {
+      userInfo: {}
+    }
+  },
+  mounted() {
+    const userStore = useUserStore();
+    this.userInfo = userStore.userInfo
+  }
+}
 </script>
 
 <template>
@@ -23,25 +26,16 @@
         <tr>
           <th scope="col">Customer Name</th>
           <th scope="col">E-Mail</th>
-          <th scope="col">Date of Birth</th>
           <th scope="col">Phone Number</th>
-          <th scope="col">Address</th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="profile in profileList" :key="profile.id">
-          <td>{{ profile.name }}</td>
-          <td>{{ profile.email }}</td>
-          <td>{{ profile.dateOfBirth }}</td>
-          <td>{{ profile.phone }}</td>
-          <td>{{ profile.address }}</td>
-          <td>
-          </td>
-        </tr>
+          <td>{{ userInfo.firstname }} {{ userInfo.lastname }}</td>
+          <td>{{ userInfo.username }}</td>
+          <td>{{ userInfo.phone }}</td>
       </tbody>
     </table>
   </div>
 </template>
 
-<style scoped>
-</style>
+<style scoped></style>
