@@ -18,7 +18,7 @@ import EditCustomerModalfrom "../Modals/EditCustomerModal.vue";
       <div class="card-body d-flex justify-content-center">
         <div><!-- empty div so content-between looks good --></div>
         <h4 class="card-title">Profile</h4>
-        <EditStudentModal id="edit-customer-modal" />
+        <EditCustomerModal id="edit-customer-modal" />
         <button
           type="button"
           class="btn btn-primary mx-4"

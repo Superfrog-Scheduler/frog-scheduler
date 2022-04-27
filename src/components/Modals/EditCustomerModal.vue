@@ -8,13 +8,11 @@ defineProps({
 let name = ref("");
 let email = ref("");
 let phone = ref("");
-let dateOfBirth = ref("");
 
 function clearInputFields() {
   name.value = "";
   email.value = "";
   phone.value = "";
-  dateOfBirth.value = "";
 }
 
 </script>
@@ -44,56 +42,54 @@ function clearInputFields() {
           <form>
             <div class="mb-3">
               <label for="customer-name-input" class="form-label"
-                >Name</label
+                >First Name</label
               >
-              <input
+              <Field
+                name="fname"
+                as="input"
                 type="text"
                 class="form-control"
-                id="customer-name-input"
-                v-model="name"
-              />
+                label="First name"
+              ></Field>
             </div>
+
+            <div class ="mb-3">
+              <label for="last-name-input" class="form-label"
+              >Last Name</label>
+              <Field 
+                name="lname"
+                as="input"
+                type="text"
+                class="form-control"
+                label="Last name"
+                placeholder="Input your last name"
+              ></Field>
+
             <div class="mb-3">
-              <label for="customer-type-input" class="form-label"
+              <label for="email-input" class="form-label date"
                 >Email</label
               >
-              <input
+
+              <Field
+                name="account"
+                as="input"
                 type="text"
                 class="form-control"
-                id="customer-type-input"
-                v-model="email"
-              />
+                label="Account name"
+                placeholder="Input your account email"
+              ></Field>
             </div>
             <div class="mb-3">
               <label for="phone-input" class="form-label">Phone</label>
-              <input
+              <Field
+                name="tel"
+                as="input"
                 type="text"
                 class="form-control"
-                id="phone-input"
-                v-model="phone"
-              />
+                label="Phone number"
+                placeholder="Input your phone number"
+              ></Field>
             </div>
-            <div class="mb-3">
-              <label for="customer-type-input" class="form-label"
-                >Date of Birth</label
-              >
-              <input
-                type="text"
-                class="form-control"
-                id="customer-type-input"
-                v-model="dateOfBirth"
-              />
-            </div>
-            <div class="mb-3">
-              <label for="customer-type-input" class="form-label"
-                >Address</label
-              >
-              <input
-                type="text"
-                class="form-control"
-                id="customer-type-input"
-                v-model="address"
-              />
             </div>
           </form>
         </div>

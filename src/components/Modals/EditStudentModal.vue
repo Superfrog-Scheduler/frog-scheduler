@@ -42,34 +42,51 @@ function clearInputFields() {
           <form>
             <div class="mb-3">
               <label for="student-name-input" class="form-label"
-                >Name</label
+                >First Name</label
               >
-              <input
+              <Field
+                name="fname"
+                as="input"
                 type="text"
                 class="form-control"
-                id="student-name-input"
-                v-model="name"
-              />
+                label="First name"
+              ></Field>
             </div>
             <div class="mb-3">
-              <label for="student-type-input" class="form-label"
-                >Email</label
+              <label for="last-name-input" class="form-label"
+                >Last Name</label
               >
-              <input
+              <Field
+                name="lname"
+                as="input"
                 type="text"
                 class="form-control"
-                id="student-type-input"
-                v-model="email"
-              />
+                label="Last name"
+              ></Field>
+
+            <div class="mb-3">
+              <label for="email-input" class="form-label"
+                >Email</label
+              >
+              <Field
+                name="account"
+                as="input"
+                type="text"
+                class="form-control"
+                label="Account name"
+                placeholder="Input your account email"
+              ></Field>
             </div>
             <div class="mb-3">
               <label for="phone-input" class="form-label">Phone</label>
-              <input
+              <Field
+                name="tel"
+                as="input"
                 type="text"
                 class="form-control"
-                id="phone-input"
-                v-model="phone"
-              />
+                label="Phone number"
+                placeholder="Input your phone number"
+              ></Field>
             </div>
           </form>
         </div>
