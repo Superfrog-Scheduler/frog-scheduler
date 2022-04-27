@@ -25,6 +25,7 @@ const register = async (registerInfo) => {
   var fname = registerInfo.fname;
   var lname = registerInfo.lname;
   var phone = registerInfo.tel;
+  var roles = registerInfo.roles;
   return await axios
     .post(session_url, {
       username: uname,
@@ -32,6 +33,7 @@ const register = async (registerInfo) => {
       firstname: fname,
       lastname: lname,
       phone: phone,
+      roles: roles
     })
     .then((r) => {
       console.log(r);
