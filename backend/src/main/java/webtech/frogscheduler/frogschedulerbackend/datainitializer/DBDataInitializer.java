@@ -41,7 +41,7 @@ public class DBDataInitializer implements CommandLineRunner {
         r2.setEndTime("3:00 PM");
         r2.setLocation("321 berry st.");
         r2.setPrice(5000);
-        r2.setStatus("Approved");
+        r2.setStatus("Complete");
         r2.setCustomer("John Smith");
 
         Request r3 = new Request();
@@ -53,7 +53,7 @@ public class DBDataInitializer implements CommandLineRunner {
         r3.setEndTime("5:00 PM");
         r3.setLocation("121 apple st.");
         r3.setPrice(10000000);
-        r3.setStatus("Approved");
+        r3.setStatus("Complete");
         r3.setCustomer("Jane Doe");
 
          User u1 = new User();
@@ -88,15 +88,16 @@ public class DBDataInitializer implements CommandLineRunner {
         u4.setUsername("bill@gmail.com");
         u4.setPassword("$2a$12$zpV0R4lHBRyVSxWVZYjKruYlOzZoa1XoqStE7FZ74E0V5zTpDl4TG"); //plain: password
         u4.setEnabled(true);
-        u4.setRoles("superfrog");
+        u4.setRoles("team");
         u4.addAppearence(r2);
+        u4.addAppearence(r3);
 
         User u5 = new User();
         u5.setUsername("sarah@gmail.com");
         u5.setPassword("$2a$12$zpV0R4lHBRyVSxWVZYjKruYlOzZoa1XoqStE7FZ74E0V5zTpDl4TG"); //plain: password
         u5.setEnabled(true);
-        u5.setRoles("superfrog");
-        u5.addAppearence(r3);
+        u5.setRoles("team");
+        //u5.addAppearence(r3);
 
         userDao.save(u1);
         userDao.save(u2);
