@@ -59,9 +59,9 @@ public class RequestController {
         return new Result(true, StatusCode.SUCCESS, "Find all requests assigned to user success", requestService.findAllByUserId(userId, authentication));
     }
 
-    @GetMapping("/completedBy/{userId}")
-    public Result findCompletedByUserId(@PathVariable Integer userId, Authentication authentication) {
-        return new Result(true, StatusCode.SUCCESS, "Find all completed for user success", requestService.findCompletedByUserId(userId, authentication));
+    @GetMapping("/completed")
+    public Result findCompleted(Authentication authentication) {
+        return new Result(true, StatusCode.SUCCESS, "Find all completed for user success", requestService.findCompleted(authentication));
     }
 
 }
