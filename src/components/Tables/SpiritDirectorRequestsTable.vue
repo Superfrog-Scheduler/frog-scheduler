@@ -5,7 +5,7 @@ import downloadApi from "@/apis/downloadApi";
 
 
 export default {
-  components: { EditRequestModal, AssignRequestModal, requestList },
+  components: { EditRequestModal, AssignRequestModal },
   data() {
     return {
       requestList: [
