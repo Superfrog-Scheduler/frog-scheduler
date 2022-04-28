@@ -1,38 +1,41 @@
-<script setup>
-defineProps({
-  msg: String,
-});
+<script>
+import router from "../router";
+import SignInModal from "./Modals/SignInModal.vue";
+import SignUpModal from "./Modals/SignUpModal.vue";
+
+export default {
+  components: { SignInModal, SignUpModal },
+  props: ["show"],
+  // methods: {
+  //   toDashboard: (){
+  //     router.push()
+  //   }
+  // }
+};
 </script>
 
 <template>
-  <!-- <p>
-    <router-link to="/director/requests">Go to SpiritDirector</router-link>
-    <br/>
-    <router-link to="/team/requests">Go to SuperFrogTeam</router-link>
-    <br/>
-    <router-link to="/customer/requests">Go to Customer</router-link>
-    <br/>
-  </p> -->
-    <section class="colored-section" id="title">
-
+  <section class="colored-section" id="title">
     <div class="container-fluid">
-
       <!-- Nav Bar -->
 
       <nav class="navbar navbar-expand-lg navbar-dark">
-
         <a class="navbar-brand" href="">Super Frog Scheduler</a>
 
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02">
-            <span class="navbar-toggler-icon"></span>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarTogglerDemo02"
+        >
+          <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="#">Request</a>
-            </li>
+            <!-- <li class="nav-item">
+              <a class="nav-link" href="/custome" @click="toDashboard">Request</a>
+            </li> -->
             <li class="nav-item">
               <a class="nav-link" href="#pricing">Pricing</a>
             </li>
@@ -40,37 +43,47 @@ defineProps({
               <a class="nav-link" href="#">Range</a>
             </li>
           </ul>
-
         </div>
       </nav>
-
 
       <!-- Title -->
 
       <div class="row">
+        <SignInModal id="sign-in-modal" :show="show" />
+        <SignUpModal id="sign-up-modal" />
 
         <div class="col-lg-6 row-item">
-          <h1 class="big-heading">Have Super Frog at your event.</h1>
-          <button type="button" class="btn btn-dark btn-lg sign-button"><i class="fab fa-apple"></i> Sign In</button>
-          <button type="button" class="btn btn-outline-light btn-lg sign-button"><i class="fab fa-google-play"></i> Sign Up</button>
-          <div class="temp">
-              <router-link to="/director">Go to SpiritDirector</router-link>
-              <br/>
-              <router-link to="/team/requests">Go to SuperFrogTeam</router-link>
-              <br/>
-              <router-link to="/customer/requests">Go to Customer</router-link>
-              <br/>
-              </div>
+          <h1 class="big-heading" id="header">
+            Have Super Frog at your event.
+          </h1>
+          <button
+            type="button"
+            class="btn btn-dark btn-lg sign-button"
+            data-bs-toggle="modal"
+            data-bs-target="#sign-in-modal"
+            
+          >
+            Sign In
+          </button>
+          <button
+            type="button"
+            class="btn btn-outline-light btn-lg sign-button"
+            data-bs-toggle="modal"
+            data-bs-target="#sign-up-modal"
+          >
+            Sign Up
+          </button>
         </div>
 
         <div class="col-lg-6 row-item">
-          <img class="title-image rounded" src="../../images/superfrog.jpg" alt="superfrog">
+          <img
+            class="title-image rounded"
+            src="../../images/superfrog.jpg"
+            alt="superfrog"
+          />
         </div>
-
       </div>
-
     </div>
-
   </section>
 </template>
 
@@ -84,7 +97,12 @@ body {
   text-align: center;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: "Montserrat-Bold";
 }
 
@@ -100,10 +118,9 @@ p {
   line-height: 1.5;
 }
 
-
 /* Containers */
 
-.container-fluid{
+.container-fluid {
   padding: 7% 15%;
 }
 
@@ -115,7 +132,6 @@ p {
 
 .colored-section {
   background-color: #ff4c68;
-  color: #fff;
   height: 100vh;
 }
 
@@ -140,7 +156,7 @@ p {
   font-family: "Montserrat-Light";
 }
 
-.navbar-collapse{
+.navbar-collapse {
   display: flex;
   justify-content: flex-end;
 }
@@ -155,12 +171,15 @@ p {
 
 #title {
   background-color: #4d1979;
-  color: #fff;
   text-align: left;
 }
 
 #title .container-fluid {
   padding: 3% 10%;
+}
+
+#header {
+  color: white;
 }
 
 /* Title Image */
@@ -169,9 +188,7 @@ p {
   width: 500px;
 }
 
-
 @media (max-width: 1028px) {
-
   #title {
     text-align: center;
   }
@@ -181,5 +198,4 @@ p {
     transform: rotate(0);
   }
 }
-
 </style>
