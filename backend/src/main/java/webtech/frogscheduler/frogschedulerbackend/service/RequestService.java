@@ -105,11 +105,11 @@ public class RequestService {
         }
     }
 
-    public List<Request> findCompletedByUserId(Integer userId, Authentication authentication) {
+    public List<Request> findCompleted(Authentication authentication) {
         List authorities = (List) authentication.getAuthorities();
         String role = authorities.get(0).toString();
-        User user = userDao.findById(userId).get();
-        if((role.equals("team") && user.getId() == userId) || role.equals("director")) {
+        User user = userDao.findByUsername(authentication.getName());
+        if(role.equals("team") || role.equals("director")) {
             return requestDao.findByAssignedToAndStatus(user, "Complete");
         }
         else {

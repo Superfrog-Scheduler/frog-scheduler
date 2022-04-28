@@ -139,6 +139,11 @@ export default {
               v-if="request.status == 'Assigned'"
               >{{ request.status }}</span
             >
+            <span
+              class="badge bg-success"
+              v-if="request.status == 'Completed'"
+              >{{ request.status }}</span
+            >
             <span class="badge bg-danger" v-if="request.status == 'Rejected'">{{
               request.status
             }}</span>
