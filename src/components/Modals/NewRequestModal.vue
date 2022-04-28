@@ -1,55 +1,58 @@
-<script setup>
-import { ref } from "vue";
+<script>
+import v from "@/plugins/validation";
+import { Form, Field, ErrorMessage } from "vee-validate";
+import { Modal } from "bootstrap";
+import requestApi from "@/apis/requestApi";
 
-defineProps({
-  modalID: String,
-});
-
-let eventName = ref("");
-let eventType = ref("");
-let date = ref("");
-let startTime = ref("");
-let endTime = ref("");
-let location = ref("");
-let price = ref("");
-
-function clearInputFields() {
-  eventName.value = "";
-  eventType.value = "";
-  date.value = "";
-  startTime.value = "";
-  endTime.value = "";
-  location.value = "";
-  price.value = "";
-}
-
-// how to get the date value, do this when submitting form to get date
-// date = document.getElementById('date-input').value
+export default {
+  components: { Modal, Form, Field, ErrorMessage, v },
+  data() {
+    return {
+      validationSchema: v.yup.object({
+        name: v.yup.string().required().label("Event Name"),
+        type: v.yup.string().required().label("Event Type"),
+        date: v.yup.string().required().label("Event Date"),
+        startTime: v.yup.string().required().label("Start Time"),
+        endTime: v.yup.string().required().label("End Time"),
+        location: v.yup.string().required().label("Location"),
+      }),
+    };
+  },
+  methods: {
+    async makeRequest(values) {
+      let date = document.getElementById("date-input").innerText;
+      let startTime = document.getElementById("start-time-input").innerText;
+      let endTime = document.getElementById("end-time-input").innerText;
+      console.log(date);
+      values["price"] = Math.round((Date.parse(date.concat(" ", startTime))-Date.parse(date.concat(" ", endTime)))/1000/60/60*100)
+      console.log(values);
+      requestApi.makeRequest(values);
+      var message = new Modal(document.getElementById("messageModal"));
+      message.show();
+    },
+  },
+};
 </script>
-
-<!-- 
-TODO: 
-- add time picker
-- fix spacing between months and years after clicking on them
-- add event type drop down menu if there are predefined types
-- is price input by user as an offer or calculated based on time?
-- maybe add address selector?
--->
 
 <template>
   <div
     class="modal fade"
-    :id="modalID"
+    id="add-request-modal"
     data-bs-backdrop="static"
     data-bs-keyboard="false"
     tabindex="-1"
     aria-labelledby="staticBackdropLabel"
     aria-hidden="true"
   >
+      <Form
+      @submit="makeRequest"
+      :validation-schema="validationSchema"
+      v-slot:default="{ errors }"
+    >
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="staticBackdropLabel">New Request</h5>
+          <h5 class="modal-title" id="staticBackdropLabel">Make New Request</h5>
           <button
             type="button"
             class="btn-close"
@@ -60,79 +63,79 @@ TODO:
         <div class="modal-body">
           <form>
             <div class="mb-3">
-              <label for="event-name-input" class="form-label"
-                >Event Name</label
-              >
-              <input
-                type="text"
-                class="form-control"
-                id="event-name-input"
-                v-model="eventName"
-              />
+              <label for="name-input" class="form-label">Event Name</label>
+              <Field
+                  name="name"
+                  as="input"
+                  type="text"
+                  class="form-control"
+                  label="Event name"
+                  placeholder="Input event name"
+                ></Field>
+                <ErrorMessage name="name" as="div"></ErrorMessage>
             </div>
             <div class="mb-3">
-              <label for="event-type-input" class="form-label"
-                >Event Type</label
-              >
-              <input
-                type="text"
-                class="form-control"
-                id="event-type-input"
-                v-model="eventType"
-              />
+              <label for="type-input" class="form-label">Event Type</label>
+             <Field
+                  name="type"
+                  as="input"
+                  type="text"
+                  class="form-control"
+                  label="Event type"
+                  placeholder="Input event type"
+                ></Field>
+                <ErrorMessage name="type" as="div"></ErrorMessage>
             </div>
             <div class="mb-3">
-              <label for="event-type-input" class="form-label date">Date</label>
-              <input
-                type="text"
-                data-provide="datepicker"
-                class="form-control"
-                id="date-input"
-                autocomplete="off"
-                data-date-autoclose="true"
-                data-date-assume-nearby-year="true"
-                v-model="date"
-                @blur="updateDate"
-                @focus="updateDate"
-              />
+              <label for="date-input" class="form-label">Event Date</label>
+             <Field
+                  id="date-input"
+                  name="date"
+                  as="input"
+                  type="text"
+                  class="form-control"
+                  label="Event date"
+                  placeholder="Input event date"
+                ></Field>
+                <ErrorMessage name="date" as="div"></ErrorMessage>
             </div>
             <div class="mb-3">
-              <label for="start-time-input" class="form-label"
-                >Start Time</label
-              >
-              <input
-                type="text"
-                class="form-control"
-                id="start-time-input"
-                v-model="startTime"
-              />
+              <label for="start-time-input" class="form-label">Start Time</label>
+             <Field
+                  id="start-time-input"
+                  name="startTime"
+                  as="input"
+                  type="text"
+                  class="form-control"
+                  label="Start time"
+                  placeholder="Input start time"
+                ></Field>
+                <ErrorMessage name="startTime" as="div"></ErrorMessage>
             </div>
             <div class="mb-3">
               <label for="end-time-input" class="form-label">End Time</label>
-              <input
-                type="text"
-                class="form-control"
-                id="end-time-input"
-                v-model="endTime"
-              />
+             <Field
+                  id="end-time-input"
+                  name="endTime"
+                  as="input"
+                  type="text"
+                  class="form-control"
+                  label="End time"
+                  placeholder="Input end time"
+                ></Field>
+                <ErrorMessage name="endTime" as="div"></ErrorMessage>
             </div>
             <div class="mb-3">
-              <label for="location-input" class="form-label">Location</label>
-              <input
-                type="text"
-                class="form-control"
-                id="location-input"
-                v-model="location"
-              />
-            </div>
-            <div class="mb-3">
-              <label for="price-input" class="form-label">Price</label>
-              <input
-                type="text"
-                class="form-control"
-                id="price-input"
-                v-model="price"
-              />
+              <label for="location-input" class="form-label">Event Location</label>
+             <Field
+                  name="location"
+                  as="input"
+                  type="text"
+                  class="form-control"
+                  label="Event location"
+                  placeholder="Input event location"
+                ></Field>
+                <ErrorMessage name="location" as="div"></ErrorMessage>
             </div>
           </form>
         </div>
@@ -141,11 +144,40 @@ TODO:
             type="button"
             class="btn btn-secondary"
             data-bs-dismiss="modal"
-            @click="clearInputFields"
           >
             Cancel
           </button>
-          <button type="button" class="btn btn-primary">Submit</button>
+          <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Submit</button>
+        </div>
+      </div>
+    </div>
+    </Form>
+  </div>
+  <!-- Modal -->
+  <div
+    class="modal fade"
+    id="messageModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Message</h5>
+        </div>
+        <div class="modal-body">
+          Submit new request successfully!
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Close
+          </button>
         </div>
       </div>
     </div>

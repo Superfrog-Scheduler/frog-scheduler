@@ -1,5 +1,5 @@
 import axios from "axios";
-import useUserStore from '@/store/userStore';
+import userStore from '@/store/userStore';
 
 const info = async (token, id) => {
   console.log("token", token, id);
@@ -78,7 +78,7 @@ const login = async (loginInfo) => {
 };
 
 const update = async (updatedInfo) => {
-  const userStore = useUserStore();
+  const userStore = userStore();
   let id = userStore.id
   var session_url = `http://localhost:8080/users/${id}`;
   var uname = updatedInfo.account;

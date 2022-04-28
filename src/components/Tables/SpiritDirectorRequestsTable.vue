@@ -5,7 +5,7 @@ import downloadApi from "@/apis/downloadApi";
 
 
 export default {
-  components: { EditRequestModal, AssignRequestModal, requestList },
+  components: { EditRequestModal, AssignRequestModal },
   data() {
     return {
       requestList: [
@@ -138,6 +138,11 @@ export default {
             <span
               class="badge bg-success"
               v-if="request.status == 'Assigned'"
+              >{{ request.status }}</span
+            >
+            <span
+              class="badge bg-success"
+              v-if="request.status == 'Completed'"
               >{{ request.status }}</span
             >
             <span class="badge bg-danger" v-if="request.status == 'Rejected'">{{
