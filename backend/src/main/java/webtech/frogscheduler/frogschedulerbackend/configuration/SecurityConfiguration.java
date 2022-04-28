@@ -48,7 +48,9 @@ public class SecurityConfiguration {
                                 .antMatchers(HttpMethod.POST, "/users").permitAll()
                                 .antMatchers(HttpMethod.GET, "/director/**").authenticated()
                                 .antMatchers(HttpMethod.GET, "/team/**").authenticated()
-                                .antMatchers(HttpMethod.GET, "customer/**").authenticated()
+                                .antMatchers(HttpMethod.GET, "/customer/**").authenticated()
+                                .antMatchers(HttpMethod.GET, "/users/superfrogs").hasAuthority("ROLE_director")
+                                .antMatchers(HttpMethod.GET, "/users/customers").hasAuthority("ROLE_director")
                 )
 
                 .csrf((csrf) -> csrf.disable()

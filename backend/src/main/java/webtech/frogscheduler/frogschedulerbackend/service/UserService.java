@@ -85,7 +85,7 @@ public class UserService implements UserDetailsService {
     }
 
     public List<User> findAllSuperFrogs() {
-        return userDao.findByRoles("superfrog");
+        return userDao.findByRoles("team");
     }
 
     public List<User> findAllCustomers() {

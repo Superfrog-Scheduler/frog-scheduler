@@ -1,35 +1,24 @@
-<script setup>
-import EditCustomerModal from "../Modals/EditCustomerModal.vue";
-    let customerList = [
-        {
-          id: 1,
-          name: 'Michael Schumer',
-          email: 'm.schumer@gmail.com',
-          phone: '817-685-9382',
-          isActive: true
-        },
-        {
-          id: 2,
-          name: 'Wingyang Bei',
-          email: 'w.bei@gmail.com',
-          phone: '817-123-4321',
-          isActive: true
-        },
-        {
-          id: 3,
-          name: 'Tony Sanchez',
-          email: 't.sanchez@gmail.com',
-          phone: '817-126-3463',
-          isActive: false
-        },
-        {
-          id: 4,
-          name: 'Sherrie Jackson',
-          email: 's.jackson@gmail.com',
-          phone: '817-647-3574',
-          isActive: true
-        }
-    ]
+<script>
+import EditCustomerModal from "../Modals/EditStudentModal.vue";
+import userApi from "@/apis/userApi";
+
+export default {
+  components: { EditCustomerModal },
+  data() {
+    return {
+      customerList: [],
+    };
+  },
+  methods: {
+    async getAll() {
+      const res = await userApi.getAllCustomers();
+      this.customerList = res.data;
+    },
+  },
+  mounted() {
+    this.getAll()
+  },
+};
 </script>
 
 <template>
@@ -54,11 +43,11 @@ import EditCustomerModal from "../Modals/EditCustomerModal.vue";
             <tbody>
               <tr v-for="customer in customerList" :key="customer.id">
                 <td>{{customer.id}}</td>
-                <td>{{customer.name}}</td>
-                <td>{{customer.email}}</td>
+                <td>{{customer.firstname}} {{customer.lastname}}</td>
+                <td>{{customer.username}}</td>
                 <td>{{customer.phone}}</td>
                 <td>
-                  <span class="badge bg-success" v-if="customer.isActive">Active</span>
+                  <span class="badge bg-success" v-if="customer.enabled">Active</span>
                   <span class="badge bg-danger" v-else>Inactive</span>
                 </td>
                 <td>
@@ -69,7 +58,7 @@ import EditCustomerModal from "../Modals/EditCustomerModal.vue";
                     data-bs-target="#edit-customer-modal">Edit</button>
                 </td>
                 <td>
-                  <button v-if="customer.isActive" type="button" class="btn btn-danger btn-sm me-2">Deactivate</button>
+                  <button v-if="customer.enabled" type="button" class="btn btn-danger btn-sm me-2">Deactivate</button>
                   <button v-else type="button" class="btn btn-success btn-sm">Reactivate</button>
                 </td>
               </tr>

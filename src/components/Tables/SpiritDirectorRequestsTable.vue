@@ -3,7 +3,6 @@ import EditRequestModal from "../Modals/EditRequestModal.vue";
 import AssignRequestModal from "../Modals/AssignRequestModal.vue";
 import downloadApi from "@/apis/downloadApi";
 
-
 export default {
   components: { EditRequestModal, AssignRequestModal },
   data() {
@@ -57,18 +56,18 @@ export default {
           price: "$100",
           status: "Rejected",
         },
-            {
-      id: 5,
-      name: 'Birthday Party',
-      type: 'Private',
-      customer: 'Joe Biden',
-      date: '02/27/2022',
-      startTime: '3:00 PM',
-      endTime: '4:00 PM',
-      location: '1600 Pennsylvania Ave',
-      price: '$100',
-      status: 'Completed',
-    }
+        {
+          id: 5,
+          name: "Birthday Party",
+          type: "Private",
+          customer: "Joe Biden",
+          date: "02/27/2022",
+          startTime: "3:00 PM",
+          endTime: "4:00 PM",
+          location: "1600 Pennsylvania Ave",
+          price: "$100",
+          status: "Completed",
+        },
       ],
     };
   },

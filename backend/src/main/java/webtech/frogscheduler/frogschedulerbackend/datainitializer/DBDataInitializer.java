@@ -89,6 +89,9 @@ public class DBDataInitializer implements CommandLineRunner {
         u4.setPassword("$2a$12$zpV0R4lHBRyVSxWVZYjKruYlOzZoa1XoqStE7FZ74E0V5zTpDl4TG"); //plain: password
         u4.setEnabled(true);
         u4.setRoles("team");
+        u4.setFirstname("Bill");
+        u4.setLastname("Watson");
+        u4.setPhone("9998887777");
         u4.addAppearence(r2);
         u4.addAppearence(r3);
 
@@ -97,6 +100,9 @@ public class DBDataInitializer implements CommandLineRunner {
         u5.setPassword("$2a$12$zpV0R4lHBRyVSxWVZYjKruYlOzZoa1XoqStE7FZ74E0V5zTpDl4TG"); //plain: password
         u5.setEnabled(true);
         u5.setRoles("team");
+        u5.setFirstname("Sarah");
+        u5.setLastname("Jones");
+        u5.setPhone("1098887776");
         //u5.addAppearence(r3);
 
         userDao.save(u1);
