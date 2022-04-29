@@ -13,7 +13,6 @@ export default defineStore('user', {
       const res = await userApi.info(token, this.id);
       
       this.userInfo = res.data;
-      console.log("user", this.userInfo)
     },
   },
 });

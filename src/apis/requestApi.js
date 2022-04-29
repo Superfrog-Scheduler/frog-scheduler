@@ -22,22 +22,25 @@ const info = async (token, id) => {
 
 const makeRequest = async (newRequestInfo) => {
   var session_url = "http://localhost:8080/requests";
-  var name = newRequestInfo.account;
-  var type = newRequestInfo.type;
+  var eventName = newRequestInfo.eventName;
+  var eventType = newRequestInfo.eventType;
   var date = newRequestInfo.date;
   var startTime = newRequestInfo.startTime;
   var endTime = newRequestInfo.endTime;
   var location = newRequestInfo.location;
   var price = newRequestInfo.price;
+  var customer = newRequestInfo.customer;
+
   return await axios
     .post(session_url, {
-      name: name,
-      type: type,
+      eventName: eventName,
+      eventType: eventType,
       date: date,
       startTime: startTime,
       endTime: endTime,
       location: location,
-      price: price
+      price: price,
+      customer: customer  
     })
     .then((r) => {
       console.log(r);
@@ -53,28 +56,31 @@ const update = async (updatedInfo) => {
   const requestStore = requestStore();
   let id = requestStore.id
   var session_url = `http://localhost:8080/requests/${id}`;
-  var name = updatedInfo.account;
-  var type = updatedInfo.type;
+  var eventName = updatedInfo.eventName;
+  var eventType = updatedInfo.eventType;
   var date = updatedInfo.date;
   var startTime = updatedInfo.startTime;
   var endTime = updatedInfo.endTime;
   var location = updatedInfo.location;
   var price = updatedInfo.price;
+  var customer = updatedInfo.customer;
 
   await axios.put(session_url,
     {
-      name: name,
-      type: type,
+      eventName: eventName,
+      eventType: eventType,
       date: date,
       startTime: startTime,
       endTime: endTime,
       location: location,
-      price: price  
+      price: price,
+      customer: customer  
     })
 }
 
 const getAllRequests = async () => {
   let token = utils.cacheUtils.get('login_token')?.token
+  console.log(token);
   const instance = axios.create({
     baseURL: "http://localhost:8080",
     timeout: 1000,

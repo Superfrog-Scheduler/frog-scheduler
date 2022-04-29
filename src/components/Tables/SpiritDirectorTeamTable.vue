@@ -48,7 +48,6 @@ export default {
           <th scope="col">Name</th>
           <th scope="col">Email</th>
           <th scope="col">Phone</th>
-          <th scope="col">Requests Taken</th>
           <th scope="col">Status</th>
           <th scope="col" colspan="2">Actions</th>
         </tr>
@@ -59,7 +58,6 @@ export default {
           <td>{{ student.firstname }} {{ student.lastname }}</td>
           <td>{{ student.username }}</td>
           <td>{{ student.phone }}</td>
-          <td>{{ student.requestsTaken }}</td>
           <td>
             <span class="badge bg-success" v-if="student.enabled">Active</span>
             <span class="badge bg-danger" v-else>Inactive</span>
