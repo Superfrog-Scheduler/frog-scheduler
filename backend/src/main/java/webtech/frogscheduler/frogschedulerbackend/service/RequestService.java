@@ -34,11 +34,8 @@ public class RequestService {
             User user = userDao.findByUsername(authentication.getName());
             return requestDao.findByAssignedTo(user);
         }
-        else if(role.equals("director")) {
-            return requestDao.findAll();
-        }
         else {
-            return null;
+            return requestDao.findAll();
         }
     }
 
