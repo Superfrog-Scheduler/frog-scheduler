@@ -1,54 +1,22 @@
-<script setup>
-let requestList = [
-    {
-      id: 1,
-      name: 'Grad Party',
-      type: 'Private',
-      customer: 'Wingyang Bei',
-      date: '03/28/2022',
-      startTime: '10:00 AM',
-      endTime: '11:00 AM',
-      location: '2855 W Bowie St',
-      price: '$100',
-      status: 'Pending',
+<script>
+import requestApi from "@/apis/requestApi";
+
+export default {
+  data() {
+    return {
+      requestList: []
+    };
+  },
+  methods: {
+    async getAll() {
+      const res = await requestApi.getAllRequests();
+      this.requestList = res.data;
     },
-    {
-      id: 2,
-      name: 'Wedding',
-      type: 'Private',
-      customer: 'Tony Sanchez',
-      date: '03/29/2022',
-      startTime: '7:00 PM',
-      endTime: '8:00 AM',
-      location: '2808 Stanley Ave',
-      price: '$100',
-      status: 'Approved',
-    },
-    {
-      id: 3,
-      name: 'Book Reading',
-      type: 'Public School',
-      customer: 'Sherrie Jackson',
-      date: '03/30/2022',
-      startTime: '2:00 PM',
-      endTime: '4:00 PM',
-      location: '4300 Campus Dr',
-      price: '$200',
-      status: 'Assigned',
-    },
-    {
-      id: 4,
-      name: 'Bachelor Party',
-      type: 'Private',
-      customer: 'Michael Schumer',
-      date: '03/28/2022',
-      startTime: '10:00 PM',
-      endTime: '11:00 PM',
-      location: '2901 Stadium Dr',
-      price: '$100',
-      status: 'Rejected',
-    },
-  ]
+  },
+  mounted() {
+    this.getAll()
+  },
+};
 </script>
 
 <template>
