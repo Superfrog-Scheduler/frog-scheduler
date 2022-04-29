@@ -41,11 +41,11 @@ public class DBDataInitializer implements CommandLineRunner {
         r2.setEndTime("3:00 PM");
         r2.setLocation("321 berry st.");
         r2.setPrice(5000);
-        r2.setStatus("Complete");
+        r2.setStatus("Completed");
         r2.setCustomer("John Smith");
 
         Request r3 = new Request();
-        r3.setId("125");
+        r3.setId("126");
         r3.setEventName("event 3");
         r3.setEventType("alumni party");
         r3.setDate("4/24/2022");
@@ -53,20 +53,20 @@ public class DBDataInitializer implements CommandLineRunner {
         r3.setEndTime("5:00 PM");
         r3.setLocation("121 apple st.");
         r3.setPrice(10000000);
-        r3.setStatus("Complete");
+        r3.setStatus("Approved");
         r3.setCustomer("Jane Doe");
 
         Request r4 = new Request();
-        r4.setId("126");
+        r4.setId("125");
         r4.setEventName("event 4");
         r4.setEventType("alumni party");
-        r4.setDate("5/25/2022");
-        r4.setStartTime("1:00 PM");
-        r4.setEndTime("2:00 PM");
-        r4.setLocation("121 bing st.");
-        r4.setPrice(200);
+        r4.setDate("4/24/2022");
+        r4.setStartTime("2:00 PM");
+        r4.setEndTime("5:00 PM");
+        r4.setLocation("121 apple st.");
+        r4.setPrice(10000000);
         r4.setStatus("Approved");
-        r4.setCustomer("Matt Abc");
+        r4.setCustomer("Jane Doe");
 
         Request r5 = new Request();
         r5.setId("127");
@@ -77,7 +77,7 @@ public class DBDataInitializer implements CommandLineRunner {
         r5.setEndTime("5:00 PM");
         r5.setLocation("121 main st.");
         r5.setPrice(500);
-        r5.setStatus("Approved");
+        r5.setStatus("Rejected");
         r5.setCustomer("Bob Doe");
 
         Request r6 = new Request();
@@ -89,7 +89,7 @@ public class DBDataInitializer implements CommandLineRunner {
         r6.setEndTime("5:00 PM");
         r6.setLocation("123 main st.");
         r6.setPrice(10);
-        r6.setStatus("Approved");
+        r6.setStatus("Assigned");
         r6.setCustomer("Jim Doe");
 
         Request r7 = new Request();
@@ -101,7 +101,7 @@ public class DBDataInitializer implements CommandLineRunner {
         r7.setEndTime("9:00 PM");
         r7.setLocation("12345 main st.");
         r7.setPrice(1000);
-        r7.setStatus("Accepted");
+        r7.setStatus("Assigned");
         r7.setCustomer("Jim John");
 
          User u1 = new User();
@@ -165,5 +165,13 @@ public class DBDataInitializer implements CommandLineRunner {
         userDao.save(u4);
         userDao.save(u5);
         userDao.save(u6);
+
+        requestDao.save(r1);
+        requestDao.save(r2);
+        requestDao.save(r3);
+        requestDao.save(r4);
+        requestDao.save(r5);
+        requestDao.save(r6);
+        requestDao.save(r7);
     }
 }

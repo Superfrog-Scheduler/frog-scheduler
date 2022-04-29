@@ -1,5 +1,6 @@
 import axios from "axios";
 import requestStore from '@/store/requestStore';
+import utils from '@/utils';
 
 const info = async (token, id) => {
   console.log("token", token, id);
@@ -71,4 +72,22 @@ const update = async (updatedInfo) => {
       price: price  
     })
 }
-export default { info, makeRequest, update };
+
+const getAllRequests = async () => {
+  let token = utils.cacheUtils.get('login_token')?.token
+  const instance = axios.create({
+    baseURL: "http://localhost:8080",
+    timeout: 1000,
+    headers: { Authorization: "Bearer " + token },
+  });
+  return await instance
+    .get("/requests")
+    .then((res) => {
+      console.log(res.data);
+      return res.data;
+    })
+    .catch((error) => {
+      console.error(error.response.data);
+    });
+}
+export default { info, makeRequest, update, getAllRequests };
