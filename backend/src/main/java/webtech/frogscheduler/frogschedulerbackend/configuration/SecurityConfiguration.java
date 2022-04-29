@@ -46,7 +46,9 @@ public class SecurityConfiguration {
 //                        .antMatchers(HttpMethod.DELETE, "/users/**").hasRole("admin")
                                 // Disallow everything else...
                                 .antMatchers(HttpMethod.POST, "/users").permitAll()
-                                .antMatchers(HttpMethod.POST, "/requests").permitAll()
+                                .antMatchers(HttpMethod.POST, "/requests").authenticated()
+                                .antMatchers(HttpMethod.PUT, "/requests/**").authenticated()
+                                .antMatchers(HttpMethod.PUT, "/users/**").permitAll()
                                 .antMatchers(HttpMethod.GET, "/director/**").authenticated()
                                 .antMatchers(HttpMethod.GET, "/team/**").authenticated()
                                 .antMatchers(HttpMethod.GET, "/customer/**").authenticated()

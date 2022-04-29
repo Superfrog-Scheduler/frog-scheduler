@@ -18,6 +18,10 @@ export default {
     async getAll() {
       const res = await requestApi.getAllRequests();
       this.requestList = res.data;
+    },
+    async approveRequest(request) {
+      request.status = "Approved";
+      const res = await requestApi.update(request);
     }
   },
   mounted() {
@@ -107,7 +111,7 @@ export default {
           </td>
           <td v-else colspan="3" style="color: gray">–</td>
           <td v-if="request.status == 'Pending'">
-            <button type="button" class="btn btn-success btn-sm me-2">
+            <button type="button" @click="approveRequest(request)" class="btn btn-success btn-sm me-2">
               Approve
             </button>
             <button type="button" class="btn btn-danger btn-sm">Reject</button>

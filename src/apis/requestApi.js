@@ -1,5 +1,4 @@
 import axios from "axios";
-import requestStore from '@/store/requestStore';
 import utils from '@/utils';
 
 const info = async (token, id) => {
@@ -53,8 +52,7 @@ const makeRequest = async (newRequestInfo) => {
 };
 
 const update = async (updatedInfo) => {
-  const requestStore = requestStore();
-  let id = requestStore.id
+  let id = updatedInfo.id
   var session_url = `http://localhost:8080/requests/${id}`;
   var eventName = updatedInfo.eventName;
   var eventType = updatedInfo.eventType;
@@ -64,9 +62,14 @@ const update = async (updatedInfo) => {
   var location = updatedInfo.location;
   var price = updatedInfo.price;
   var customer = updatedInfo.customer;
+  var status = updatedInfo.status;
+  console.log("update");
+  console.log(session_url);
+  console.log(updatedInfo);
 
   await axios.put(session_url,
     {
+      id: id,
       eventName: eventName,
       eventType: eventType,
       date: date,
@@ -74,8 +77,17 @@ const update = async (updatedInfo) => {
       endTime: endTime,
       location: location,
       price: price,
-      customer: customer  
+      customer: customer,
+      status: status
     })
+    .then((r) => {
+      console.log(r);
+      // return r.data;
+    })
+
+    .catch(function (error) {
+      console.log(error);
+    });
 }
 
 const getAllRequests = async () => {

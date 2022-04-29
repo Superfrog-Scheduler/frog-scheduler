@@ -14,7 +14,7 @@ export default {
     async getAll() {
       const res = await userApi.getAllSuperFrogs();
       this.studentList = res.data;
-    },
+    }
   },
   mounted() {
     this.getAll()
