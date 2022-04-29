@@ -3,34 +3,38 @@ import v from "@/plugins/validation";
 import { Form, Field, ErrorMessage } from "vee-validate";
 import { Modal } from "bootstrap";
 import requestApi from "@/apis/requestApi";
+import useUserStore from '@/store/userStore';
 
 export default {
-  components: { Modal, Form, Field, ErrorMessage, v },
+  components: { Modal, Form, Field, ErrorMessage, v, },
   data() {
     return {
       validationSchema: v.yup.object({
-        name: v.yup.string().required().label("Event Name"),
-        type: v.yup.string().required().label("Event Type"),
+        eventName: v.yup.string().required().label("Event Name"),
+        eventType: v.yup.string().required().label("Event Type"),
         date: v.yup.string().required().label("Event Date"),
         startTime: v.yup.string().required().label("Start Time"),
         endTime: v.yup.string().required().label("End Time"),
         location: v.yup.string().required().label("Location"),
-      }),
+      })
     };
   },
   methods: {
     async makeRequest(values) {
+      const userStore = useUserStore();
+      const userInfo = userStore.userInfo;
       let date = document.getElementById("date-input").innerText;
       let startTime = document.getElementById("start-time-input").innerText;
       let endTime = document.getElementById("end-time-input").innerText;
-      console.log(date);
-      values["price"] = Math.round((Date.parse(date.concat(" ", startTime))-Date.parse(date.concat(" ", endTime)))/1000/60/60*100)
-      console.log(values);
+      let firstName = userInfo.firstname;
+      let lastName = userInfo.lastname;
+      values["customer"] = firstName.concat(" ", lastName)
+      //values["price"] = Math.round((Date.parse(date.concat(" ", startTime))-Date.parse(date.concat(" ", endTime)))/1000/60/60*100)
       requestApi.makeRequest(values);
       var message = new Modal(document.getElementById("messageModal"));
       message.show();
-    },
-  },
+    }
+  }
 };
 </script>
 
@@ -63,28 +67,28 @@ export default {
         <div class="modal-body">
           <form>
             <div class="mb-3">
-              <label for="name-input" class="form-label">Event Name</label>
+              <label for="eventName-input" class="form-label">Event Name</label>
               <Field
-                  name="name"
+                  name="eventName"
                   as="input"
                   type="text"
                   class="form-control"
-                  label="Event name"
+                  label="Event Name"
                   placeholder="Input event name"
                 ></Field>
-                <ErrorMessage name="name" as="div"></ErrorMessage>
+                <ErrorMessage name="eventName" as="div"></ErrorMessage>
             </div>
             <div class="mb-3">
-              <label for="type-input" class="form-label">Event Type</label>
+              <label for="eventType-input" class="form-label">Event Type</label>
              <Field
-                  name="type"
+                  name="eventType"
                   as="input"
                   type="text"
                   class="form-control"
-                  label="Event type"
+                  label="Event Type"
                   placeholder="Input event type"
                 ></Field>
-                <ErrorMessage name="type" as="div"></ErrorMessage>
+                <ErrorMessage name="eventType" as="div"></ErrorMessage>
             </div>
             <div class="mb-3">
               <label for="date-input" class="form-label">Event Date</label>

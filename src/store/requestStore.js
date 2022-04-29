@@ -13,7 +13,6 @@ export default defineStore('request', {
       const res = await requestApi.info(token, this.id);
       
       this.requestInfo = res.data;
-      console.log("request", this.requestInfo)
     },
   },
 });
