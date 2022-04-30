@@ -8,7 +8,8 @@ export default {
   components: { EditRequestModal, AssignRequestModal },
   data() {
     return {
-      requestList: []
+      requestList: [],
+      selectedRequest: {}
     };
   },
   methods: {
@@ -18,6 +19,14 @@ export default {
     async getAll() {
       const res = await requestApi.getAllRequests();
       this.requestList = res.data;
+    },
+    async approveRequest(request) {
+      request.status = "Approved";
+      const res = await requestApi.update(request);
+    },
+    async rejectRequest(request) {
+      request.status = "Rejected";
+      const res = await requestApi.update(request);
     }
   },
   mounted() {
@@ -41,7 +50,7 @@ export default {
         </button>
       </div>
       <EditRequestModal id="edit-request-modal" />
-      <AssignRequestModal id="assign-request-modal" />
+      <AssignRequestModal id="assign-request-modal" :request="selectedRequest" />
     </div>
     <table class="table" id="requests-table">
       <thead>
@@ -107,10 +116,12 @@ export default {
           </td>
           <td v-else colspan="3" style="color: gray">–</td>
           <td v-if="request.status == 'Pending'">
-            <button type="button" class="btn btn-success btn-sm me-2">
+            <button type="button" @click="approveRequest(request)" class="btn btn-success btn-sm me-2">
               Approve
             </button>
-            <button type="button" class="btn btn-danger btn-sm">Reject</button>
+            <button type="button" @click="rejectRequest(request)" class="btn btn-danger btn-sm">
+              Reject
+            </button>
           </td>
           <td v-if="request.status == 'Approved'">
             <button
@@ -118,6 +129,7 @@ export default {
               class="btn btn-success btn-sm col-12"
               data-bs-toggle="modal"
               data-bs-target="#assign-request-modal"
+              @click="() => this.selectedRequest=request"
             >
               Assign
             </button>

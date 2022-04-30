@@ -121,7 +121,7 @@ const getAllCustomers = async () => {
   const instance = axios.create({
     baseURL: "http://localhost:8080",
     timeout: 1000,
-    headers: { Authorization: "Bearer " +  token},
+    headers: { Authorization: "Bearer " + token },
   });
   return await instance
     .get("/users/customers")
@@ -133,4 +133,12 @@ const getAllCustomers = async () => {
       console.error(error.response.data);
     });
 }
-export default { info, login, register, updateUserInfo, getAllSuperFrogs, getAllCustomers };
+
+const assignSuperFrog = async (request, user) => {
+  let userId = user.id
+  let requestId = request.id
+  var session_url = `http://localhost:8080/${userId}/${requestId}`;
+
+  await axios.put(session_url);
+}
+export default { info, login, register, updateUserInfo, getAllSuperFrogs, getAllCustomers, assignSuperFrog };

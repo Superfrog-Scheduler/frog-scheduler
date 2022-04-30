@@ -33,15 +33,39 @@ export default {
 
         <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
           <ul class="navbar-nav ml-auto">
-            <!-- <li class="nav-item">
-              <a class="nav-link" href="/custome" @click="toDashboard">Request</a>
-            </li> -->
             <li class="nav-item">
-              <a class="nav-link" href="#pricing">Pricing</a>
+              <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#pricingModal" >Pricing</a>
             </li>
+            <div class="modal fade" id="pricingModal" tabindex="-1" aria-labelledby="pricingModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="pricingModalLabel">Pricing</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <p>Prices are based on a 1 hour appearance – Additional fees may apply if more than one hour.</p>
+                    <p>SuperFrog appearance Flat Fee - $100/hr</p>
+                  </div>
+                </div>
+              </div>
+            </div>
             <li class="nav-item">
-              <a class="nav-link" href="#">Range</a>
+              <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#rangeModal" >Range</a>
             </li>
+            <div class="modal fade" id="rangeModal" tabindex="-1" aria-labelledby="rangeModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="rangeModalLabel">Range</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <p>We only service requests that are within 100 mile radius from Amon G. Carter Stadium.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </ul>
         </div>
       </nav>

@@ -1,45 +1,32 @@
-<script setup>
-  // TODO: GET student list
-  let studentList = [
-      {
-        id: 0,
-        name: 'Yilika Loufoua',
-        email: 'y.loufoua@tcu.edu',
-        phone: '817-990-3244',
-        classification: 'Senior',
-        requestsTaken: 3,
-      },
-      {
-        id: 1,
-        name: 'Quynh Dong',
-        email: 'q.dong@tcu.edu',
-        phone: '817-234-9843',
-        classification: 'Sophomore',
-        requestsTaken: 1,
-      },
-      {
-        id: 2,
-        name: 'Chase Lennartson',
-        email: 'c.lennartson@tcu.edu',
-        phone: '817-039-2935',
-        classification: 'Junior',
-        requestsTaken: 2,
-      },
-      {
-        id: 3,
-        name: 'Lucas Karwal',
-        email: 'l.karwal@tcu.edu',
-        phone: '682-323-5236',
-        classification: 'Senior',
-        requestsTaken: 5,
-      }
-  ]
+<script>
+import userApi from "@/apis/userApi";
+
+export default {
+  props: ['request'],
+  data() {
+    return {
+      studentList: [],
+    };
+  },
+  methods: {
+    async getAll() {
+      const res = await userApi.getAllSuperFrogs();
+      this.studentList = res.data;
+    },
+    async assignSuperFrog(request, student) {
+      const res = await userApi.assignSuperFrog(request, student);
+    }
+  },
+  mounted() {
+    this.getAll()
+  },
+};
 </script>
 
 <template>
   <div
     class="modal fade"
-    :id="modalID"
+    id="assign-request-modal"
     data-bs-backdrop="static"
     data-bs-keyboard="false"
     tabindex="-1"
@@ -62,17 +49,17 @@
               <thead>
                   <tr>
                       <th scope="col">Name</th>
-                      <th scope="col">Classification</th>
-                      <th scope="col">Requests Taken</th>
                   </tr>
               </thead>
               <tbody>
                 <tr v-for="student in studentList" :key="student.id">
-                  <td>{{student.name}}</td>
-                  <td>{{student.classification}}</td>
-                  <td>{{student.requestsTaken}}</td>
+                  <td>{{student.firstname.concat(" ", student.lastname)}}</td>
                   <td>
-                    <button type="button" class="btn btn-success btn-sm" data-bs-dismiss="modal">Select</button>
+                    <button type="button" 
+                      @click="assignSuperFrog(request, student)" 
+                      class="btn btn-success btn-sm" 
+                      data-bs-dismiss="modal">
+                      Select</button>
                   </td>
                 </tr>
               </tbody>

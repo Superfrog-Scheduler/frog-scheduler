@@ -1,30 +1,26 @@
-<script setup>
-let requestList = [
-    {
-      id: 3,
-      name: 'Book Reading',
-      type: 'Public School',
-      customer: 'Sherrie Jackson',
-      date: '03/30/2022',
-      startTime: '2:00 PM',
-      endTime: '4:00 PM',
-      location: '4300 Campus Dr',
-      price: '$200',
-      status: 'Assigned',
+<script>
+import requestApi from "@/apis/requestApi";
+
+export default {
+  data() {
+    return {
+      requestList: []
+    };
+  },
+  methods: {
+    async getAll() {
+      const res = await requestApi.getAllRequests();
+      this.requestList = res.data;
     },
-    {
-      id: 5,
-      name: 'Birthday Party',
-      type: 'Private',
-      customer: 'Joe Biden',
-      date: '02/27/2022',
-      startTime: '3:00 PM',
-      endTime: '4:00 PM',
-      location: '1600 Pennsylvania Ave',
-      price: '$100',
-      status: 'Completed',
+    async completeRequest(request) {
+      request.status = "Completed";
+      const res = await requestApi.update(request);
     },
-  ]
+  },
+  mounted() {
+    this.getAll()
+  },
+};
 </script>
 
 <template>
@@ -66,7 +62,11 @@ let requestList = [
                   <span class="badge bg-success" v-if="request.status=='Completed'">Completed</span>
                 </td>
                 <td>
-                  <button v-if="request.status=='Assigned'" type="button" class="btn btn-success btn-sm me-2">Mark Complete</button>
+                  <button 
+                  v-if="request.status=='Assigned'" 
+                  type="button" 
+                  class="btn btn-success btn-sm me-2"
+                  @click="completeRequest(request)">Mark Complete</button>
                 </td>
               </tr>
             </tbody>
