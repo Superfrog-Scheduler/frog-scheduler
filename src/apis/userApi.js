@@ -6,7 +6,7 @@ const info = async (token, id) => {
   console.log("token", token, id);
   const instance = axios.create({
     baseURL: "http://localhost:8080",
-    timeout: 1000,
+    // timeout: 1000,
     headers: { Authorization: "Bearer " + token },
   });
   return await instance
@@ -86,14 +86,15 @@ const updateUserInfo = async (updatedInfo) => {
   var fname = updatedInfo.fname;
   var lname = updatedInfo.lname;
   var phone = updatedInfo.tel;
+  var roles = updatedInfo.roles;
 
   await axios.put(session_url,
       {
         username: uname,
-        password: pass,
         firstname: fname,
         lastname: lname,
-        phone: phone
+        phone: phone,
+        roles: roles
       },
     )
 }

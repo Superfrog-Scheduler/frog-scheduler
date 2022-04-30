@@ -1,16 +1,17 @@
 <script>
 import router from "@/router";
 import utils from "@/utils";
-import useUserStore from "@/store/userStore";
 export default {
+  props: ["userInfo"],
   data() {
     return {
-      userInfo: {},
+      user: {},
     };
   },
   mounted() {
-    const userStore = useUserStore();
-    this.userInfo = userStore.userInfo;
+    console.log(this.userInfo)
+    this.user = this.userInfo
+
   },
   methods: {
     redirect: (num) => {
