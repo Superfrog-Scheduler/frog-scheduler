@@ -46,12 +46,10 @@ public class SecurityConfiguration {
 //                        .antMatchers(HttpMethod.DELETE, "/users/**").hasRole("admin")
                                 // Disallow everything else...
                                 .antMatchers(HttpMethod.POST, "/users").permitAll()
-                                .antMatchers(HttpMethod.POST, "/requests").permitAll()
                                 .antMatchers(HttpMethod.GET, "/director/**").authenticated()
+                                .antMatchers(HttpMethod.GET, "/requests").authenticated()
                                 .antMatchers(HttpMethod.GET, "/team/**").authenticated()
-                                .antMatchers(HttpMethod.GET, "/customer/**").authenticated()
-                                .antMatchers(HttpMethod.GET, "/users/superfrogs").hasAuthority("ROLE_director")
-                                .antMatchers(HttpMethod.GET, "/users/customers").hasAuthority("ROLE_director")
+                                .antMatchers(HttpMethod.GET, "customer/**").authenticated()
                 )
 
                 .csrf((csrf) -> csrf.disable()
