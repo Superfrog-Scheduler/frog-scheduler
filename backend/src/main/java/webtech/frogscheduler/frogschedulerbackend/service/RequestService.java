@@ -48,7 +48,7 @@ public class RequestService {
         System.out.println(role);
         User user = userDao.findByUsername(authentication.getName());
         Request request = requestDao.findById(requestId).get();
-        if(role.equals("director") || request.getAssignedTo().equals(user)) {
+        if(role.equals("ROLE_director") || request.getAssignedTo().equals(user)) {
             return requestDao.findById(requestId).get();
         }
         else {
@@ -66,7 +66,7 @@ public class RequestService {
         List authorities = (List) authentication.getAuthorities();
         String role = authorities.get(0).toString();
         System.out.println(role);
-        if(role.equals("director")) {
+        if(role.equals("ROLE_director")) {
             updatedRequest.setId(requestId);
             requestDao.save(updatedRequest);
         }
@@ -76,7 +76,7 @@ public class RequestService {
         List authorities = (List) authentication.getAuthorities();
         String role = authorities.get(0).toString();
         System.out.println(role);
-        if(role.equals("team") || role.equals("director")) {
+        if(role.equals("ROLE_team") || role.equals("ROLE_director")) {
             return requestDao.findByStatus("Approved");
         }
         else {
@@ -90,7 +90,7 @@ public class RequestService {
         System.out.println(role);
         User user = userDao.findById(userId).get();
         User requestingUser = userDao.findByUsername(authentication.getName());
-        if(role.equals("director") || requestingUser.getId() == userId) {
+        if(role.equals("ROLE_director") || requestingUser.getId() == userId) {
             return requestDao.findByAssignedTo(user);
         }
         else {
@@ -102,7 +102,7 @@ public class RequestService {
         List authorities = (List) authentication.getAuthorities();
         String role = authorities.get(0).toString();
         System.out.println(role);
-        if(role.equals("director")) {
+        if(role.equals("ROLE_director")) {
             return requestDao.findByStatus("Pending");
         }
         else {
@@ -115,7 +115,7 @@ public class RequestService {
         String role = authorities.get(0).toString();
         System.out.println(role);
         User user = userDao.findByUsername(authentication.getName());
-        if(role.equals("team") || role.equals("director")) {
+        if(role.equals("ROLE_team") || role.equals("ROLE_director")) {
             return requestDao.findByAssignedToAndStatus(user, "Complete");
         }
         else {
