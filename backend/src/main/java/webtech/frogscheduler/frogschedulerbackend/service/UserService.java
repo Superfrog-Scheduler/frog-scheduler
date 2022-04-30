@@ -82,6 +82,7 @@ public class UserService implements UserDetailsService {
             requestToBeAssigned.getAssignedTo().removeAppearence(requestToBeAssigned);
         }
         user.addAppearence(requestToBeAssigned);
+        requestToBeAssigned.setStatus("Assigned");
     }
 
     public List<User> findAllSuperFrogs() {
