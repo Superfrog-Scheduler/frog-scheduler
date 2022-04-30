@@ -41,6 +41,7 @@ public class RequestController {
 
     @PutMapping("/{requestId}")
     public Result update(@PathVariable String requestId, @RequestBody Request updatedRequest, Authentication authentication) {
+        System.out.println(authentication);
         requestService.update(requestId, updatedRequest, authentication);
         return new Result(true, StatusCode.SUCCESS, "Update request success");
     }

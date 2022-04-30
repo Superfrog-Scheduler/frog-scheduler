@@ -53,18 +53,18 @@ public class DBDataInitializer implements CommandLineRunner {
         r3.setEndTime("5:00 PM");
         r3.setLocation("121 apple st.");
         r3.setPrice(10000000);
-        r3.setStatus("Approved");
+        r3.setStatus("Assigned");
         r3.setCustomer("Jane Doe");
 
         Request r4 = new Request();
         r4.setId("125");
         r4.setEventName("event 4");
-        r4.setEventType("alumni party");
-        r4.setDate("4/24/2022");
-        r4.setStartTime("2:00 PM");
+        r4.setEventType("easter party");
+        r4.setDate("4/20/2022");
+        r4.setStartTime("1:00 PM");
         r4.setEndTime("5:00 PM");
-        r4.setLocation("121 apple st.");
-        r4.setPrice(10000000);
+        r4.setLocation("121 dover st.");
+        r4.setPrice(500);
         r4.setStatus("Approved");
         r4.setCustomer("Jane Doe");
 
