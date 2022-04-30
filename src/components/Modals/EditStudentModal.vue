@@ -14,7 +14,6 @@ function clearInputFields() {
   email.value = "";
   phone.value = "";
 }
-
 </script>
 
 <template>
@@ -30,7 +29,9 @@ function clearInputFields() {
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="staticBackdropLabel">Edit Student Info</h5>
+          <h5 class="modal-title" id="staticBackdropLabel">
+            Edit Student Info
+          </h5>
           <button
             type="button"
             class="btn-close"
@@ -41,9 +42,7 @@ function clearInputFields() {
         <div class="modal-body">
           <form>
             <div class="mb-3">
-              <label for="student-name-input" class="form-label"
-                >Name</label
-              >
+              <label for="student-name-input" class="form-label">Name</label>
               <input
                 type="text"
                 class="form-control"
@@ -52,9 +51,7 @@ function clearInputFields() {
               />
             </div>
             <div class="mb-3">
-              <label for="student-type-input" class="form-label"
-                >Email</label
-              >
+              <label for="student-type-input" class="form-label">Email</label>
               <input
                 type="text"
                 class="form-control"
