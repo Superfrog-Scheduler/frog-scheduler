@@ -1,18 +1,24 @@
-<script setup>
+<script>
+import requestApi from "@/apis/requestApi";
 import NewRequestModal from "../Modals/NewRequestModal.vue";
 
-let requestList = [
-  {
-    name: "Grad Party",
-    type: "Private",
-    date: "03/28/2022",
-    startTime: "10:00 AM",
-    endTime: "11:00 AM",
-    location: "2855 W Bowie St",
-    price: "$100",
-    status: "Pending",
+export default {
+  components: { NewRequestModal },
+  data() {
+    return {
+      requestList: []
+    };
   },
-];
+  methods: {
+    async getAll() {
+      const res = await requestApi.getAllRequests();
+      this.requestList = res.data;
+    }
+  },
+  mounted() {
+    this.getAll()
+  },
+};
 </script>
 
 <template>
@@ -47,8 +53,8 @@ let requestList = [
       </thead>
       <tbody>
         <tr v-for="request in requestList" :key="request.id">
-          <td>{{ request.name }}</td>
-          <td>{{ request.type }}</td>
+          <td>{{ request.eventName }}</td>
+          <td>{{ request.eventType }}</td>
           <td>{{ request.date }}</td>
           <td>{{ request.startTime }}</td>
           <td>{{ request.endTime }}</td>

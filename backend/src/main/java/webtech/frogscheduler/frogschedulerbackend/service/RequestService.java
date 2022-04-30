@@ -30,21 +30,28 @@ public class RequestService {
     public List<Request> findAll(Authentication authentication) {
         List authorities = (List) authentication.getAuthorities();
         String role = authorities.get(0).toString();
-        if(role.equals("team")) {
+        System.out.println(role);
+        if(role.equals("ROLE_team")) {
+            System.out.println("find all requests for user");
             User user = userDao.findByUsername(authentication.getName());
             return requestDao.findByAssignedTo(user);
         }
-        else {
+        else if(role.equals("ROLE_director")){
+            System.out.println("find all requests");
             return requestDao.findAll();
+        }
+        else {
+            return null;
         }
     }
 
     public Request findById(String requestId, Authentication authentication) {
         List authorities = (List) authentication.getAuthorities();
         String role = authorities.get(0).toString();
+        System.out.println(role);
         User user = userDao.findByUsername(authentication.getName());
         Request request = requestDao.findById(requestId).get();
-        if(role.equals("director") || request.getAssignedTo().equals(user)) {
+        if(role.equals("ROLE_director") || request.getAssignedTo().equals(user)) {
             return requestDao.findById(requestId).get();
         }
         else {
@@ -61,16 +68,19 @@ public class RequestService {
     public void update(String requestId, Request updatedRequest, Authentication authentication) {
         List authorities = (List) authentication.getAuthorities();
         String role = authorities.get(0).toString();
-        if(role.equals("director")) {
+        System.out.println(role);
+        if(role.equals("ROLE_director") || role.equals("ROLE_team")) {
             updatedRequest.setId(requestId);
             requestDao.save(updatedRequest);
         }
+
     }
 
     public List<Request> findAllApproved(Authentication authentication) {
         List authorities = (List) authentication.getAuthorities();
         String role = authorities.get(0).toString();
-        if(role.equals("team") || role.equals("director")) {
+        System.out.println(role);
+        if(role.equals("ROLE_team") || role.equals("ROLE_director")) {
             return requestDao.findByStatus("Approved");
         }
         else {
@@ -81,9 +91,10 @@ public class RequestService {
     public List<Request> findAllByUserId(Integer userId, Authentication authentication) {
         List authorities = (List) authentication.getAuthorities();
         String role = authorities.get(0).toString();
+        System.out.println(role);
         User user = userDao.findById(userId).get();
         User requestingUser = userDao.findByUsername(authentication.getName());
-        if(role.equals("director") || requestingUser.getId() == userId) {
+        if(role.equals("ROLE_director") || requestingUser.getId() == userId) {
             return requestDao.findByAssignedTo(user);
         }
         else {
@@ -94,7 +105,8 @@ public class RequestService {
     public List<Request> findAllPending(Authentication authentication) {
         List authorities = (List) authentication.getAuthorities();
         String role = authorities.get(0).toString();
-        if(role.equals("director")) {
+        System.out.println(role);
+        if(role.equals("ROLE_director")) {
             return requestDao.findByStatus("Pending");
         }
         else {
@@ -105,8 +117,9 @@ public class RequestService {
     public List<Request> findCompleted(Authentication authentication) {
         List authorities = (List) authentication.getAuthorities();
         String role = authorities.get(0).toString();
+        System.out.println(role);
         User user = userDao.findByUsername(authentication.getName());
-        if(role.equals("team") || role.equals("director")) {
+        if(role.equals("ROLE_team") || role.equals("ROLE_director")) {
             return requestDao.findByAssignedToAndStatus(user, "Complete");
         }
         else {

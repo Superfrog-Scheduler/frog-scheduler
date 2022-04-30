@@ -29,7 +29,7 @@ public class DBDataInitializer implements CommandLineRunner {
         r1.setEndTime("2:00 PM");
         r1.setLocation("123 main st.");
         r1.setPrice(4000);
-        r1.setStatus("Pending");
+        r1.setStatus("Assigned");
         r1.setCustomer("Dr. Wei");
 
         Request r2 = new Request();
@@ -41,7 +41,7 @@ public class DBDataInitializer implements CommandLineRunner {
         r2.setEndTime("3:00 PM");
         r2.setLocation("321 berry st.");
         r2.setPrice(5000);
-        r2.setStatus("Completed");
+        r2.setStatus("Assigned");
         r2.setCustomer("John Smith");
 
         Request r3 = new Request();
@@ -53,18 +53,18 @@ public class DBDataInitializer implements CommandLineRunner {
         r3.setEndTime("5:00 PM");
         r3.setLocation("121 apple st.");
         r3.setPrice(10000000);
-        r3.setStatus("Approved");
+        r3.setStatus("Assigned");
         r3.setCustomer("Jane Doe");
 
         Request r4 = new Request();
         r4.setId("125");
         r4.setEventName("event 4");
-        r4.setEventType("alumni party");
-        r4.setDate("4/24/2022");
-        r4.setStartTime("2:00 PM");
+        r4.setEventType("easter party");
+        r4.setDate("4/20/2022");
+        r4.setStartTime("1:00 PM");
         r4.setEndTime("5:00 PM");
-        r4.setLocation("121 apple st.");
-        r4.setPrice(10000000);
+        r4.setLocation("121 dover st.");
+        r4.setPrice(500);
         r4.setStatus("Approved");
         r4.setCustomer("Jane Doe");
 
@@ -113,6 +113,7 @@ public class DBDataInitializer implements CommandLineRunner {
          u1.setLastname("Doe");
          u1.setPhone("0123456789");
          u1.addAppearence(r1);
+         u1.addAppearence(r6);
 
         User u2 = new User();
         u2.setUsername("mike@gmail.com");
