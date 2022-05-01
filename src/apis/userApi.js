@@ -1,6 +1,6 @@
 import axios from "axios";
-import useUserStore from '@/store/userStore';
-import utils from '@/utils';
+import useUserStore from "@/store/userStore";
+import utils from "@/utils";
 
 const info = async (token, id) => {
   console.log("token", token, id);
@@ -33,7 +33,7 @@ const register = async (registerInfo) => {
       firstname: fname,
       lastname: lname,
       phone: phone,
-      roles: roles
+      roles: roles,
     })
     .then((r) => {
       console.log(r);
@@ -77,8 +77,8 @@ const login = async (loginInfo) => {
 };
 
 const updateUserInfo = async (updatedInfo) => {
-  console.log("updated", updatedInfo)
-  let id = updatedInfo.id
+  console.log("updated", updatedInfo);
+  let id = updatedInfo.id;
   var session_url = `http://localhost:8080/users/${id}`;
   var uname = updatedInfo.account;
   var fname = updatedInfo.fname;
@@ -86,19 +86,17 @@ const updateUserInfo = async (updatedInfo) => {
   var phone = updatedInfo.tel;
   var roles = updatedInfo.roles;
 
-  await axios.put(session_url,
-    {
-      username: uname,
-      firstname: fname,
-      lastname: lname,
-      phone: phone,
-      roles: roles
-    },
-  )
-}
+  await axios.put(session_url, {
+    username: uname,
+    firstname: fname,
+    lastname: lname,
+    phone: phone,
+    roles: roles,
+  });
+};
 
 const getAllSuperFrogs = async () => {
-  let token = utils.cacheUtils.get('login_token')?.token
+  let token = utils.cacheUtils.get("login_token")?.token;
   const instance = axios.create({
     baseURL: "http://localhost:8080",
     timeout: 1000,
@@ -113,10 +111,10 @@ const getAllSuperFrogs = async () => {
     .catch((error) => {
       console.error(error.response.data);
     });
-}
+};
 
 const getAllCustomers = async () => {
-  let token = utils.cacheUtils.get('login_token')?.token
+  let token = utils.cacheUtils.get("login_token")?.token;
   const instance = axios.create({
     baseURL: "http://localhost:8080",
     timeout: 1000,
@@ -131,23 +129,24 @@ const getAllCustomers = async () => {
     .catch((error) => {
       console.error(error.response.data);
     });
-}
+};
 
 const assignSuperFrog = async (requestId, userId) => {
   var session_url = `http://localhost:8080/users/${userId}/${requestId}`;
 
   const res = await axios.put(session_url);
-}
+};
 
 const removeAssignment = async (requestId) => {
-  let token = utils.cacheUtils.get('login_token')?.token
+  let token = utils.cacheUtils.get("login_token")?.token;
+  console.log(requestId);
   const instance = axios.create({
     baseURL: "http://localhost:8080",
     timeout: 1000,
     headers: { Authorization: "Bearer " + token },
   });
   return await instance
-    .put(`/users/remove/${requestId}`)
+    .put(`/users/remove/${requestId.id}`)
     .then((res) => {
       console.log(res.data);
       return res.data;
@@ -155,7 +154,7 @@ const removeAssignment = async (requestId) => {
     .catch((error) => {
       console.error(error.response.data);
     });
-}
+};
 export default {
   info,
   login,
@@ -164,5 +163,5 @@ export default {
   getAllSuperFrogs,
   getAllCustomers,
   assignSuperFrog,
-  removeAssignment
+  removeAssignment,
 };
