@@ -24,6 +24,14 @@ export default {
       await userApi.updateUserInfo(student);
       this.getAll();
     },
+    async deactivateStudent(student) {
+      student.enabled = false;
+      await userApi.deactivateUser(student.id);
+    },
+    async reactivateStudent(student) {
+      student.enabled = true;
+      await userApi.reactivateUser(student.id);
+    },
   },
   mounted() {
     this.getAll();
@@ -87,10 +95,14 @@ export default {
               v-if="student.enabled"
               type="button"
               class="btn btn-danger btn-sm me-2"
+              @click="deactivateStudent(student)"
             >
               Deactivate
             </button>
-            <button v-else type="button" class="btn btn-success btn-sm">
+            <button 
+            v-else type="button" 
+            class="btn btn-success btn-sm"
+            @click="reactivateStudent(student)">
               Reactivate
             </button>
           </td>
