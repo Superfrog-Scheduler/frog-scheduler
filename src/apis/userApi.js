@@ -6,7 +6,6 @@ const info = async (token, id) => {
   console.log("token", token, id);
   const instance = axios.create({
     baseURL: "http://localhost:8080",
-    // timeout: 1000,
     headers: { Authorization: "Bearer " + token },
   });
   return await instance
