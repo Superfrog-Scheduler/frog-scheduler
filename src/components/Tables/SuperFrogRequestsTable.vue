@@ -1,23 +1,27 @@
 <script>
 import requestApi from "@/apis/requestApi";
+import userApi from "@/apis/userApi";
+import useUserStore from '@/store/userStore';
 
 export default {
   data() {
     return {
-      requestList: []
+      requestList: [],
+      userInfo: {}
     };
   },
   methods: {
     async getAll() { 
-      const res = await requestApi.getAllRequests();
+      const res = await requestApi.getAllApprovedRequests();
       this.requestList = res.data;
     },
-    async signUpRequest(request) {
-      request.status = "Completed";
-      const res = await requestApi.update(request);
+    async signUpRequest(requestId) {
+      const res = await userApi.assignSuperFrog(requestId, this.userInfo.id);
     },
   },
   mounted() {
+    const userStore = useUserStore();
+    this.userInfo = userStore.userInfo;
     this.getAll()
   },
 };
@@ -64,7 +68,11 @@ export default {
                   <span class="badge bg-danger" v-if="request.status=='Rejected'">{{request.status}}</span>
                 </td>
                 <td>
-                  <button v-if="request.status=='Approved'" type="button" class="btn btn-success btn-sm me-2">Sign up</button>
+                  <button 
+                  v-if="request.status=='Approved'" 
+                  type="button" 
+                  class="btn btn-success btn-sm me-2"
+                  @click="signUpRequest(request.id)">Sign up</button>
                 </td>
               </tr>
             </tbody>

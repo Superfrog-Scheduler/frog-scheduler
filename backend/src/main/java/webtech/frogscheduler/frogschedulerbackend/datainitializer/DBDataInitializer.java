@@ -29,7 +29,7 @@ public class DBDataInitializer implements CommandLineRunner {
         r1.setEndTime("2:00 PM");
         r1.setLocation("123 main st.");
         r1.setPrice(4000);
-        r1.setStatus("Assigned");
+        r1.setStatus("Approved");
         r1.setCustomer("Dr. Wei");
 
         Request r2 = new Request();
@@ -89,7 +89,7 @@ public class DBDataInitializer implements CommandLineRunner {
         r6.setEndTime("5:00 PM");
         r6.setLocation("123 main st.");
         r6.setPrice(10);
-        r6.setStatus("Assigned");
+        r6.setStatus("Approved");
         r6.setCustomer("Jim Doe");
 
         Request r7 = new Request();
@@ -101,7 +101,7 @@ public class DBDataInitializer implements CommandLineRunner {
         r7.setEndTime("9:00 PM");
         r7.setLocation("12345 main st.");
         r7.setPrice(1000);
-        r7.setStatus("Assigned");
+        r7.setStatus("Approved");
         r7.setCustomer("Jim John");
 
          User u1 = new User();
