@@ -134,10 +134,8 @@ const getAllCustomers = async () => {
     });
 }
 
-const assignSuperFrog = async (request, user) => {
-  console.log("assignSuperFrog")
+const assignSuperFrog = async (requestId, user) => {
   let userId = user.id
-  let requestId = request.id
   var session_url = `http://localhost:8080/users/${userId}/${requestId}`;
   console.log(session_url);
 
