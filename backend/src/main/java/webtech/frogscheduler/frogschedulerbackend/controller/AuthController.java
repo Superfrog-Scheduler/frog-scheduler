@@ -10,7 +10,7 @@ import webtech.frogscheduler.frogschedulerbackend.domain.Result;
 import webtech.frogscheduler.frogschedulerbackend.domain.StatusCode;
 import webtech.frogscheduler.frogschedulerbackend.service.AuthService;
 
-@CrossOrigin(origins = "http://localhost:3000/", maxAge = 3600)
+@CrossOrigin(origins = {"http://localhost:3000/", "https://tcu-superfrog-scheduler.herokuapp.com/"}, maxAge = 3600)
 @RestController
 @RequestMapping("/auth")
 public class AuthController {

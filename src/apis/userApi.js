@@ -4,7 +4,8 @@ import utils from "@/utils";
 
 const info = async (token, id) => {
   const instance = axios.create({
-    baseURL: "http://localhost:8080",
+    // baseURL: "http://localhost:8080",
+    baseURL: "https://boiling-wave-73184.herokuapp.com/",
     headers: { Authorization: "Bearer " + token },
   });
   return await instance
@@ -18,7 +19,8 @@ const info = async (token, id) => {
 };
 
 const register = async (registerInfo) => {
-  var session_url = "http://localhost:8080/users";
+  // var session_url = "http://localhost:8080/users";
+  var session_url = "https://boiling-wave-73184.herokuapp.com/users";
   var uname = registerInfo.account;
   var pass = registerInfo.password;
   var fname = registerInfo.fname;
@@ -44,7 +46,8 @@ const register = async (registerInfo) => {
 };
 
 const login = async (loginInfo) => {
-  var session_url = "http://localhost:8080/auth/login";
+  // var session_url = "http://localhost:8080/auth/login";
+  var session_url = "https://boiling-wave-73184.herokuapp.com/auth/login";
   var uname = loginInfo.account;
   var pass = loginInfo.password;
 
@@ -75,7 +78,8 @@ const login = async (loginInfo) => {
 
 const updateUserInfo = async (updatedInfo) => {
   let id = updatedInfo.id;
-  var session_url = `http://localhost:8080/users/${id}`;
+  // var session_url = `http://localhost:8080/users/${id}`;
+  var session_url = `https://boiling-wave-73184.herokuapp.com/users/${id}`;
   var uname = updatedInfo.account;
   var fname = updatedInfo.fname;
   var lname = updatedInfo.lname;
@@ -93,22 +97,24 @@ const updateUserInfo = async (updatedInfo) => {
 
 const reactivateUser = async (userId) => {
   console.log("reactivateUser");
-  var session_url = `http://localhost:8080/users/activate/${userId}`;
+  // var session_url = `http://localhost:8080/users/activate/${userId}`;
+  var session_url = `https://boiling-wave-73184.herokuapp.com/users/activate/${userId}`;
 
   await axios.put(session_url);
 };
 
 const deactivateUser = async (userId) => {
   console.log("deactivateUser");
-  var session_url = `http://localhost:8080/users/${userId}`;
-
+  // var session_url = `http://localhost:8080/users/${userId}`;
+  var session_url = `https://boiling-wave-73184.herokuapp.com/users/${userId}`;
   await axios.delete(session_url);
 };
 
 const getAllSuperFrogs = async () => {
   let token = utils.cacheUtils.get("login_token")?.token;
   const instance = axios.create({
-    baseURL: "http://localhost:8080",
+    // baseURL: "http://localhost:8080",
+    baseURL: "https://boiling-wave-73184.herokuapp.com/",
     timeout: 1000,
     headers: { Authorization: "Bearer " + token },
   });
@@ -125,7 +131,8 @@ const getAllSuperFrogs = async () => {
 const getAllCustomers = async () => {
   let token = utils.cacheUtils.get("login_token")?.token;
   const instance = axios.create({
-    baseURL: "http://localhost:8080",
+    // baseURL: "http://localhost:8080",
+    baseURL: "https://boiling-wave-73184.herokuapp.com/",
     timeout: 1000,
     headers: { Authorization: "Bearer " + token },
   });
@@ -140,15 +147,16 @@ const getAllCustomers = async () => {
 };
 
 const assignSuperFrog = async (requestId, userId) => {
-  var session_url = `http://localhost:8080/users/${userId}/${requestId}`;
-
+  // var session_url = `http://localhost:8080/users/${userId}/${requestId}`;
+  var session_url = `https://boiling-wave-73184.herokuapp.com/users/${userId}/${requestId}`;
   const res = await axios.put(session_url);
 };
 
 const removeAssignment = async (requestId) => {
   let token = utils.cacheUtils.get("login_token")?.token;
   const instance = axios.create({
-    baseURL: "http://localhost:8080",
+    // baseURL: "http://localhost:8080",
+    baseURL: "https://boiling-wave-73184.herokuapp.com/",
     timeout: 1000,
     headers: { Authorization: "Bearer " + token },
   });

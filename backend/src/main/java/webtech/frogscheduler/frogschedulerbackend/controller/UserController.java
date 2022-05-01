@@ -9,7 +9,7 @@ import webtech.frogscheduler.frogschedulerbackend.service.UserService;
 import javax.annotation.security.RolesAllowed;
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:3000/", maxAge = 3600)
+@CrossOrigin(origins = {"http://localhost:3000/", "https://tcu-superfrog-scheduler.herokuapp.com/"}, maxAge = 3600)
 @RestController
 @RequestMapping("/users")
 public class UserController {

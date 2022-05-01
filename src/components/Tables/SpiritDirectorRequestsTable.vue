@@ -106,10 +106,10 @@ export default {
       </thead>
       <tbody>
         <tr v-for="request in requestList" :key="request.id">
-          <td>{{ request.id }}</td>
+          <td >{{ request.id }}</td>
           <td>{{ request.eventName }}</td>
           <td>{{ request.eventType }}</td>
-          <td>{{ request.customer.firstname }} {{ request.customer.lastname }}</td>
+          <td v-if="request.customer!=null">{{ request.customer.firstname}} {{ request.customer.lastname}}</td>
           <td>{{ request.date }}</td>
           <td>{{ request.startTime }}</td>
           <td>{{ request.endTime }}</td>

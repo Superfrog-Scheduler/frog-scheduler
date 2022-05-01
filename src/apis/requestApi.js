@@ -4,7 +4,8 @@ import utils from '@/utils';
 const info = async (token, id) => {
   console.log("token", token, id);
   const instance = axios.create({
-    baseURL: "http://localhost:8080",
+    // baseURL: "http://localhost:8080",
+    baseURL: "https://boiling-wave-73184.herokuapp.com/",
     timeout: 1000,
     headers: { Authorization: "Bearer " + token },
   });
@@ -19,7 +20,8 @@ const info = async (token, id) => {
 };
 
 const makeRequest = async (newRequestInfo) => {
-  var session_url = "http://localhost:8080/requests";
+  // var session_url = "http://localhost:8080/requests";
+  var session_url = "https://boiling-wave-73184.herokuapp.com/requests"
   var eventName = newRequestInfo.eventName;
   var eventType = newRequestInfo.eventType;
   var date = newRequestInfo.date;
@@ -63,7 +65,8 @@ const updateRequest = async (updatedInfo) => {
 
   let token = utils.cacheUtils.get('login_token')?.token
   const instance = axios.create({
-    baseURL: "http://localhost:8080",
+    // baseURL: "http://localhost:8080",
+    baseURL: "https://boiling-wave-73184.herokuapp.com/",
     timeout: 1000,
     headers: { Authorization: "Bearer " + token },
   });
@@ -91,7 +94,8 @@ const updateRequest = async (updatedInfo) => {
 const getAllByDates = async (start, end) => {
   let token = utils.cacheUtils.get('login_token')?.token
   const instance = axios.create({
-    baseURL: "http://localhost:8080",
+    // baseURL: "http://localhost:8080",
+    baseURL: "https://boiling-wave-73184.herokuapp.com/",
     timeout: 1000,
     headers: { Authorization: "Bearer " + token },
   });
@@ -108,7 +112,8 @@ const getAllByDates = async (start, end) => {
 const getAllRequests = async () => {
   let token = utils.cacheUtils.get('login_token')?.token
   const instance = axios.create({
-    baseURL: "http://localhost:8080",
+    // baseURL: "http://localhost:8080",
+    baseURL: "https://boiling-wave-73184.herokuapp.com/",
     timeout: 1000,
     headers: { Authorization: "Bearer " + token },
   });
@@ -125,7 +130,8 @@ const getAllRequests = async () => {
 const getAllApprovedRequests = async () => {
   let token = utils.cacheUtils.get('login_token')?.token
   const instance = axios.create({
-    baseURL: "http://localhost:8080",
+    // baseURL: "http://localhost:8080",
+    baseURL: "https://boiling-wave-73184.herokuapp.com/",
     timeout: 1000,
     headers: { Authorization: "Bearer " + token },
   });
@@ -142,7 +148,8 @@ const getAllApprovedRequests = async () => {
 const getAllRequestsByAssigned = async (userId) => {
   let token = utils.cacheUtils.get('login_token')?.token
   const instance = axios.create({
-    baseURL: "http://localhost:8080",
+    // baseURL: "http://localhost:8080",
+    baseURL: "https://boiling-wave-73184.herokuapp.com/",
     timeout: 1000,
     headers: { Authorization: "Bearer " + token },
   });
@@ -160,7 +167,8 @@ const getAllRequestsByCustomer = async (userId) => {
   let token = utils.cacheUtils.get('login_token')?.token
   console.log(token);
   const instance = axios.create({
-    baseURL: "http://localhost:8080",
+    // baseURL: "http://localhost:8080",
+    baseURL: "https://boiling-wave-73184.herokuapp.com/",
     timeout: 1000,
     headers: { Authorization: "Bearer " + token },
   });
