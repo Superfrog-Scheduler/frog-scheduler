@@ -19,7 +19,7 @@ export default {
     async editUser(student) {
       this.studentInfo = student;
     },
-    async editUserSuccess(cstudent) {
+    async editUserSuccess(student) {
       console.log("student", student);
       await userApi.updateUserInfo(student);
       this.getAll();
