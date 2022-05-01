@@ -110,7 +110,7 @@ export default {
           <td>{{ request.id }}</td>
           <td>{{ request.eventName }}</td>
           <td>{{ request.eventType }}</td>
-          <td>{{ request.customerName }}</td>
+          <td>{{ request.customer.firstname }} {{ request.customer.lastname }}</td>
           <td>{{ request.date }}</td>
           <td>{{ request.startTime }}</td>
           <td>{{ request.endTime }}</td>
