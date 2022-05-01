@@ -66,4 +66,9 @@ public class RequestController {
         return new Result(true, StatusCode.SUCCESS, "Find all completed for user success", requestService.findCompleted(authentication));
     }
 
+    @GetMapping("/{start}/{end}")
+    public Result findByDates(@PathVariable String start,@PathVariable String end) {
+        return new Result(true, StatusCode.SUCCESS, "Find requests by dates success", requestService.findByDates(start, end));
+    }
+
 }
