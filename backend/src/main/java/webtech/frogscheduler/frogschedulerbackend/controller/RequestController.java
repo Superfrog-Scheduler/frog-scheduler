@@ -71,4 +71,9 @@ public class RequestController {
         return new Result(true, StatusCode.SUCCESS, "Find requests by dates success", requestService.findByDates(start, end));
     }
 
+    @GetMapping("/made/{userId}")
+    public Result findByCustomer(@PathVariable Integer userId) {
+        return new Result(true, StatusCode.SUCCESS, "Find requests by customer success", requestService.findByCustomer(userId));
+    }
+
 }

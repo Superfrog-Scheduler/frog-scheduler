@@ -16,6 +16,7 @@ export default {
         startTime: v.yup.string().required().label("Start Time"),
         endTime: v.yup.string().required().label("End Time"),
         location: v.yup.string().required().label("Location"),
+        price: v.yup.string().required().label("Price"),
       })
     };
   },
@@ -140,6 +141,18 @@ export default {
                   placeholder="Input event location"
                 ></Field>
                 <ErrorMessage name="location" as="div"></ErrorMessage>
+            </div>
+            <div class="mb-3">
+              <label for="location-input" class="form-label">Price</label>
+             <Field
+                  name="price"
+                  as="input"
+                  type="text"
+                  class="form-control"
+                  label="Event location"
+                  placeholder="Input event price"
+                ></Field>
+                <ErrorMessage name="price" as="div"></ErrorMessage>
             </div>
           </form>
         </div>

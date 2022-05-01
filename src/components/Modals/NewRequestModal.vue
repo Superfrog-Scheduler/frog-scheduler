@@ -19,6 +19,7 @@ export default {
       })
     };
   },
+  emits: ["new-request"],
   methods: {
     async makeRequest(values) {
       const userStore = useUserStore();
@@ -29,10 +30,13 @@ export default {
       let firstName = userInfo.firstname;
       let lastName = userInfo.lastname;
       values["customer"] = firstName.concat(" ", lastName)
+      let d = values.date.split("-")
+      values["date"] = d[1] + "-" + d[2] + "-" + d[0]
       //values["price"] = Math.round((Date.parse(date.concat(" ", startTime))-Date.parse(date.concat(" ", endTime)))/1000/60/60*100)
-      requestApi.makeRequest(values);
+      await requestApi.makeRequest(values);
       var message = new Modal(document.getElementById("messageModal"));
       message.show();
+      this.$emit('new-request')
     }
   }
 };
@@ -96,7 +100,7 @@ export default {
                   id="date-input"
                   name="date"
                   as="input"
-                  type="text"
+                  type="date"
                   class="form-control"
                   label="Event date"
                   placeholder="Input event date"

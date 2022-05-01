@@ -20,7 +20,7 @@ export default {
   emits: ['user-update'],
   methods: {
     async userUpdate(values) {
-      values["roles"] = "team";
+      values["roles"] = "customer";
       console.log("updtae", values);
       userApi.updateUserInfo(values);
       let token = utils.cacheUtils.get('login_token')?.token

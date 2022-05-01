@@ -13,9 +13,12 @@ export default {
   },
   methods: {
     async getMyRequests() {
-      const res = await requestApi.getAllRequestsByUser(this.userInfo.id);
+      const res = await requestApi.getAllRequestsByCustomer(this.userInfo.id);
       this.requestList = res.data;
       console.log(this.requestList);
+    },
+    async newRequest() {
+      this.getMyRequests()
     }
   },
   mounted() {
@@ -32,7 +35,7 @@ export default {
       <div class="card-body d-flex justify-content-between">
         <div><!-- empty div so content-between looks good --></div>
         <h4 class="card-title">Requests</h4>
-        <NewRequestModal id="add-request-modal" />
+        <NewRequestModal id="add-request-modal" @new-request="newRequest($event)"/>
         <button
           type="button"
           class="btn btn-primary mx-4"
