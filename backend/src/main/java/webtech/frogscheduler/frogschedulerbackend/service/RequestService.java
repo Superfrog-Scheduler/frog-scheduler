@@ -161,4 +161,10 @@ public class RequestService {
         }
         return sub;
     }
+
+    public void completeRequest(String requestId) {
+        Request request = requestDao.findById(requestId).get();
+        request.setStatus("Complete");
+        requestDao.save(request);
+    }
 }
