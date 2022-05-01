@@ -11,7 +11,7 @@ export default {
   data() {
     return {
       requestList: [],
-      selectedRequestId: 0
+      selectedRequest: {}
     };
   },
   methods: {
@@ -35,6 +35,10 @@ export default {
     },
     async removeAssignment(request) {
       request.status = "Approved";
+      const res = await userApi.removeAssignment(request.id);
+    },
+    async assignSuperFrog(request) {
+      request.status = "Assigned";
       const res = await userApi.removeAssignment(request.id);
     }
   },
@@ -77,7 +81,10 @@ export default {
         </button>
       </div>
       <EditRequestModal id="edit-request-modal" />
-      <AssignRequestModal id="assign-request-modal" :selectedRequestId="this.selectedRequestId" />
+      <AssignRequestModal 
+      id="assign-request-modal" 
+      :selectedRequest="this.selectedRequest"
+      @assign-superfrog="assignSuperFrog"/>
 
       <SortModal id="sort-modal" @sort="sortRequests($event)"/>
     </div>
@@ -168,7 +175,7 @@ export default {
               class="btn btn-success btn-sm col-12"
               data-bs-toggle="modal"
               data-bs-target="#assign-request-modal"
-              @click="() => this.selectedRequestId=request.id">
+              @click="this.selectedRequest=request">
               Assign
             </button>
           </td>
