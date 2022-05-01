@@ -52,9 +52,11 @@ public class UserService implements UserDetailsService {
     }
 
     public void update(Integer userId, User updatedUser) {
+        User user = userDao.getById(userId);
         updatedUser.setId(userId);
         updatedUser.setPassword(userDao.findById(userId).get().getPassword());
         updatedUser.setEnabled(true);
+        updatedUser.setAppearences(user.getAppearences());
         userDao.save(updatedUser);
     }
 

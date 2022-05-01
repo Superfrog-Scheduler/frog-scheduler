@@ -44,6 +44,7 @@ public class UserController {
     //@RolesAllowed()
     @PutMapping("/{userId}")
     public Result update(@PathVariable Integer userId, @RequestBody User newUser) {
+        User user = userDao.
         userService.update(userId, newUser);
         return new Result(true, StatusCode.SUCCESS, "Update user success");
     }
