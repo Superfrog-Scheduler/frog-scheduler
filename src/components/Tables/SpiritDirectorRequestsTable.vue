@@ -76,10 +76,8 @@ export default {
         </button>
       </div>
       <EditRequestModal id="edit-request-modal" />
-      <AssignRequestModal
-        id="assign-request-modal"
-        :request="selectedRequest"
-      />
+      <AssignRequestModal id="assign-request-modal" :requestId=selectedRequestId />
+
       <SortModal id="sort-modal" @sort="sortRequests($event)"/>
     </div>
     <table class="table" id="requests-table">

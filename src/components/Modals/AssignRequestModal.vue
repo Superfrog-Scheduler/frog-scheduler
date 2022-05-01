@@ -13,8 +13,8 @@ export default {
       const res = await userApi.getAllSuperFrogs();
       this.studentList = res.data;
     },
-    async assignSuperFrog(requestId, studentId) {
-      await userApi.assignSuperFrog(requestId, studentId);
+    async assignSuperFrog(requestId, student) {
+      await userApi.assignSuperFrog(requestId, student);
     }
   },
   mounted() {
@@ -57,7 +57,7 @@ export default {
                   <td>{{student.firstname.concat(" ", student.lastname)}}</td>
                   <td>
                     <button type="button" 
-                      @click="assignSuperFrog(requestId, student.id)" 
+                      @click="assignSuperFrog(requestId, student)" 
                       class="btn btn-success btn-sm" 
                       data-bs-dismiss="modal">
                       Select</button>
