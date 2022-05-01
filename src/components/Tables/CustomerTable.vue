@@ -1,7 +1,6 @@
 <script>
 import requestApi from "@/apis/requestApi";
 import NewRequestModal from "../Modals/NewRequestModal.vue";
-import useUserStore from '@/store/userStore';
 
 export default {
   components: { NewRequestModal },
@@ -22,9 +21,7 @@ export default {
     }
   },
   mounted() {
-    const userStore = useUserStore();
-    this.userInfo = userStore.userInfo
-    this.getMyRequests()
+    this.getRequests()
   },
 };
 </script>
