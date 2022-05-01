@@ -2,8 +2,7 @@
 import userApi from "@/apis/userApi";
 
 export default {
-  emits: ['assign-superfrog'],
-  props: ['selectedRequest'],
+  props: ['requestInfo'],
   data() {
     return {
       studentList: [],
@@ -15,9 +14,8 @@ export default {
       this.studentList = res.data;
     },
     async assignSuperFrog(studentId) {
-      console.log(this.selectedRequest);
-      this.$emit('assign-superfrog', this.selectedRequest);
-      await userApi.assignSuperFrog(this.selectedRequest.id, studentId);
+      console.log(this.requestInfo);
+      await userApi.assignSuperFrog(this.requestInfo.id, studentId);
     }
   },
   mounted() {
