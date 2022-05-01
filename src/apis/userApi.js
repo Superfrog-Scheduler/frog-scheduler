@@ -77,8 +77,8 @@ const login = async (loginInfo) => {
 };
 
 const updateUserInfo = async (updatedInfo) => {
-  const userStore = useUserStore();
-  let id = userStore.id
+  console.log("updated", updatedInfo)
+  let id = updatedInfo.id
   var session_url = `http://localhost:8080/users/${id}`;
   var uname = updatedInfo.account;
   var fname = updatedInfo.fname;

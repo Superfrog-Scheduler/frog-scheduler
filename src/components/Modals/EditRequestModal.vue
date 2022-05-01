@@ -7,6 +7,7 @@ import useUserStore from '@/store/userStore';
 
 export default {
   components: { Modal, Form, Field, ErrorMessage, v, },
+  props: ["requestInfo"],
   data() {
     return {
       validationSchema: v.yup.object({
@@ -20,21 +21,18 @@ export default {
       })
     };
   },
+  emits: ["edit-request"],
   methods: {
     async updateRequest(values) {
-      const userStore = useUserStore();
-      const userInfo = userStore.userInfo;
-      let date = document.getElementById("date-input").innerText;
-      let startTime = document.getElementById("start-time-input").innerText;
-      let endTime = document.getElementById("end-time-input").innerText;
-      let firstName = userInfo.firstname;
-      let lastName = userInfo.lastname;
-      values["customer"] = firstName.concat(" ", lastName)
-      //values["price"] = Math.round((Date.parse(date.concat(" ", startTime))-Date.parse(date.concat(" ", endTime)))/1000/60/60*100)
-      requestApi.updateRequest(values);
+      values["id"] = this.requestInfo.id
+      values["status"] = this.requestInfo.status
+      await requestApi.updateRequest(values);
       var message = new Modal(document.getElementById("messageModal"));
       message.show();
+      this.$emit('edit-request')
     }
+  },
+  mounted() {
   }
 };
 </script>
@@ -76,6 +74,7 @@ export default {
                   class="form-control"
                   label="Event Name"
                   placeholder="Input event name"
+                  v-model="requestInfo.eventName"
                 ></Field>
                 <ErrorMessage name="eventName" as="div"></ErrorMessage>
             </div>
@@ -88,6 +87,7 @@ export default {
                   class="form-control"
                   label="Event Type"
                   placeholder="Input event type"
+                  v-model="requestInfo.eventType"
                 ></Field>
                 <ErrorMessage name="eventType" as="div"></ErrorMessage>
             </div>
@@ -101,6 +101,7 @@ export default {
                   class="form-control"
                   label="Event date"
                   placeholder="Input event date"
+                  v-model="requestInfo.date"
                 ></Field>
                 <ErrorMessage name="date" as="div"></ErrorMessage>
             </div>
@@ -114,6 +115,7 @@ export default {
                   class="form-control"
                   label="Start time"
                   placeholder="Input start time"
+                  v-model="requestInfo.startTime"
                 ></Field>
                 <ErrorMessage name="startTime" as="div"></ErrorMessage>
             </div>
@@ -127,6 +129,7 @@ export default {
                   class="form-control"
                   label="End time"
                   placeholder="Input end time"
+                  v-model="requestInfo.endTime"
                 ></Field>
                 <ErrorMessage name="endTime" as="div"></ErrorMessage>
             </div>
@@ -139,6 +142,7 @@ export default {
                   class="form-control"
                   label="Event location"
                   placeholder="Input event location"
+                  v-model="requestInfo.location"
                 ></Field>
                 <ErrorMessage name="location" as="div"></ErrorMessage>
             </div>
@@ -151,6 +155,7 @@ export default {
                   class="form-control"
                   label="Event location"
                   placeholder="Input event price"
+                  v-model="requestInfo.price"
                 ></Field>
                 <ErrorMessage name="price" as="div"></ErrorMessage>
             </div>

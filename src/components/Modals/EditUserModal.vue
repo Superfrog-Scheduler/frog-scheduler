@@ -6,7 +6,7 @@ import { Modal } from "bootstrap";
 
 export default {
   components: { Modal, Form, Field, ErrorMessage, v },
-  props: ['roles'],
+  props: ["userInfo"],
   data() {
     return {
       validationSchema: v.yup.object({
@@ -25,6 +25,8 @@ export default {
   emits: ['user-update'],
   methods: {
     async update(values) {
+      values["id"] = this.userInfo.id
+      values["roles"] = this.userInfo.roles
       this.$emit('user-update', values)
     },
 
@@ -69,6 +71,7 @@ export default {
                   class="form-control"
                   label="First name"
                   placeholder="Input first name"
+                  v-model="userInfo.firstname"
                 ></Field>
                 <ErrorMessage name="fname" as="div"></ErrorMessage>
             </div>
@@ -81,6 +84,7 @@ export default {
                   class="form-control"
                   label="Last name"
                   placeholder="Input last name"
+                  v-model="userInfo.lastname"
                 ></Field>
                 <ErrorMessage name="lname" as="div"></ErrorMessage>
             </div>
@@ -93,6 +97,7 @@ export default {
                   class="form-control"
                   label="Account name"
                   placeholder="Input account email"
+                  v-model="userInfo.username"
                 ></Field>
                 <div v-if="errors.account" class="bing-error">
                   Account name must be a valid email address
@@ -107,6 +112,7 @@ export default {
                   class="form-control"
                   label="Phone number"
                   placeholder="Input phone number"
+                  v-model="userInfo.phone"
                 ></Field>
                 <ErrorMessage name="tel" as="div"></ErrorMessage>
             </div>

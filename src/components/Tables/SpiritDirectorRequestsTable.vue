@@ -11,7 +11,9 @@ export default {
   data() {
     return {
       requestList: [],
-      selectedRequestId: {}
+      selectedRequestId: {},
+      requestInfo: {}
+
     };
   },
   methods: {
@@ -28,13 +30,20 @@ export default {
     },
     async rejectRequest(request) {
       request.status = "Rejected";
-      const res = await requestApi.update(request);
+      const res = await requestApi.updateRequest(request);
     },
     async sortRequests(values){
       this.requestList = values
     },
     async removeAssignment(request) {
       const res = await userApi.removeAssignment(request);
+    },
+    async editRequest(request) {
+      console.log(request)
+      this.requestInfo = request
+    },
+    async editRequestSuccess(request) {
+      this.getAll();
     }
   },
   mounted() {
@@ -75,7 +84,7 @@ export default {
           Download as Excel
         </button>
       </div>
-      <EditRequestModal id="edit-request-modal" />
+      
       <AssignRequestModal
         id="assign-request-modal"
         :request="selectedRequest"
@@ -142,9 +151,11 @@ export default {
               class="btn btn-light btn-sm btn-outline-dark"
               data-bs-toggle="modal"
               data-bs-target="#edit-request-modal"
+              @click="editRequest(request)"
             >
               Edit
             </button>
+            <EditRequestModal id="edit-request-modal" :requestInfo="requestInfo" @edit-request="editRequestSuccess($event)" />
           </td>
           <td v-else colspan="3" style="color: gray">–</td>
           <td v-if="request.status == 'Pending'">
