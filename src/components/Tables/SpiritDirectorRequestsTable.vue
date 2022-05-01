@@ -27,31 +27,29 @@ export default {
     },
     async approveRequest(request) {
       request.status = "Approved";
-      const res = await requestApi.updateRequest(request);
+      await requestApi.updateRequest(request);
     },
     async rejectRequest(request) {
       request.status = "Rejected";
-      const res = await requestApi.updateRequest(request);
+      await requestApi.updateRequest(request);
     },
     async sortRequests(values) {
       this.requestList = values;
     },
     async removeAssignment(request) {
-      const res = await userApi.removeAssignment(request);
+      await userApi.removeAssignment(request);
       this.getAll();
     },
     async editRequest(request) {
       console.log(request);
       this.requestInfo = request;
     },
-    async editRequestSuccess(request) {
+    async editRequestSuccess() {
       this.getAll();
-      request.status = "Approved";
-      const res = await userApi.removeAssignment(request.id);
     },
     async assignSuperFrog(request) {
       request.status = "Assigned";
-      const res = await userApi.removeAssignment(request.id);
+      await userApi.removeAssignment(request.id);
     },
   },
   mounted() {

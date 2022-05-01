@@ -3,7 +3,6 @@ import v from "@/plugins/validation";
 import { Form, Field, ErrorMessage } from "vee-validate";
 import { Modal } from "bootstrap";
 import requestApi from "@/apis/requestApi";
-import useUserStore from '@/store/userStore';
 
 export default {
   components: { Modal, Form, Field, ErrorMessage, v, },
@@ -24,8 +23,9 @@ export default {
   emits: ["edit-request"],
   methods: {
     async updateRequest(values) {
-      values["id"] = this.requestInfo.id
-      values["status"] = this.requestInfo.status
+      values["id"] = this.requestInfo.id;
+      values["customer"] = this.requestInfo.customer;
+      values["status"] = this.requestInfo.status;
       await requestApi.updateRequest(values);
       var message = new Modal(document.getElementById("messageModal"));
       message.show();
