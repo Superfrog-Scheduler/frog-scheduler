@@ -76,4 +76,10 @@ public class RequestController {
         return new Result(true, StatusCode.SUCCESS, "Find requests by customer success", requestService.findByCustomer(userId));
     }
 
+    @PutMapping("/complete/{requestId}")
+    public Result completeRequest(@PathVariable String requestId) {
+        requestService.completeRequest(requestId);
+        return new Result(true, StatusCode.SUCCESS, "Complete request success");
+    }
+
 }
