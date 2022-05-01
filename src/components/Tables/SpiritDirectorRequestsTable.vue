@@ -11,10 +11,7 @@ export default {
   data() {
     return {
       requestList: [],
-      selectedRequestId: {},
       requestInfo: {},
-
-      selectedRequest: {},
     };
   },
   methods: {
@@ -27,32 +24,26 @@ export default {
     },
     async approveRequest(request) {
       request.status = "Approved";
-      const res = await requestApi.updateRequest(request);
+      await requestApi.updateRequest(request);
     },
     async rejectRequest(request) {
       request.status = "Rejected";
-      const res = await requestApi.updateRequest(request);
+      await requestApi.updateRequest(request);
     },
     async sortRequests(values) {
       this.requestList = values;
     },
     async removeAssignment(request) {
-      const res = await userApi.removeAssignment(request);
+      await userApi.removeAssignment(request);
       this.getAll();
     },
     async editRequest(request) {
       console.log(request);
       this.requestInfo = request;
     },
-    async editRequestSuccess(request) {
+    async editRequestSuccess() {
       this.getAll();
-      request.status = "Approved";
-      const res = await userApi.removeAssignment(request.id);
-    },
-    async assignSuperFrog(request) {
-      request.status = "Assigned";
-      const res = await userApi.removeAssignment(request.id);
-    },
+    }
   },
   mounted() {
     this.getAll();
@@ -93,8 +84,7 @@ export default {
 
       <AssignRequestModal
         id="assign-request-modal"
-        :selectedRequest="this.selectedRequest"
-        @assign-superfrog="assignSuperFrog"
+        :requestInfo="this.requestInfo"
       />
 
       <SortModal id="sort-modal" @sort="sortRequests($event)" />
@@ -192,7 +182,7 @@ export default {
               class="btn btn-success btn-sm col-12"
               data-bs-toggle="modal"
               data-bs-target="#assign-request-modal"
-              @click="this.selectedRequest = request"
+              @click="this.requestInfo = request"
             >
               Assign
             </button>

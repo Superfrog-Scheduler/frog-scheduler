@@ -152,4 +152,10 @@ public class RequestService {
         User customer = userDao.findById(userId).get();
         return customer.getRequests();
     }
+
+    public void completeRequest(String requestId) {
+        Request request = requestDao.findById(requestId).get();
+        request.setStatus("Complete");
+        requestDao.save(request);
+    }
 }

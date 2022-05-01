@@ -71,7 +71,7 @@ export default {
                   class="form-control"
                   label="First name"
                   placeholder="Input first name"
-                  v-model="userInfo.firstname"
+                  v-bind:model-value="userInfo.firstname"
                 ></Field>
                 <ErrorMessage name="fname" as="div"></ErrorMessage>
             </div>
@@ -84,7 +84,7 @@ export default {
                   class="form-control"
                   label="Last name"
                   placeholder="Input last name"
-                  v-model="userInfo.lastname"
+                  v-bind:model-value="userInfo.lastname"
                 ></Field>
                 <ErrorMessage name="lname" as="div"></ErrorMessage>
             </div>
@@ -97,7 +97,7 @@ export default {
                   class="form-control"
                   label="Account name"
                   placeholder="Input account email"
-                  v-model="userInfo.username"
+                  v-bind:model-value="userInfo.username"
                 ></Field>
                 <div v-if="errors.account" class="bing-error">
                   Account name must be a valid email address
@@ -112,7 +112,7 @@ export default {
                   class="form-control"
                   label="Phone number"
                   placeholder="Input phone number"
-                  v-model="userInfo.phone"
+                  v-bind:model-value="userInfo.phone"
                 ></Field>
                 <ErrorMessage name="tel" as="div"></ErrorMessage>
             </div>

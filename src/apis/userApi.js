@@ -96,6 +96,20 @@ const updateUserInfo = async (updatedInfo) => {
   });
 };
 
+const reactivateUser = async (userId) => {
+  console.log("reactivateUser");
+  var session_url = `http://localhost:8080/users/activate/${userId}`;
+
+  await axios.put(session_url);
+};
+
+const deactivateUser = async (userId) => {
+  console.log("deactivateUser");
+  var session_url = `http://localhost:8080/users/${userId}`;
+
+  await axios.delete(session_url);
+};
+
 const getAllSuperFrogs = async () => {
   let token = utils.cacheUtils.get("login_token")?.token;
   const instance = axios.create({
@@ -165,4 +179,6 @@ export default {
   getAllCustomers,
   assignSuperFrog,
   removeAssignment,
+  reactivateUser,
+  deactivateUser
 };
