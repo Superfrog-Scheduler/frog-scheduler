@@ -14,7 +14,7 @@ export default {
       this.studentList = res.data;
     },
     async assignSuperFrog(request, student) {
-      const res = await userApi.assignSuperFrog(request, student);
+      await userApi.assignSuperFrog(request, student);
     }
   },
   mounted() {

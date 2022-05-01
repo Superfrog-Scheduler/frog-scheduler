@@ -158,6 +158,9 @@ public class DBDataInitializer implements CommandLineRunner {
         u6.setUsername("craig@gmail.com");
         u6.setPassword("$2a$12$zpV0R4lHBRyVSxWVZYjKruYlOzZoa1XoqStE7FZ74E0V5zTpDl4TG"); //plain: password
         u6.setEnabled(true);
+        u6.setFirstname("Craig");
+        u6.setLastname("Johnson");
+        u6.setPhone("1098887776");
         u6.setRoles("customer");
 
         userDao.save(u1);

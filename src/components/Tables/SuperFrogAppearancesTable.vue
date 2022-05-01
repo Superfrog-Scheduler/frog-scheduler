@@ -14,7 +14,7 @@ export default {
     },
     async completeRequest(request) {
       request.status = "Completed";
-      const res = await requestApi.update(request);
+      const res = await requestApi.updateRequest(request);
     },
   },
   mounted() {
@@ -49,8 +49,8 @@ export default {
             <tbody>
               <tr v-for="request in requestList" :key="request.id">
                 <td>{{request.id}}</td>
-                <td>{{request.name}}</td>
-                <td>{{request.type}}</td>
+                <td>{{request.eventName}}</td>
+                <td>{{request.eventType}}</td>
                 <td>{{request.customer}}</td>
                 <td>{{request.date}}</td>
                 <td>{{request.startTime}}</td>

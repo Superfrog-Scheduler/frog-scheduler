@@ -11,7 +11,6 @@ export default defineStore('user', {
   actions: {
     async getUserInfo(token) {
       const res = await userApi.info(token, this.id);
-      
       this.userInfo = res.data;
     },
   },
