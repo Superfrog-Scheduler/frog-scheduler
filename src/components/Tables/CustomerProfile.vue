@@ -41,7 +41,7 @@ export default {
 
         <EditUserModal
           id="edit-user-modal"
-          roles="team"
+          roles="customer"
           @user-update="userUpdate($event)"
         />
         <button
