@@ -38,7 +38,6 @@ export default {
       this.getAll();
     },
     async editRequest(request) {
-      console.log(request);
       this.requestInfo = request;
     },
     async editRequestSuccess() {

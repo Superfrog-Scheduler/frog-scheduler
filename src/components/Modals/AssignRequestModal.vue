@@ -14,7 +14,6 @@ export default {
       this.studentList = res.data;
     },
     async assignSuperFrog(studentId) {
-      console.log(this.requestInfo);
       await userApi.assignSuperFrog(this.requestInfo.id, studentId);
     }
   },

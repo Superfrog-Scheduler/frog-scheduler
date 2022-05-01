@@ -19,7 +19,6 @@ export default {
   methods: {
     async login(values) {
       const res = await utils.userLoginUtils.login(values);
-      console.log(res);
       if (res == -1) {
         var message = new Modal(document.getElementById("loginFailModal"));
         message.show();

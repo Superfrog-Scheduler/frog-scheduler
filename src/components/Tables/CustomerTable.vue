@@ -14,7 +14,6 @@ export default {
     async getMyRequests() {
       const res = await requestApi.getAllRequestsByCustomer(this.userInfo.id);
       this.requestList = res.data;
-      console.log(this.requestList);
     },
     async newRequest() {
       this.getMyRequests()

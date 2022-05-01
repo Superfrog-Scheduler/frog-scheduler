@@ -27,7 +27,6 @@ export default {
       this.customerInfo = customer;
     },
     async editUserSuccess(customer) {
-      console.log("customer", customer)
       await userApi.updateUserInfo(customer);
       this.getAll();
     },

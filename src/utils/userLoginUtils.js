@@ -2,7 +2,6 @@ import cache from '@/utils/cacheUtils';
 import userApi from '@/apis/userApi';
 import router from '@/router';
 import useUserStore from '@/store/userStore';
-// import autoloadDynamicRoutes from '@/router/loadDynamicRoutes';
 
 // We only considered happy path here...
 export async function login(loginInfo) {
@@ -27,11 +26,10 @@ export async function login(loginInfo) {
   await userStore.getUserInfo(token);
 
   // add more route records to the router, e.g., /users and /orders based on user's permission list
-  // autoloadDynamicRoutes(router);
+
 
   //after successful login, redirect to home page or requested page prior login
   const routeName = userStore.userInfo.roles
-    // utils.cacheUtils.get('requested_page_prior_login') ?? 'home';
     
 
   router.push({ name: routeName });

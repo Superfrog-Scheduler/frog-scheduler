@@ -13,7 +13,6 @@ export default {
         const cachedValue = JSON.parse(cachedValueString);
         const expire = cachedValue.expire;
   
-        // console.log(cachedValue);
         if (expire && expire < new Date().getTime()) {
           localStorage.removeItem(key);
           return null;

@@ -9,7 +9,6 @@ export default {
   emits: ["sort"],
   methods: {
     async sort(values) {
-      console.log(values);
       let s = values.start.split("-");
       let start = s[1] + "-" + s[2] + "-" + s[0];
       let e = values.end.split("-");

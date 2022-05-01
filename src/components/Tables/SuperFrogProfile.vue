@@ -21,7 +21,6 @@ export default {
   methods: {
     async userUpdate(values) {
       values["roles"] = "team";
-      console.log("updtae", values);
       userApi.updateUserInfo(values);
       let token = utils.cacheUtils.get('login_token')?.token
       const res = await userApi.info(token, this.id)

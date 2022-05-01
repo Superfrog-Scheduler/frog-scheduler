@@ -2,7 +2,6 @@ import { createWebHistory, createRouter } from "vue-router"
 import basicRoutes from './basicRoutes';
 import setupGuard from './guard';
 import useUserStore from '@/store/userStore';
-// import autoloadDynamicRoutes from './loadDynamicRoutes';
 import utils from '@/utils';
 
 const router = createRouter({ 
@@ -19,7 +18,6 @@ const router = createRouter({
 
     const userRole = userStore.userInfo?.role;
 
-    // autoloadDynamicRoutes(router); // add more route records to the router, e.g., /users and /orders
   }
   setupGuard(router); // set up router guard
   app.use(router);

@@ -30,11 +30,9 @@ export default {
   },
   methods: {
     async register(values) {
-      console.log(values)
       userApi.register(values)
       var message = new Modal(document.getElementById("messageModal"))
       message.show()
-      // utils.userLoginUtils.login(values);
     },
     clearInputFields: () => {
       let firstName = ref("");

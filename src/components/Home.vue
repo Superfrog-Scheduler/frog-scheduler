@@ -6,11 +6,6 @@ import SignUpModal from "./Modals/SignUpModal.vue";
 export default {
   components: { SignInModal, SignUpModal },
   props: ["show"],
-  // methods: {
-  //   toDashboard: (){
-  //     router.push()
-  //   }
-  // }
 };
 </script>
 

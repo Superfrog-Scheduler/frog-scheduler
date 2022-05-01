@@ -35,7 +35,6 @@ export default {
     async register(values) {
       
       values["roles"] = "team"
-      console.log(values);
       userApi.register(values);
       var message = new Modal(document.getElementById("messageModal"));
       message.show();

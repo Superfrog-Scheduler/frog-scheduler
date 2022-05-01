@@ -11,7 +11,6 @@ const info = async (token, id) => {
   return await instance
     .get(`/requests/${id}`)
     .then((res) => {
-      console.log(res.data);
       return res.data;
     })
     .catch((error) => {
@@ -42,7 +41,6 @@ const makeRequest = async (newRequestInfo) => {
       customer: customer
     })
     .then((r) => {
-      console.log(r);
       // return r.data;
     })
 
@@ -83,7 +81,6 @@ const updateRequest = async (updatedInfo) => {
       status: status
     })
     .then((res) => {
-      console.log(res.data);
       return res.data;
     })
     .catch((error) => {
@@ -93,7 +90,6 @@ const updateRequest = async (updatedInfo) => {
 
 const getAllByDates = async (start, end) => {
   let token = utils.cacheUtils.get('login_token')?.token
-  console.log("check", start, end);
   const instance = axios.create({
     baseURL: "http://localhost:8080",
     timeout: 1000,
@@ -102,7 +98,6 @@ const getAllByDates = async (start, end) => {
   return await instance
     .get(`/requests/${start}/${end}`)
     .then((res) => {
-      console.log(res.data);
       return res.data;
     })
     .catch((error) => {
@@ -120,7 +115,6 @@ const getAllRequests = async () => {
   return await instance
     .get("/requests")
     .then((res) => {
-      console.log(res.data);
       return res.data;
     })
     .catch((error) => {
@@ -138,7 +132,6 @@ const getAllApprovedRequests = async () => {
   return await instance
     .get("/requests/approved")
     .then((res) => {
-      console.log(res.data);
       return res.data;
     })
     .catch((error) => {
@@ -156,7 +149,6 @@ const getAllRequestsByAssigned = async (userId) => {
   return await instance
     .get(`/requests/for/${userId}`)
     .then((res) => {
-      console.log(res.data);
       return res.data;
     })
     .catch((error) => {
@@ -175,7 +167,6 @@ const getAllRequestsByCustomer = async (userId) => {
   return await instance
     .get(`/requests/made/${userId}`)
     .then((res) => {
-      console.log(res.data);
       return res.data;
     })
     .catch((error) => {

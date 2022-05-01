@@ -3,7 +3,6 @@ import useUserStore from "@/store/userStore";
 import utils from "@/utils";
 
 const info = async (token, id) => {
-  console.log("token", token, id);
   const instance = axios.create({
     baseURL: "http://localhost:8080",
     headers: { Authorization: "Bearer " + token },
@@ -36,7 +35,6 @@ const register = async (registerInfo) => {
       roles: roles,
     })
     .then((r) => {
-      console.log(r);
       // return r.data;
     })
 
@@ -49,7 +47,6 @@ const login = async (loginInfo) => {
   var session_url = "http://localhost:8080/auth/login";
   var uname = loginInfo.account;
   var pass = loginInfo.password;
-  console.log("login", uname, pass);
 
   return await axios
     .post(
@@ -67,7 +64,6 @@ const login = async (loginInfo) => {
       }
     )
     .then((r) => {
-      console.log(r);
       return r.data;
     })
 
@@ -78,7 +74,6 @@ const login = async (loginInfo) => {
 };
 
 const updateUserInfo = async (updatedInfo) => {
-  console.log("updated", updatedInfo);
   let id = updatedInfo.id;
   var session_url = `http://localhost:8080/users/${id}`;
   var uname = updatedInfo.account;
@@ -120,7 +115,6 @@ const getAllSuperFrogs = async () => {
   return await instance
     .get("/users/superfrogs")
     .then((res) => {
-      console.log(res.data);
       return res.data;
     })
     .catch((error) => {
@@ -138,7 +132,6 @@ const getAllCustomers = async () => {
   return await instance
     .get("/users/customers")
     .then((res) => {
-      console.log(res.data);
       return res.data;
     })
     .catch((error) => {
@@ -154,7 +147,6 @@ const assignSuperFrog = async (requestId, userId) => {
 
 const removeAssignment = async (requestId) => {
   let token = utils.cacheUtils.get("login_token")?.token;
-  console.log(requestId);
   const instance = axios.create({
     baseURL: "http://localhost:8080",
     timeout: 1000,
@@ -163,7 +155,6 @@ const removeAssignment = async (requestId) => {
   return await instance
     .put(`/users/remove/${requestId.id}`)
     .then((res) => {
-      console.log(res.data);
       return res.data;
     })
     .catch((error) => {
