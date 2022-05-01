@@ -71,4 +71,10 @@ public class UserController {
         return new Result(true, StatusCode.SUCCESS, "Find all customers success", userService.findAllCustomers());
     }
 
+    @PutMapping("/remove/{requestId}")
+    public Result removeUserFromRequest(@PathVariable String requestId) {
+        userService.removeUserFromRequest(requestId);
+        return new Result(true, StatusCode.SUCCESS, "Remove user from request success");
+    }
+
 }
