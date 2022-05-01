@@ -63,6 +63,14 @@ public class UserService implements UserDetailsService {
     public void disable(Integer userId) {
         User user = userDao.findById(userId).get();
         user.setEnabled(false);
+        user.setAppearences(null);
+        List<Request> requests = requestDao.findByAssignedTo(user);
+        for(int i = 0; i < requests.size(); i++) {
+            Request request = requests.get(i);
+            request.setStatus("Approved");
+            request.setAssignedTo(null);
+            requestDao.save(request);
+        }
         userDao.save(user);
     }
 
