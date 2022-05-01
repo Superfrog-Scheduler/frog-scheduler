@@ -17,11 +17,11 @@ export default {
     },
     async deactivateCustomer(customer) {
       customer.enabled = false;
-      const res = await userApi.updateUserInfo(customer);
+      const res = await userApi.deactivateUser(customer.id);
     },
-    async rejectRequest(customer) {
+    async reactivateCustomer(customer) {
       customer.enabled = true;
-      const res = await userApi.updateUserInfo(customer);
+      const res = await userApi.reactivateUser(customer.id);
     },
     async editUser(customer) {
       this.customerInfo = customer;
