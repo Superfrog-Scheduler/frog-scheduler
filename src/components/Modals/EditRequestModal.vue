@@ -74,7 +74,7 @@ export default {
                   class="form-control"
                   label="Event Name"
                   placeholder="Input event name"
-                  v-model="requestInfo.eventName"
+                  v-bind:model-value="requestInfo.eventName"
                 ></Field>
                 <ErrorMessage name="eventName" as="div"></ErrorMessage>
             </div>
@@ -87,7 +87,7 @@ export default {
                   class="form-control"
                   label="Event Type"
                   placeholder="Input event type"
-                  v-model="requestInfo.eventType"
+                  v-bind:model-value="requestInfo.eventType"
                 ></Field>
                 <ErrorMessage name="eventType" as="div"></ErrorMessage>
             </div>
@@ -101,7 +101,7 @@ export default {
                   class="form-control"
                   label="Event date"
                   placeholder="Input event date"
-                  v-model="requestInfo.date"
+                  v-bind:model-value="requestInfo.date"
                 ></Field>
                 <ErrorMessage name="date" as="div"></ErrorMessage>
             </div>
@@ -115,7 +115,7 @@ export default {
                   class="form-control"
                   label="Start time"
                   placeholder="Input start time"
-                  v-model="requestInfo.startTime"
+                  v-bind:model-value="requestInfo.startTime"
                 ></Field>
                 <ErrorMessage name="startTime" as="div"></ErrorMessage>
             </div>
@@ -129,7 +129,7 @@ export default {
                   class="form-control"
                   label="End time"
                   placeholder="Input end time"
-                  v-model="requestInfo.endTime"
+                  v-bind:model-value="requestInfo.endTime"
                 ></Field>
                 <ErrorMessage name="endTime" as="div"></ErrorMessage>
             </div>
@@ -142,7 +142,7 @@ export default {
                   class="form-control"
                   label="Event location"
                   placeholder="Input event location"
-                  v-model="requestInfo.location"
+                  v-bind:model-value="requestInfo.location"
                 ></Field>
                 <ErrorMessage name="location" as="div"></ErrorMessage>
             </div>
@@ -155,7 +155,7 @@ export default {
                   class="form-control"
                   label="Event location"
                   placeholder="Input event price"
-                  v-model="requestInfo.price"
+                  v-bind:model-value="requestInfo.price"
                 ></Field>
                 <ErrorMessage name="price" as="div"></ErrorMessage>
             </div>
