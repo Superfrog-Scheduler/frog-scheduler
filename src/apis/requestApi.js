@@ -149,4 +149,23 @@ const getAllRequestsByUser = async (userId) => {
       console.error(error.response.data);
     });
 }
-export default { info, makeRequest, updateRequest, getAllRequests, getAllRequestsByUser, getAllByDates };
+
+const getAllRequestsByCustomer = async (userId) => {
+  let token = utils.cacheUtils.get('login_token')?.token
+  console.log(token);
+  const instance = axios.create({
+    baseURL: "http://localhost:8080",
+    timeout: 1000,
+    headers: { Authorization: "Bearer " + token },
+  });
+  return await instance
+    .get(`/requests/made/${userId}`)
+    .then((res) => {
+      console.log(res.data);
+      return res.data;
+    })
+    .catch((error) => {
+      console.error(error.response.data);
+    });
+}
+export default { info, makeRequest, updateRequest, getAllRequests, getAllRequestsByUser, getAllByDates, getAllRequestsByCustomer };

@@ -32,7 +32,6 @@ export default {
     },
     async sortRequests(values){
       this.requestList = values
-      const res = await requestApi.updateRequest(request);
     },
     async removeAssignment(request) {
       const res = await userApi.removeAssignment(request);
