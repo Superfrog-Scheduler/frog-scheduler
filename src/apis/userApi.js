@@ -12,7 +12,6 @@ const info = async (token, id) => {
   return await instance
     .get(`/users/${id}`)
     .then((res) => {
-      console.log(res.data);
       return res.data;
     })
     .catch((error) => {
@@ -89,14 +88,14 @@ const updateUserInfo = async (updatedInfo) => {
   var roles = updatedInfo.roles;
 
   await axios.put(session_url,
-      {
-        username: uname,
-        firstname: fname,
-        lastname: lname,
-        phone: phone,
-        roles: roles
-      },
-    )
+    {
+      username: uname,
+      firstname: fname,
+      lastname: lname,
+      phone: phone,
+      roles: roles
+    },
+  )
 }
 
 const getAllSuperFrogs = async () => {
@@ -104,7 +103,7 @@ const getAllSuperFrogs = async () => {
   const instance = axios.create({
     baseURL: "http://localhost:8080",
     timeout: 1000,
-    headers: { Authorization: "Bearer " +  token},
+    headers: { Authorization: "Bearer " + token },
   });
   return await instance
     .get("/users/superfrogs")
@@ -122,7 +121,7 @@ const getAllCustomers = async () => {
   const instance = axios.create({
     baseURL: "http://localhost:8080",
     timeout: 1000,
-    headers: { Authorization: "Bearer " +  token},
+    headers: { Authorization: "Bearer " + token },
   });
   return await instance
     .get("/users/customers")
