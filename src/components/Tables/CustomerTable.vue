@@ -1,6 +1,7 @@
 <script>
 import requestApi from "@/apis/requestApi";
 import NewRequestModal from "../Modals/NewRequestModal.vue";
+import useUserStore from '@/store/userStore';
 
 export default {
   components: { NewRequestModal },
@@ -11,13 +12,16 @@ export default {
     };
   },
   methods: {
-    async getRequests() {
-      const res = await requestApi.getAllRequests();
-      if (res) this.requestList = res.data;
+    async getMyRequests() {
+      const res = await requestApi.getAllRequestsByUser(this.userInfo.id);
+      this.requestList = res.data;
+      console.log(this.requestList);
     }
   },
   mounted() {
-    this.getRequests()
+    const userStore = useUserStore();
+    this.userInfo = userStore.userInfo
+    this.getMyRequests()
   },
 };
 </script>

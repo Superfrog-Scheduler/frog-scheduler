@@ -62,6 +62,7 @@ const updateRequest = async (updatedInfo) => {
   var price = updatedInfo.price;
   var customer = updatedInfo.customer;
   var status = updatedInfo.status;
+  console.log("updateRequest");
   
   let token = utils.cacheUtils.get('login_token')?.token
   const instance = axios.create({
@@ -93,6 +94,7 @@ const updateRequest = async (updatedInfo) => {
 
 const getAllRequests = async () => {
   let token = utils.cacheUtils.get('login_token')?.token
+  console.log(token);
   const instance = axios.create({
     baseURL: "http://localhost:8080",
     timeout: 1000,
@@ -109,26 +111,9 @@ const getAllRequests = async () => {
     });
 }
 
-const getAllApprovedRequests = async () => {
+const getAllRequestsByUser = async (userId) => {
   let token = utils.cacheUtils.get('login_token')?.token
-  const instance = axios.create({
-    baseURL: "http://localhost:8080",
-    timeout: 1000,
-    headers: { Authorization: "Bearer " + token },
-  });
-  return await instance
-    .get("/requests/approved")
-    .then((res) => {
-      console.log(res.data);
-      return res.data;
-    })
-    .catch((error) => {
-      console.error(error.response.data);
-    });
-}
-
-const getAllRequestsByAssigned = async (userId) => {
-  let token = utils.cacheUtils.get('login_token')?.token
+  console.log(token);
   const instance = axios.create({
     baseURL: "http://localhost:8080",
     timeout: 1000,
@@ -144,4 +129,4 @@ const getAllRequestsByAssigned = async (userId) => {
       console.error(error.response.data);
     });
 }
-export default { info, makeRequest, updateRequest, getAllRequests, getAllRequestsByAssigned, getAllApprovedRequests };
+export default { info, makeRequest, updateRequest, getAllRequests, getAllRequestsByUser };
