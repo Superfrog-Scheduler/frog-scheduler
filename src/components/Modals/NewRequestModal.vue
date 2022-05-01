@@ -29,7 +29,8 @@ export default {
       let endTime = document.getElementById("end-time-input").innerText;
       let firstName = userInfo.firstname;
       let lastName = userInfo.lastname;
-      values["customer"] = firstName.concat(" ", lastName)
+      // values["customer"] = firstName.concat(" ", lastName)
+      values["customer"] = userInfo
       let d = values.date.split("-")
       values["date"] = d[1] + "-" + d[2] + "-" + d[0]
       //values["price"] = Math.round((Date.parse(date.concat(" ", startTime))-Date.parse(date.concat(" ", endTime)))/1000/60/60*100)

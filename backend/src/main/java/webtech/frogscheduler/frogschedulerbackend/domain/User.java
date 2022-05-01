@@ -23,8 +23,29 @@ public class User implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "assignedTo")
     @JsonIgnore
     private List<Request> appearences = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
+    @JsonIgnore
+    private List<Request> requests = new ArrayList<>();
 
     public User(){
+    }
+
+    public List<Request> getRequests() {
+        return requests;
+    }
+
+    public void setRequests(List<Request> requests) {
+        this.requests = requests;
+    }
+
+    public void addRequest(Request request) {
+        request.setCustomer(this);
+        this.requests.add(request);
+    }
+
+    public void removeRequest(Request request) {
+        request.setCustomer(null);
+        this.requests.remove(request);
     }
 
     public List<Request> getAppearences() {

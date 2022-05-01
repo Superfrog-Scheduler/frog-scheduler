@@ -73,6 +73,7 @@ const login = async (loginInfo) => {
 
     .catch(function (error) {
       console.log("Error on Authentication");
+      return "Login Fail"
     });
 };
 

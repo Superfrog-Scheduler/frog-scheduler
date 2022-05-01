@@ -149,16 +149,7 @@ public class RequestService {
     }
 
     public List<Request> findByCustomer(Integer userId){
-        List<Request> all = requestDao.findAll();
-        List<Request> sub = new ArrayList<>();
         User customer = userDao.findById(userId).get();
-        String name = customer.getFirstname() + " " + customer.getLastname();
-        for(Request request : all){
-
-            if(request.getCustomer().equals(name)){
-                sub.add(request);
-            }
-        }
-        return sub;
+        return customer.getRequests();
     }
 }
