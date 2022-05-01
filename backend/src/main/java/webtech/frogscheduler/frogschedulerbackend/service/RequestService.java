@@ -36,9 +36,12 @@ public class RequestService {
             User user = userDao.findByUsername(authentication.getName());
             return requestDao.findByAssignedTo(user);
         }
-        else {
+        else if(role.equals("ROLE_director")){
             System.out.println("find all requests");
             return requestDao.findAll();
+        }
+        else {
+            return null;
         }
     }
 
@@ -66,10 +69,11 @@ public class RequestService {
         List authorities = (List) authentication.getAuthorities();
         String role = authorities.get(0).toString();
         System.out.println(role);
-        if(role.equals("ROLE_team") || role.equals("ROLE_director")) {
+        if(role.equals("ROLE_director") || role.equals("ROLE_team")) {
             updatedRequest.setId(requestId);
             requestDao.save(updatedRequest);
         }
+
     }
 
     public List<Request> findAllApproved(Authentication authentication) {

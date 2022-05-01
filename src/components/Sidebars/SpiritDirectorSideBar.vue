@@ -36,7 +36,7 @@ export default {
           height="155"
           class="d-flex rounded-circle"
         />
-        <span class="d-flex fs-5 d-none d-sm-inline">John Doe</span>
+        <span class="d-flex fs-5 d-none d-sm-inline">Spirit Director</span>
       </div>
       <ul
         class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start"

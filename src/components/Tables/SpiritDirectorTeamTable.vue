@@ -1,10 +1,10 @@
 <script>
-import EditStudentModal from "../Modals/EditStudentModal.vue";
+import EditUserModal from "../Modals/EditUserModal.vue";
 import NewFrogModal from "../Modals/NewFrogModal.vue";
 import userApi from "@/apis/userApi";
 
 export default {
-  components: { EditStudentModal, NewFrogModal },
+  components: { EditUserModal, NewFrogModal },
   data() {
     return {
       studentList: [],
@@ -40,7 +40,7 @@ export default {
         </button>
       </div>
     </div>
-    <EditStudentModal id="edit-student-modal" />
+    <EditUserModal id="edit-student-modal" roles="team" />
     <table class="table">
       <thead>
         <tr>

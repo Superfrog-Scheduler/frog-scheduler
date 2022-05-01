@@ -53,6 +53,8 @@ public class UserService implements UserDetailsService {
 
     public void update(Integer userId, User updatedUser) {
         updatedUser.setId(userId);
+        updatedUser.setPassword(userDao.findById(userId).get().getPassword());
+        updatedUser.setEnabled(true);
         userDao.save(updatedUser);
     }
 
@@ -82,6 +84,7 @@ public class UserService implements UserDetailsService {
             requestToBeAssigned.getAssignedTo().removeAppearence(requestToBeAssigned);
         }
         user.addAppearence(requestToBeAssigned);
+        requestToBeAssigned.setStatus("Assigned");
     }
 
     public List<User> findAllSuperFrogs() {
