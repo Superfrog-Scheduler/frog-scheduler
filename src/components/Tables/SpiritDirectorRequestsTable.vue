@@ -22,11 +22,11 @@ export default {
     },
     async approveRequest(request) {
       request.status = "Approved";
-      const res = await requestApi.update(request);
+      const res = await requestApi.updateRequest(request);
     },
     async rejectRequest(request) {
       request.status = "Rejected";
-      const res = await requestApi.update(request);
+      const res = await requestApi.updateRequest(request);
     }
   },
   mounted() {
@@ -49,8 +49,8 @@ export default {
           Download as Excel
         </button>
       </div>
-      <EditRequestModal id="edit-request-modal" />
-      <AssignRequestModal id="assign-request-modal" :request="selectedRequest" />
+      <EditRequestModal id="edit-request-modal" request="selectedRequest" />
+      <AssignRequestModal id="assign-request-modal" request=selectedRequest />
     </div>
     <table class="table" id="requests-table">
       <thead>

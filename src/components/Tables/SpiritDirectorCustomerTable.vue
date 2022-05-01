@@ -1,5 +1,5 @@
 <script>
-import EditCustomerModal from "../Modals/EditStudentModal.vue";
+import EditCustomerModal from "../Modals/EditCustomerModal.vue";
 import userApi from "@/apis/userApi";
 
 export default {
@@ -14,6 +14,14 @@ export default {
       const res = await userApi.getAllCustomers();
       this.customerList = res.data;
     },
+    async deactivateCustomer(customer) {
+      customer.enabled = false;
+      const res = await userApi.updateUserInfo(customer);
+    },
+    async rejectRequest(customer) {
+      customer.enabled = true;
+      const res = await userApi.updateUserInfo(customer);
+    }
   },
   mounted() {
     this.getAll()
@@ -58,8 +66,8 @@ export default {
                     data-bs-target="#edit-customer-modal">Edit</button>
                 </td>
                 <td>
-                  <button v-if="customer.enabled" type="button" class="btn btn-danger btn-sm me-2">Deactivate</button>
-                  <button v-else type="button" class="btn btn-success btn-sm">Reactivate</button>
+                  <button v-if="customer.enabled" @click="deactivateCustomer(customer)" type="button" class="btn btn-danger btn-sm me-2">Deactivate</button>
+                  <button v-else type="button" @click="reactivateCustomer(customer)" class="btn btn-success btn-sm">Reactivate</button>
                 </td>
               </tr>
             </tbody>

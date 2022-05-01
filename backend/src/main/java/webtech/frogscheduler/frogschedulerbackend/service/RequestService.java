@@ -66,7 +66,7 @@ public class RequestService {
         List authorities = (List) authentication.getAuthorities();
         String role = authorities.get(0).toString();
         System.out.println(role);
-        if(role.equals("ROLE_director")) {
+        if(role.equals("ROLE_team") || role.equals("ROLE_director")) {
             updatedRequest.setId(requestId);
             requestDao.save(updatedRequest);
         }
