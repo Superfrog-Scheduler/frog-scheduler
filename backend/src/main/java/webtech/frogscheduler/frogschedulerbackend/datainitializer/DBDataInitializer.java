@@ -30,7 +30,7 @@ public class DBDataInitializer implements CommandLineRunner {
         r1.setLocation("123 main st.");
         r1.setPrice(4000);
         r1.setStatus("Assigned");
-        r1.setCustomer("Dr. Wei");
+//        r1.setCustomer("Dr. Wei");
 
         Request r2 = new Request();
         r2.setId("124");
@@ -42,7 +42,7 @@ public class DBDataInitializer implements CommandLineRunner {
         r2.setLocation("321 berry st.");
         r2.setPrice(5000);
         r2.setStatus("Assigned");
-        r2.setCustomer("John Smith");
+//        r2.setCustomer("John Smith");
 
         Request r3 = new Request();
         r3.setId("126");
@@ -54,7 +54,7 @@ public class DBDataInitializer implements CommandLineRunner {
         r3.setLocation("121 apple st.");
         r3.setPrice(10000000);
         r3.setStatus("Assigned");
-        r3.setCustomer("Jane Doe");
+//        r3.setCustomer("Jane Doe");
 
         Request r4 = new Request();
         r4.setId("125");
@@ -66,7 +66,7 @@ public class DBDataInitializer implements CommandLineRunner {
         r4.setLocation("121 dover st.");
         r4.setPrice(500);
         r4.setStatus("Approved");
-        r4.setCustomer("Jane Doe");
+//        r4.setCustomer("Jane Doe");
 
         Request r5 = new Request();
         r5.setId("127");
@@ -78,7 +78,7 @@ public class DBDataInitializer implements CommandLineRunner {
         r5.setLocation("121 main st.");
         r5.setPrice(500);
         r5.setStatus("Rejected");
-        r5.setCustomer("Bob Doe");
+//        r5.setCustomer("Bob Doe");
 
         Request r6 = new Request();
         r6.setId("128");
@@ -90,7 +90,7 @@ public class DBDataInitializer implements CommandLineRunner {
         r6.setLocation("123 main st.");
         r6.setPrice(10);
         r6.setStatus("Assigned");
-        r6.setCustomer("Jim Doe");
+//        r6.setCustomer("Jim Doe");
 
         Request r7 = new Request();
         r7.setId("129");
@@ -102,7 +102,8 @@ public class DBDataInitializer implements CommandLineRunner {
         r7.setLocation("12345 main st.");
         r7.setPrice(1000);
         r7.setStatus("Assigned");
-        r7.setCustomer("Jim John");
+//        r7.setCustomer("Jim John");
+
 
          User u1 = new User();
          u1.setUsername("john@gmail.com");
@@ -132,6 +133,7 @@ public class DBDataInitializer implements CommandLineRunner {
         u3.setFirstname("Maddie");
         u3.setLastname("Wilson");
         u3.setPhone("9998887776");
+
 
         User u4 = new User();
         u4.setUsername("bill@gmail.com");
@@ -163,12 +165,21 @@ public class DBDataInitializer implements CommandLineRunner {
         u6.setPhone("1098887776");
         u6.setRoles("customer");
 
+
         userDao.save(u1);
         userDao.save(u2);
         userDao.save(u3);
         userDao.save(u4);
         userDao.save(u5);
         userDao.save(u6);
+
+        u3.addRequest(r4);
+        u3.addRequest(r5);
+        u3.addRequest(r6);
+        u3.addRequest(r7);
+        u6.addRequest(r1);
+        u6.addRequest(r2);
+        u6.addRequest(r3);
 
         requestDao.save(r1);
         requestDao.save(r2);
@@ -177,5 +188,7 @@ public class DBDataInitializer implements CommandLineRunner {
         requestDao.save(r5);
         requestDao.save(r6);
         requestDao.save(r7);
+
+
     }
 }

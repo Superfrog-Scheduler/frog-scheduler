@@ -28,7 +28,6 @@ export async function login(loginInfo) {
   const routeName = userStore.userInfo.roles
     // utils.cacheUtils.get('requested_page_prior_login') ?? 'home';
     
-  console.log(userStore.userInfo.roles)
 
   router.push({ name: routeName });
 }

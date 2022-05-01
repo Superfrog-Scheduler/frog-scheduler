@@ -14,7 +14,7 @@ export default {
       selectedRequestId: {},
       requestInfo: {},
 
-      selectedRequest: {}
+      selectedRequest: {},
     };
   },
   methods: {
@@ -33,15 +33,16 @@ export default {
       request.status = "Rejected";
       const res = await requestApi.updateRequest(request);
     },
-    async sortRequests(values){
-      this.requestList = values
+    async sortRequests(values) {
+      this.requestList = values;
     },
     async removeAssignment(request) {
       const res = await userApi.removeAssignment(request);
+      this.getAll();
     },
     async editRequest(request) {
-      console.log(request)
-      this.requestInfo = request
+      console.log(request);
+      this.requestInfo = request;
     },
     async editRequestSuccess(request) {
       this.getAll();
@@ -51,7 +52,7 @@ export default {
     async assignSuperFrog(request) {
       request.status = "Assigned";
       const res = await userApi.removeAssignment(request.id);
-    }
+    },
   },
   mounted() {
     this.getAll();
@@ -64,23 +65,21 @@ export default {
     <div class="card">
       <div class="card-body d-flex justify-content-between">
         <div class="sort">
-        <button
-          type="button"
-          class="btn btn-light btn-sm btn-outline-dark"
-          data-bs-toggle="modal"
-          data-bs-target="#sort-modal"
-          
-        >
-          Sort By Date
-        </button>
-        <button
-          type="button"
-          class="btn btn-light btn-sm btn-dark"
-          @click="getAll"
-          
-        >
-          Reset
-        </button>
+          <button
+            type="button"
+            class="btn btn-light btn-sm btn-outline-dark"
+            data-bs-toggle="modal"
+            data-bs-target="#sort-modal"
+          >
+            Sort By Date
+          </button>
+          <button
+            type="button"
+            class="btn btn-light btn-sm btn-dark"
+            @click="getAll"
+          >
+            Reset
+          </button>
         </div>
         <h4 class="card-title">Requests</h4>
         <button
@@ -91,13 +90,14 @@ export default {
           Download as Excel
         </button>
       </div>
-      
-      <AssignRequestModal 
-      id="assign-request-modal" 
-      :selectedRequest="this.selectedRequest"
-      @assign-superfrog="assignSuperFrog"/>
 
-      <SortModal id="sort-modal" @sort="sortRequests($event)"/>
+      <AssignRequestModal
+        id="assign-request-modal"
+        :selectedRequest="this.selectedRequest"
+        @assign-superfrog="assignSuperFrog"
+      />
+
+      <SortModal id="sort-modal" @sort="sortRequests($event)" />
     </div>
     <table class="table" id="requests-table">
       <thead>
@@ -120,7 +120,7 @@ export default {
           <td>{{ request.id }}</td>
           <td>{{ request.eventName }}</td>
           <td>{{ request.eventType }}</td>
-          <td>{{ request.customer }}</td>
+          <td>{{ request.customerName }}</td>
           <td>{{ request.date }}</td>
           <td>{{ request.startTime }}</td>
           <td>{{ request.endTime }}</td>
@@ -163,7 +163,11 @@ export default {
             >
               Edit
             </button>
-            <EditRequestModal id="edit-request-modal" :requestInfo="requestInfo" @edit-request="editRequestSuccess($event)" />
+            <EditRequestModal
+              id="edit-request-modal"
+              :requestInfo="requestInfo"
+              @edit-request="editRequestSuccess($event)"
+            />
           </td>
           <td v-else colspan="3" style="color: gray">–</td>
           <td v-if="request.status == 'Pending'">
@@ -188,14 +192,17 @@ export default {
               class="btn btn-success btn-sm col-12"
               data-bs-toggle="modal"
               data-bs-target="#assign-request-modal"
-              @click="this.selectedRequest=request">
+              @click="this.selectedRequest = request"
+            >
               Assign
             </button>
           </td>
           <td v-if="request.status == 'Assigned'">
-            <button type="button" 
+            <button
+              type="button"
               class="btn btn-danger btn-sm col-12"
-              @click="removeAssignment(request)">
+              @click="removeAssignment(request)"
+            >
               Remove
             </button>
           </td>
