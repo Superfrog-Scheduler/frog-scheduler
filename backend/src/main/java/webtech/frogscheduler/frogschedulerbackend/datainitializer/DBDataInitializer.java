@@ -24,7 +24,7 @@ public class DBDataInitializer implements CommandLineRunner {
         r1.setId("123");
         r1.setEventName("event 1");
         r1.setEventType("birthday");
-        r1.setDate("4/29/2022");
+        r1.setDate("04-02-2022");
         r1.setStartTime("12:00 PM");
         r1.setEndTime("2:00 PM");
         r1.setLocation("123 main st.");
@@ -36,7 +36,7 @@ public class DBDataInitializer implements CommandLineRunner {
         r2.setId("124");
         r2.setEventName("event 2");
         r2.setEventType("graduation");
-        r2.setDate("5/06/2022");
+        r2.setDate("05-06-2022");
         r2.setStartTime("1:00 PM");
         r2.setEndTime("3:00 PM");
         r2.setLocation("321 berry st.");
@@ -48,7 +48,7 @@ public class DBDataInitializer implements CommandLineRunner {
         r3.setId("126");
         r3.setEventName("event 3");
         r3.setEventType("alumni party");
-        r3.setDate("4/24/2022");
+        r3.setDate("04-24-2022");
         r3.setStartTime("2:00 PM");
         r3.setEndTime("5:00 PM");
         r3.setLocation("121 apple st.");
@@ -60,7 +60,7 @@ public class DBDataInitializer implements CommandLineRunner {
         r4.setId("125");
         r4.setEventName("event 4");
         r4.setEventType("easter party");
-        r4.setDate("4/20/2022");
+        r4.setDate("04-20-2022");
         r4.setStartTime("1:00 PM");
         r4.setEndTime("5:00 PM");
         r4.setLocation("121 dover st.");
@@ -72,7 +72,7 @@ public class DBDataInitializer implements CommandLineRunner {
         r5.setId("127");
         r5.setEventName("event 5");
         r5.setEventType("Birthday party");
-        r5.setDate("4/20/2022");
+        r5.setDate("04-20-2022");
         r5.setStartTime("2:00 PM");
         r5.setEndTime("5:00 PM");
         r5.setLocation("121 main st.");
@@ -84,7 +84,7 @@ public class DBDataInitializer implements CommandLineRunner {
         r6.setId("128");
         r6.setEventName("event 6");
         r6.setEventType("Halloween party");
-        r6.setDate("2/9/2023");
+        r6.setDate("02-09-2023");
         r6.setStartTime("2:00 PM");
         r6.setEndTime("5:00 PM");
         r6.setLocation("123 main st.");
@@ -96,7 +96,7 @@ public class DBDataInitializer implements CommandLineRunner {
         r7.setId("129");
         r7.setEventName("event 7");
         r7.setEventType("Christmas party");
-        r7.setDate("7/8/2023");
+        r7.setDate("07-08-2023");
         r7.setStartTime("2:00 PM");
         r7.setEndTime("9:00 PM");
         r7.setLocation("12345 main st.");

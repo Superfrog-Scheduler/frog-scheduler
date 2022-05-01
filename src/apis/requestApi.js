@@ -91,6 +91,25 @@ const updateRequest = async (updatedInfo) => {
     });
 }
 
+const getAllByDates = async (start, end) => {
+  let token = utils.cacheUtils.get('login_token')?.token
+  console.log("check", start, end);
+  const instance = axios.create({
+    baseURL: "http://localhost:8080",
+    timeout: 1000,
+    headers: { Authorization: "Bearer " + token },
+  });
+  return await instance
+    .get(`/requests/${start}/${end}`)
+    .then((res) => {
+      console.log(res.data);
+      return res.data;
+    })
+    .catch((error) => {
+      console.error(error.response.data);
+    });
+}
+
 const getAllRequests = async () => {
   let token = utils.cacheUtils.get('login_token')?.token
   const instance = axios.create({
@@ -144,4 +163,4 @@ const getAllRequestsByAssigned = async (userId) => {
       console.error(error.response.data);
     });
 }
-export default { info, makeRequest, updateRequest, getAllRequests, getAllRequestsByAssigned, getAllApprovedRequests };
+export default { info, makeRequest, updateRequest, getAllRequests, getAllRequestsByAssigned, getAllApprovedRequests, getAllByDates };

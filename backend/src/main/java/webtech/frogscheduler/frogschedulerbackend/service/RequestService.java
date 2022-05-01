@@ -10,6 +10,9 @@ import webtech.frogscheduler.frogschedulerbackend.domain.User;
 import webtech.frogscheduler.frogschedulerbackend.utils.IdWorker;
 
 import javax.transaction.Transactional;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -127,5 +130,20 @@ public class RequestService {
         else {
             return null;
         }
+    }
+
+    public List<Request> findByDates(String start, String end) {
+        List<Request> all = requestDao.findAll();
+        List<Request> sub = new ArrayList<>();
+        System.out.println("start " + start + " end " + end);
+        LocalDate from = LocalDate.parse(start, DateTimeFormatter.ofPattern("MM-dd-yyyy"));
+        LocalDate to = LocalDate.parse(end, DateTimeFormatter.ofPattern("MM-dd-yyyy"));
+        for(Request request : all){
+            LocalDate date = LocalDate.parse(request.getDate(), DateTimeFormatter.ofPattern("MM-dd-yyyy"));
+            if(date.compareTo(from) >= 0 && date.compareTo(to) <= 0){
+                sub.add(request);
+            }
+        }
+        return sub;
     }
 }

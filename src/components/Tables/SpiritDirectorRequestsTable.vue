@@ -3,10 +3,11 @@ import EditRequestModal from "../Modals/EditRequestModal.vue";
 import AssignRequestModal from "../Modals/AssignRequestModal.vue";
 import downloadApi from "@/apis/downloadApi";
 import requestApi from "@/apis/requestApi";
+import SortModal from "../Modals/SortModal.vue";
 import userApi from "@/apis/userApi";
 
 export default {
-  components: { EditRequestModal, AssignRequestModal },
+  components: { EditRequestModal, AssignRequestModal, SortModal },
   data() {
     return {
       requestList: [],
@@ -27,6 +28,10 @@ export default {
     },
     async rejectRequest(request) {
       request.status = "Rejected";
+      const res = await requestApi.update(request);
+    },
+    async sortRequests(values){
+      this.requestList = values
       const res = await requestApi.updateRequest(request);
     },
     async removeAssignment(request) {
@@ -34,7 +39,7 @@ export default {
     }
   },
   mounted() {
-    this.getAll()
+    this.getAll();
   },
 };
 </script>
@@ -43,7 +48,25 @@ export default {
   <div class="container col py-3" id="app">
     <div class="card">
       <div class="card-body d-flex justify-content-between">
-        <div><!-- empty div so content-between looks good --></div>
+        <div class="sort">
+        <button
+          type="button"
+          class="btn btn-light btn-sm btn-outline-dark"
+          data-bs-toggle="modal"
+          data-bs-target="#sort-modal"
+          
+        >
+          Sort By Date
+        </button>
+        <button
+          type="button"
+          class="btn btn-light btn-sm btn-dark"
+          @click="getAll"
+          
+        >
+          Reset
+        </button>
+        </div>
         <h4 class="card-title">Requests</h4>
         <button
           type="button"
@@ -53,8 +76,12 @@ export default {
           Download as Excel
         </button>
       </div>
-      <EditRequestModal id="edit-request-modal" :requestId="selectedRequestId" />
-      <AssignRequestModal id="assign-request-modal" :requestId=selectedRequestId />
+      <EditRequestModal id="edit-request-modal" />
+      <AssignRequestModal
+        id="assign-request-modal"
+        :request="selectedRequest"
+      />
+      <SortModal id="sort-modal" @sort="sortRequests($event)"/>
     </div>
     <table class="table" id="requests-table">
       <thead>
@@ -108,7 +135,9 @@ export default {
               request.status
             }}</span>
           </td>
-          <td v-if="request.status != 'Rejected' && request.status != 'Completed'">
+          <td
+            v-if="request.status != 'Rejected' && request.status != 'Completed'"
+          >
             <button
               type="button"
               class="btn btn-light btn-sm btn-outline-dark"
@@ -120,10 +149,18 @@ export default {
           </td>
           <td v-else colspan="3" style="color: gray">–</td>
           <td v-if="request.status == 'Pending'">
-            <button type="button" @click="approveRequest(request)" class="btn btn-success btn-sm me-2">
+            <button
+              type="button"
+              @click="approveRequest(request)"
+              class="btn btn-success btn-sm me-2"
+            >
               Approve
             </button>
-            <button type="button" @click="rejectRequest(request)" class="btn btn-danger btn-sm">
+            <button
+              type="button"
+              @click="rejectRequest(request)"
+              class="btn btn-danger btn-sm"
+            >
               Reject
             </button>
           </td>
