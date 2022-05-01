@@ -8,16 +8,25 @@ export default {
   data() {
     return {
       studentList: [],
+      studentInfo: {},
     };
   },
   methods: {
     async getAll() {
       const res = await userApi.getAllSuperFrogs();
       this.studentList = res.data;
-    }
+    },
+    async editUser(student) {
+      this.studentInfo = student;
+    },
+    async editUserSuccess(cstudent) {
+      console.log("student", student);
+      await userApi.updateUserInfo(student);
+      this.getAll();
+    },
   },
   mounted() {
-    this.getAll()
+    this.getAll();
   },
 };
 </script>
@@ -40,7 +49,6 @@ export default {
         </button>
       </div>
     </div>
-    <EditUserModal id="edit-student-modal" roles="team" />
     <table class="table">
       <thead>
         <tr>
@@ -68,9 +76,11 @@ export default {
               class="btn btn-light btn-sm btn-outline-dark"
               data-bs-toggle="modal"
               data-bs-target="#edit-student-modal"
+              @click="editUser(student)"
             >
               Edit
             </button>
+            <EditUserModal id="edit-student-modal" :userInfo="studentInfo" @user-update="editUserSuccess($event)"/>
           </td>
           <td>
             <button
