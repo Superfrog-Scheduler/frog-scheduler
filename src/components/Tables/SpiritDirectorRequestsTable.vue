@@ -9,7 +9,7 @@ export default {
   data() {
     return {
       requestList: [],
-      selectedRequest: {}
+      selectedRequestId: {}
     };
   },
   methods: {
@@ -49,8 +49,8 @@ export default {
           Download as Excel
         </button>
       </div>
-      <EditRequestModal id="edit-request-modal" request="selectedRequest" />
-      <AssignRequestModal id="assign-request-modal" request=selectedRequest />
+      <EditRequestModal id="edit-request-modal" :requestId="selectedRequestId" />
+      <AssignRequestModal id="assign-request-modal" :requestId=selectedRequestId />
     </div>
     <table class="table" id="requests-table">
       <thead>
@@ -129,7 +129,7 @@ export default {
               class="btn btn-success btn-sm col-12"
               data-bs-toggle="modal"
               data-bs-target="#assign-request-modal"
-              @click="() => this.selectedRequest=request"
+              @click="() => this.selectedRequestId=request.id"
             >
               Assign
             </button>
