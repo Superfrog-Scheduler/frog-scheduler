@@ -87,6 +87,15 @@ public class UserService implements UserDetailsService {
         requestToBeAssigned.setStatus("Assigned");
     }
 
+    public void removeUserFromRequest(String requestId) {
+        Request requestToBeRemoved = requestDao.findById(requestId).get();
+
+        if(requestToBeRemoved.getAssignedTo() != null) {
+            requestToBeRemoved.getAssignedTo().removeAppearence(requestToBeRemoved);
+        }
+        requestToBeRemoved.setStatus("Approved");
+    }
+
     public List<User> findAllSuperFrogs() {
         return userDao.findByRoles("team");
     }
