@@ -55,6 +55,12 @@ public class UserController {
         return new Result(true, StatusCode.SUCCESS, "Disable user success");
     }
 
+    @PutMapping("/activate/{userId}")
+    public Result activateUser(@PathVariable Integer userId) {
+        userService.activate(userId);
+        return new Result(true, StatusCode.SUCCESS, "Activate user success");
+    }
+
     @PutMapping("/{userId}/{requestId}")
     public Result assignRequest(@PathVariable Integer userId, @PathVariable String requestId) {
         userService.assignRequest(userId, requestId);

@@ -66,6 +66,12 @@ public class UserService implements UserDetailsService {
         userDao.save(user);
     }
 
+    public void activate(Integer userId) {
+        User user = userDao.findById(userId).get();
+        user.setEnabled(true);
+        userDao.save(user);
+    }
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         // Step 1, we need to find this user from DB
