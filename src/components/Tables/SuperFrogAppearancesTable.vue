@@ -56,7 +56,8 @@ export default {
                 <td>{{request.startTime}}</td>
                 <td>{{request.endTime}}</td>
                 <td>{{request.location}}</td>
-                <td>{{request.price}}</td>
+                <td v-if="request.price!=0">{{ request.price }}</td>
+                <td v-else> TBD </td>
                 <td>
                   <span class="badge bg-danger" v-if="request.status=='Assigned'">Assigned to Me</span>
                   <span class="badge bg-success" v-if="request.status=='Completed'">Completed</span>

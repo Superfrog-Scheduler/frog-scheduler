@@ -61,7 +61,8 @@ export default {
                 <td>{{request.startTime}}</td>
                 <td>{{request.endTime}}</td>
                 <td>{{request.location}}</td>
-                <td>{{request.price}}</td>
+                <td v-if="request.price!=0">{{ request.price }}</td>
+                <td v-else> TBD </td>
                 <td>
                   <span class="badge bg-secondary" v-if="request.status=='Pending'">{{request.status}}</span>
                   <span class="badge bg-warning" v-if="request.status=='Approved'">{{request.status}}</span>
