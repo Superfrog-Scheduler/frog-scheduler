@@ -76,7 +76,6 @@ public class RequestService {
         if(role.equals("ROLE_director") || role.equals("ROLE_team")) {
             updatedRequest.setId(requestId);
             updatedRequest.setAssignedTo(request.getAssignedTo());
-            updatedRequest.setStatus(request.getStatus());
             requestDao.save(updatedRequest);
         }
 
@@ -151,11 +150,5 @@ public class RequestService {
     public List<Request> findByCustomer(Integer userId){
         User customer = userDao.findById(userId).get();
         return customer.getRequests();
-    }
-
-    public void completeRequest(String requestId) {
-        Request request = requestDao.findById(requestId).get();
-        request.setStatus("Complete");
-        requestDao.save(request);
     }
 }
