@@ -1,22 +1,27 @@
 <script>
 import requestApi from "@/apis/requestApi";
 import NewRequestModal from "../Modals/NewRequestModal.vue";
+import useUserStore from '@/store/userStore';
 
 export default {
   components: { NewRequestModal },
   data() {
     return {
-      requestList: []
+      requestList: [],
+      userInfo: {}
     };
   },
   methods: {
-    async getAll() {
-      const res = await requestApi.getAllRequests();
+    async getMyRequests() {
+      const res = await requestApi.getAllRequestsByUser(this.userInfo.id);
       this.requestList = res.data;
+      console.log(this.requestList);
     }
   },
   mounted() {
-    this.getAll()
+    const userStore = useUserStore();
+    this.userInfo = userStore.userInfo
+    this.getMyRequests()
   },
 };
 </script>

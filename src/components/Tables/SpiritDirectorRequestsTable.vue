@@ -4,13 +4,14 @@ import AssignRequestModal from "../Modals/AssignRequestModal.vue";
 import downloadApi from "@/apis/downloadApi";
 import requestApi from "@/apis/requestApi";
 import SortModal from "../Modals/SortModal.vue";
+import userApi from "@/apis/userApi";
 
 export default {
   components: { EditRequestModal, AssignRequestModal, SortModal },
   data() {
     return {
       requestList: [],
-      selectedRequest: {},
+      selectedRequestId: {}
     };
   },
   methods: {
@@ -23,7 +24,7 @@ export default {
     },
     async approveRequest(request) {
       request.status = "Approved";
-      const res = await requestApi.update(request);
+      const res = await requestApi.updateRequest(request);
     },
     async rejectRequest(request) {
       request.status = "Rejected";
@@ -31,6 +32,10 @@ export default {
     },
     async sortRequests(values){
       this.requestList = values
+      const res = await requestApi.updateRequest(request);
+    },
+    async removeAssignment(request) {
+      const res = await userApi.removeAssignment(request);
     }
   },
   mounted() {
@@ -165,13 +170,14 @@ export default {
               class="btn btn-success btn-sm col-12"
               data-bs-toggle="modal"
               data-bs-target="#assign-request-modal"
-              @click="() => (this.selectedRequest = request)"
-            >
+              @click="() => this.selectedRequestId=request.id">
               Assign
             </button>
           </td>
           <td v-if="request.status == 'Assigned'">
-            <button type="button" class="btn btn-danger btn-sm col-12">
+            <button type="button" 
+              class="btn btn-danger btn-sm col-12"
+              @click="removeAssignment(request.id)">
               Remove
             </button>
           </td>

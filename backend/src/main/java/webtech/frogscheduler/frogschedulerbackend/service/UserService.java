@@ -52,9 +52,11 @@ public class UserService implements UserDetailsService {
     }
 
     public void update(Integer userId, User updatedUser) {
+        User user = userDao.findById(userId).get();
         updatedUser.setId(userId);
-        updatedUser.setPassword(userDao.findById(userId).get().getPassword());
+        updatedUser.setPassword(user.getPassword());
         updatedUser.setEnabled(true);
+        updatedUser.setAppearences(user.getAppearences());
         userDao.save(updatedUser);
     }
 
@@ -85,6 +87,15 @@ public class UserService implements UserDetailsService {
         }
         user.addAppearence(requestToBeAssigned);
         requestToBeAssigned.setStatus("Assigned");
+    }
+
+    public void removeUserFromRequest(String requestId) {
+        Request requestToBeRemoved = requestDao.findById(requestId).get();
+
+        if(requestToBeRemoved.getAssignedTo() != null) {
+            requestToBeRemoved.getAssignedTo().removeAppearence(requestToBeRemoved);
+        }
+        requestToBeRemoved.setStatus("Approved");
     }
 
     public List<User> findAllSuperFrogs() {

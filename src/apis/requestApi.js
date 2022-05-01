@@ -51,9 +51,8 @@ const makeRequest = async (newRequestInfo) => {
     });
 };
 
-const update = async (updatedInfo) => {
+const updateRequest = async (updatedInfo) => {
   let id = updatedInfo.id
-  var session_url = `http://localhost:8080/requests/${id}`;
   var eventName = updatedInfo.eventName;
   var eventType = updatedInfo.eventType;
   var date = updatedInfo.date;
@@ -63,12 +62,16 @@ const update = async (updatedInfo) => {
   var price = updatedInfo.price;
   var customer = updatedInfo.customer;
   var status = updatedInfo.status;
-  console.log("update");
-  console.log(session_url);
-  console.log(updatedInfo);
-
-  await axios.put(session_url,
-    {
+  console.log("updateRequest");
+  
+  let token = utils.cacheUtils.get('login_token')?.token
+  const instance = axios.create({
+    baseURL: "http://localhost:8080",
+    timeout: 1000,
+    headers: { Authorization: "Bearer " + token },
+  });
+  return await instance
+    .put(`/requests/${id}`, {
       id: id,
       eventName: eventName,
       eventType: eventType,
@@ -80,13 +83,12 @@ const update = async (updatedInfo) => {
       customer: customer,
       status: status
     })
-    .then((r) => {
-      console.log(r);
-      // return r.data;
+    .then((res) => {
+      console.log(res.data);
+      return res.data;
     })
-
-    .catch(function (error) {
-      console.log(error);
+    .catch((error) => {
+      console.error(error.response.data);
     });
 }
 
@@ -118,7 +120,7 @@ const getAllByDates = async(start, end) => {
     headers: { Authorization: "Bearer " + token },
   });
   return await instance
-    .get(`/requests/${start}/${end}`)
+  .get(`/requests/${start}/${end}`)
     .then((res) => {
       console.log(res.data);
       return res.data;
@@ -127,4 +129,24 @@ const getAllByDates = async(start, end) => {
       console.error(error.response.data);
     });
 }
-export default { info, makeRequest, update, getAllRequests, getAllByDates };
+
+
+const getAllRequestsByUser = async (userId) => {
+  let token = utils.cacheUtils.get('login_token')?.token
+  console.log(token);
+  const instance = axios.create({
+    baseURL: "http://localhost:8080",
+    timeout: 1000,
+    headers: { Authorization: "Bearer " + token },
+  });
+  return await instance
+    .get(`/requests/for/${userId}`)
+    .then((res) => {
+      console.log(res.data);
+      return res.data;
+    })
+    .catch((error) => {
+      console.error(error.response.data);
+    });
+}
+export default { info, makeRequest, updateRequest, getAllRequests, getAllRequestsByUser, getAllByDates };

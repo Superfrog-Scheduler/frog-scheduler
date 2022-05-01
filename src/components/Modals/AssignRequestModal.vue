@@ -2,7 +2,7 @@
 import userApi from "@/apis/userApi";
 
 export default {
-  props: ['request'],
+  props: ['requestId'],
   data() {
     return {
       studentList: [],
@@ -13,12 +13,13 @@ export default {
       const res = await userApi.getAllSuperFrogs();
       this.studentList = res.data;
     },
-    async assignSuperFrog(request, student) {
-      const res = await userApi.assignSuperFrog(request, student);
+    async assignSuperFrog(requestId, studentId) {
+      await userApi.assignSuperFrog(requestId, studentId);
     }
   },
   mounted() {
     this.getAll()
+    console.log("assign request modal");
   },
 };
 </script>
@@ -36,7 +37,7 @@ export default {
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="staticBackdropLabel">Assign Super Frog</h5>
+          <h5 class="modal-title" id="staticBackdropLabel">Assign SuperFrog</h5>
           <button
             type="button"
             class="btn-close"
@@ -56,7 +57,7 @@ export default {
                   <td>{{student.firstname.concat(" ", student.lastname)}}</td>
                   <td>
                     <button type="button" 
-                      @click="assignSuperFrog(request, student)" 
+                      @click="assignSuperFrog(requestId, student.id)" 
                       class="btn btn-success btn-sm" 
                       data-bs-dismiss="modal">
                       Select</button>

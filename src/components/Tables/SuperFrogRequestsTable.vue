@@ -8,9 +8,13 @@ export default {
     };
   },
   methods: {
-    async getAll() {
+    async getAll() { 
       const res = await requestApi.getAllRequests();
       this.requestList = res.data;
+    },
+    async signUpRequest(request) {
+      request.status = "Completed";
+      const res = await requestApi.update(request);
     },
   },
   mounted() {
@@ -45,8 +49,8 @@ export default {
             <tbody>
               <tr v-for="request in requestList" :key="request.id">
                 <td>{{request.id}}</td>
-                <td>{{request.name}}</td>
-                <td>{{request.type}}</td>
+                <td>{{request.eventName}}</td>
+                <td>{{request.eventType}}</td>
                 <td>{{request.customer}}</td>
                 <td>{{request.date}}</td>
                 <td>{{request.startTime}}</td>
@@ -55,7 +59,7 @@ export default {
                 <td>{{request.price}}</td>
                 <td>
                   <span class="badge bg-secondary" v-if="request.status=='Pending'">{{request.status}}</span>
-                  <span class="badge bg-success" v-if="request.status=='Approved'">{{request.status}}</span>
+                  <span class="badge bg-warning" v-if="request.status=='Approved'">{{request.status}}</span>
                   <span class="badge bg-success" v-if="request.status=='Assigned'">{{request.status}}</span>
                   <span class="badge bg-danger" v-if="request.status=='Rejected'">{{request.status}}</span>
                 </td>
