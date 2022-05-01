@@ -1,9 +1,9 @@
 <script>
-import EditCustomerModal from "../Modals/EditCustomerModal.vue";
+import EditUserModal from "../Modals/EditUserModal.vue";
 import userApi from "@/apis/userApi";
 
 export default {
-  components: { EditCustomerModal },
+  components: { EditUserModal },
   data() {
     return {
       customerList: [],
@@ -36,7 +36,7 @@ export default {
                 <h4 class="card-title">Customers</h4>
             </div>
         </div>
-        <EditCustomerModal id="edit-customer-modal" />
+        <EditUserModal id="edit-user-modal" />
         <table class="table">
             <thead>
                 <tr>
@@ -63,7 +63,7 @@ export default {
                     type="button" 
                     class="btn btn-light btn-sm btn-outline-dark" 
                     data-bs-toggle="modal" 
-                    data-bs-target="#edit-customer-modal">Edit</button>
+                    data-bs-target="#edit-user-modal">Edit</button>
                 </td>
                 <td>
                   <button v-if="customer.enabled" @click="deactivateCustomer(customer)" type="button" class="btn btn-danger btn-sm me-2">Deactivate</button>
