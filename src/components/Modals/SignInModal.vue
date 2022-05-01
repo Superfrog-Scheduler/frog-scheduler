@@ -18,7 +18,12 @@ export default {
   },
   methods: {
     async login(values) {
-      utils.userLoginUtils.login(values);
+      const res = await utils.userLoginUtils.login(values);
+      console.log(res);
+      if (res == -1) {
+        var message = new Modal(document.getElementById("loginFailModal"));
+        message.show();
+      }
     },
     clearInputFields: () => {
       let email = ref("");
@@ -100,11 +105,44 @@ export default {
             >
               Cancel
             </button>
-            <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" >Submit</button>
+            <button
+              type="submit"
+              class="btn btn-primary"
+              data-bs-dismiss="modal"
+            >
+              Submit
+            </button>
           </div>
         </div>
       </div>
     </Form>
+  </div>
+  <!-- Modal -->
+  <div
+    class="modal fade"
+    id="loginFailModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Message</h5>
+        </div>
+        <div class="modal-body">Login failed! Wrong username or wrong password</div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 

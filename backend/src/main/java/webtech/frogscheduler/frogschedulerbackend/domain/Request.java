@@ -20,12 +20,10 @@ public class Request implements Serializable {
     private double price;
     private String status;
     @ManyToOne
-//    @JsonIgnore
     private User customer;
     @ManyToOne
     @JsonIgnore
     private User assignedTo;
-//    private String customerName;
 
     public Request() {
     }
@@ -100,7 +98,6 @@ public class Request implements Serializable {
 
     public void setCustomer(User customer) {
         this.customer = customer;
-//        this.customerName = customer.getFirstname() + " " + customer.getLastname();
     }
 
     public User getAssignedTo() {
@@ -119,12 +116,5 @@ public class Request implements Serializable {
         this.id = id;
     }
 
-//    public String getCustomerName() {
-//        return customerName;
-//    }
-//
-//    public void setCustomerName(String customerName) {
-//        this.customerName = customerName;
-//    }
 
 }

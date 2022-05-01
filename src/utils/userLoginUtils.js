@@ -8,6 +8,11 @@ import useUserStore from '@/store/userStore';
 export async function login(loginInfo) {
   
   const res = await userApi.login(loginInfo);
+  if(res == "Login Fail"){
+    return -1
+  } else {
+
+  
   const {token, userInfo} = res.data
 
   // We obviously can do this directly:
@@ -30,6 +35,7 @@ export async function login(loginInfo) {
     
 
   router.push({ name: routeName });
+  }
 }
 
 export function logout() {
