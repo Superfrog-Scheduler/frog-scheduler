@@ -3,6 +3,7 @@ import EditRequestModal from "../Modals/EditRequestModal.vue";
 import AssignRequestModal from "../Modals/AssignRequestModal.vue";
 import downloadApi from "@/apis/downloadApi";
 import requestApi from "@/apis/requestApi";
+import userApi from "@/apis/userApi";
 
 export default {
   components: { EditRequestModal, AssignRequestModal },
@@ -27,6 +28,9 @@ export default {
     async rejectRequest(request) {
       request.status = "Rejected";
       const res = await requestApi.updateRequest(request);
+    },
+    async removeAssignment(request) {
+      const res = await userApi.removeAssignment(request);
     }
   },
   mounted() {
@@ -129,13 +133,14 @@ export default {
               class="btn btn-success btn-sm col-12"
               data-bs-toggle="modal"
               data-bs-target="#assign-request-modal"
-              @click="() => this.selectedRequestId=request.id"
-            >
+              @click="() => this.selectedRequestId=request.id">
               Assign
             </button>
           </td>
           <td v-if="request.status == 'Assigned'">
-            <button type="button" class="btn btn-danger btn-sm col-12">
+            <button type="button" 
+              class="btn btn-danger btn-sm col-12"
+              @click="removeAssignment(request.id)">
               Remove
             </button>
           </td>
