@@ -15,8 +15,9 @@ export default {
       const res = await requestApi.getAllApprovedRequests();
       this.requestList = res.data;
     },
-    async signUpRequest(requestId) {
-      const res = await userApi.assignSuperFrog(requestId, this.userInfo.id);
+    async signUpRequest(request) {
+      request.status = "Assigned";
+      const res = await userApi.assignSuperFrog(request.id, this.userInfo.id);
     },
   },
   mounted() {
@@ -72,7 +73,7 @@ export default {
                   v-if="request.status=='Approved'" 
                   type="button" 
                   class="btn btn-success btn-sm me-2"
-                  @click="signUpRequest(request.id)">Sign up</button>
+                  @click="signUpRequest(request)">Sign up</button>
                 </td>
               </tr>
             </tbody>

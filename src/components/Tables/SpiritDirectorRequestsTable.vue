@@ -12,8 +12,9 @@ export default {
     return {
       requestList: [],
       selectedRequestId: {},
-      requestInfo: {}
+      requestInfo: {},
 
+      selectedRequest: {}
     };
   },
   methods: {
@@ -44,6 +45,12 @@ export default {
     },
     async editRequestSuccess(request) {
       this.getAll();
+      request.status = "Approved";
+      const res = await userApi.removeAssignment(request.id);
+    },
+    async assignSuperFrog(request) {
+      request.status = "Assigned";
+      const res = await userApi.removeAssignment(request.id);
     }
   },
   mounted() {
@@ -85,10 +92,11 @@ export default {
         </button>
       </div>
       
-      <AssignRequestModal
-        id="assign-request-modal"
-        :request="selectedRequest"
-      />
+      <AssignRequestModal 
+      id="assign-request-modal" 
+      :selectedRequest="this.selectedRequest"
+      @assign-superfrog="assignSuperFrog"/>
+
       <SortModal id="sort-modal" @sort="sortRequests($event)"/>
     </div>
     <table class="table" id="requests-table">
@@ -180,14 +188,14 @@ export default {
               class="btn btn-success btn-sm col-12"
               data-bs-toggle="modal"
               data-bs-target="#assign-request-modal"
-              @click="() => this.selectedRequestId=request.id">
+              @click="this.selectedRequest=request">
               Assign
             </button>
           </td>
           <td v-if="request.status == 'Assigned'">
             <button type="button" 
               class="btn btn-danger btn-sm col-12"
-              @click="removeAssignment(request.id)">
+              @click="removeAssignment(request)">
               Remove
             </button>
           </td>

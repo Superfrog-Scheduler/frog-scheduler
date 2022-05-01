@@ -2,7 +2,8 @@
 import userApi from "@/apis/userApi";
 
 export default {
-  props: ['requestId'],
+  emits: ['assign-superfrog'],
+  props: ['selectedRequest'],
   data() {
     return {
       studentList: [],
@@ -13,13 +14,14 @@ export default {
       const res = await userApi.getAllSuperFrogs();
       this.studentList = res.data;
     },
-    async assignSuperFrog(requestId, studentId) {
-      await userApi.assignSuperFrog(requestId, studentId);
+    async assignSuperFrog(studentId) {
+      console.log(this.selectedRequest);
+      this.$emit('assign-superfrog', this.selectedRequest);
+      await userApi.assignSuperFrog(this.selectedRequest.id, studentId);
     }
   },
   mounted() {
     this.getAll()
-    console.log("assign request modal");
   },
 };
 </script>
@@ -57,7 +59,7 @@ export default {
                   <td>{{student.firstname.concat(" ", student.lastname)}}</td>
                   <td>
                     <button type="button" 
-                      @click="assignSuperFrog(requestId, student.id)" 
+                      @click="assignSuperFrog(student.id)" 
                       class="btn btn-success btn-sm" 
                       data-bs-dismiss="modal">
                       Select</button>

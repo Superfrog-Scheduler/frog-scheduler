@@ -140,11 +140,22 @@ const assignSuperFrog = async (requestId, userId) => {
 }
 
 const removeAssignment = async (requestId) => {
-  var session_url = `http://localhost:8080/users/remove/${requestId}`;
-  const res = await axios.put(session_url);
-  console.log(res);
+  let token = utils.cacheUtils.get('login_token')?.token
+  const instance = axios.create({
+    baseURL: "http://localhost:8080",
+    timeout: 1000,
+    headers: { Authorization: "Bearer " + token },
+  });
+  return await instance
+    .put(`/users/remove/${requestId}`)
+    .then((res) => {
+      console.log(res.data);
+      return res.data;
+    })
+    .catch((error) => {
+      console.error(error.response.data);
+    });
 }
-
 export default {
   info,
   login,
