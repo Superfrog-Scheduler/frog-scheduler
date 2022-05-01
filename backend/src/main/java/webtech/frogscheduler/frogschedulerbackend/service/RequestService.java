@@ -76,6 +76,7 @@ public class RequestService {
         if(role.equals("ROLE_director") || role.equals("ROLE_team")) {
             updatedRequest.setId(requestId);
             updatedRequest.setAssignedTo(request.getAssignedTo());
+            updatedRequest.setStatus(request.getStatus());
             requestDao.save(updatedRequest);
         }
 
