@@ -11,7 +11,7 @@ export default {
   data() {
     return {
       requestList: [],
-      selectedRequestId: {}
+      selectedRequestId: 0
     };
   },
   methods: {
@@ -34,7 +34,8 @@ export default {
       this.requestList = values
     },
     async removeAssignment(request) {
-      const res = await userApi.removeAssignment(request);
+      request.status = "Approved";
+      const res = await userApi.removeAssignment(request.id);
     }
   },
   mounted() {
@@ -76,7 +77,7 @@ export default {
         </button>
       </div>
       <EditRequestModal id="edit-request-modal" />
-      <AssignRequestModal id="assign-request-modal" :requestId=selectedRequestId />
+      <AssignRequestModal id="assign-request-modal" :selectedRequestId="this.selectedRequestId" />
 
       <SortModal id="sort-modal" @sort="sortRequests($event)"/>
     </div>
@@ -174,7 +175,7 @@ export default {
           <td v-if="request.status == 'Assigned'">
             <button type="button" 
               class="btn btn-danger btn-sm col-12"
-              @click="removeAssignment(request.id)">
+              @click="removeAssignment(request)">
               Remove
             </button>
           </td>

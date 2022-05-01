@@ -2,7 +2,7 @@
 import userApi from "@/apis/userApi";
 
 export default {
-  props: ['requestId'],
+  props: ['selectedRequestId'],
   data() {
     return {
       studentList: [],
@@ -13,8 +13,8 @@ export default {
       const res = await userApi.getAllSuperFrogs();
       this.studentList = res.data;
     },
-    async assignSuperFrog(requestId, student) {
-      await userApi.assignSuperFrog(requestId, student);
+    async assignSuperFrog(studentId) {
+      await userApi.assignSuperFrog(this.selectedRequestId, studentId);
     }
   },
   mounted() {
@@ -57,7 +57,7 @@ export default {
                   <td>{{student.firstname.concat(" ", student.lastname)}}</td>
                   <td>
                     <button type="button" 
-                      @click="assignSuperFrog(requestId, student)" 
+                      @click="assignSuperFrog(student.id)" 
                       class="btn btn-success btn-sm" 
                       data-bs-dismiss="modal">
                       Select</button>
