@@ -134,13 +134,25 @@ const getAllCustomers = async () => {
     });
 }
 
-const assignSuperFrog = async (requestId, user) => {
-  let userId = user.id
+const assignSuperFrog = async (requestId, userId) => {
   var session_url = `http://localhost:8080/users/${userId}/${requestId}`;
-  console.log(session_url);
 
   const res = await axios.put(session_url);
-  console.log(res.data);
 }
 
-export default { info, login, register, updateUserInfo, getAllSuperFrogs, getAllCustomers, assignSuperFrog };
+const removeAssignment = async (requestId) => {
+  var session_url = `http://localhost:8080/users/remove/${requestId}`;
+  const res = await axios.put(session_url);
+  console.log(res);
+}
+
+export default {
+  info,
+  login,
+  register,
+  updateUserInfo,
+  getAllSuperFrogs,
+  getAllCustomers,
+  assignSuperFrog,
+  removeAssignment
+};
